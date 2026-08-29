@@ -1701,9 +1701,9 @@ $("#feedbackForm").onsubmit = event => {
 
     state.reviews.unshift([
 
-        "DF",
+        "U1",
 
-        "Divesh Farmer",
+        "User1 Farmer",
 
         "You",
 
