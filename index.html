@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmLink — Farmer Market Intelligence</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+
+            <div class="brand">
+                <div class="logo">🌾</div>
+                <div>
+                    <b>FarmLink</b>
+                    <small data-i18n="marketIntelligence">Market Intelligence</small>
+                </div>
+            </div>
+
+            <nav class="nav">
+                <button class="active" data-go="dashboard">
+                    ⌂ &nbsp; <span data-i18n="dashboard">Dashboard</span>
+                </button>
+
+                <button data-go="prices">
+                    ↗ &nbsp; <span data-i18n="priceIntelligence">Price Intelligence</span>
+                </button>
+
+                <button data-go="products">
+                    ▦ &nbsp; <span data-i18n="productAvailability">Product Availability</span>
+                </button>
+
+                <button data-go="collective">
+                    👥 &nbsp; <span data-i18n="farmerCollective">Farmer Collective</span>
+                </button>
+
+                <button data-go="schedule">
+                    ◷ &nbsp; <span data-i18n="smartSchedule">Smart Schedule</span>
+                </button>
+
+                <button data-go="transactions">
+                    ₹ &nbsp; <span data-i18n="transactions">Transactions</span>
+                </button>
+
+                <button data-go="feedback">
+                    ★ &nbsp; <span data-i18n="reviewsFeedback">Reviews & Feedback</span>
+                </button>
+            </nav>
+
+            <div class="bottom">
+
+                <div class="help">
+                    💡 <b data-i18n="demoMode">Demo mode</b><br>
+                    <span data-i18n="localData">
+                        All data is local. Backend can be connected later.
+                    </span>
+                </div>
+
+                <button class="reset" id="reset">
+                    ↻ <span data-i18n="resetDemo">Reset demo</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+        <main class="main">
+
+            <header class="top">
+
+                <button class="mobile" id="menu">☰</button>
+
+                <div class="search">
+                    ⌕
+                    <input id="search" data-placeholder="searchPlaceholder" placeholder="Search crops, buyers, markets...">
+                </div>
+
+                <!-- LANGUAGE -->
+                <div class="language-box">
+                    <span>🌐</span>
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="mr">मराठी</option>
+                        <option value="ta">தமிழ்</option>
+                        <option value="kn">ಕನ್ನಡ</option>
+                        <option value="bn">বাংলা</option>
+                        <option value="pa">ਪੰਜਾਬੀ</option>
+                        <option value="gu">ગુજરાતી</option>
+                        <option value="pahadi">पहाड़ी</option>
+                        <option value="ml">മലയാളം</option>
+                        <option value="ks">کٲشُر</option>
+                        <option value="as">অসমীয়া</option>
+                        <option value="te">తెలుగు</option>
+                    </select>
+                </div>
+
+                <div class="profile">
+
+                    <div class="avatar">DF</div>
+
+                    <div>
+                        <b>Divesh Farmer</b><br>
+                        <small data-i18n="farmerFpo">Farmer / FPO</small>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <div class="container">
+
+                <div id="toast" class="toast"></div>
+
+
+                <!-- ================= DASHBOARD ================= -->
+
+                <section id="dashboard" class="section active">
+
+                    <div class="hero">
+
+                        <div>
+
+                            <div class="eyebrow">
+                                <span data-i18n="saturday">SATURDAY</span> · 29 AUGUST 2026
+                            </div>
+
+                            <h1>
+                                <span data-i18n="goodMorning">Good morning</span>,
+                                Divesh 👋
+                            </h1>
+
+                            <p data-i18n="heroDescription">
+                                Make better selling decisions with transparent prices,
+                                verified buyers and smarter market connections.
+                            </p>
+
+                            <div class="actions">
+
+                                <button class="btn primary" data-modal="listing">
+                                    ＋ <span data-i18n="listProduce">List Produce</span>
+                                </button>
+
+                                <button class="btn secondary" data-go="prices">
+                                    <span data-i18n="viewMarketPrices">View Market Prices</span> →
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STATS -->
+
+                    <div class="stats">
+
+                        <div class="stat">
+
+                            <div class="ico">₹</div>
+
+                            <div>
+                                <span data-i18n="bestMarketPrice">Best Market Price</span>
+                                <b>₹3,420/q</b>
+                                <small class="up">
+                                    ▲ 8.4% <span data-i18n="thisWeek">this week</span>
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat">
+
+                            <div class="ico">▦</div>
+
+                            <div>
+                                <span data-i18n="activeLots">Active Lots</span>
+                                <b id="lotCount">12</b>
+                                <small>
+                                    3 <span data-i18n="receivingOffers">receiving offers</span>
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat">
+
+                            <div class="ico">👥</div>
+
+                            <div>
+                                <span data-i18n="verifiedBuyers">Verified Buyers</span>
+                                <b>148</b>
+                                <small>
+                                    23 <span data-i18n="nearYourArea">near your area</span>
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat">
+
+                            <div class="ico">₹</div>
+
+                            <div>
+                                <span data-i18n="potentialMargin">Potential Margin</span>
+                                <b>+₹18,600</b>
+                                <small class="up" data-i18n="vsLocalMandi">
+                                    vs local mandi
+                                </small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CHART + ALERTS -->
+
+                    <div class="grid">
+
+                        <div class="card">
+
+                            <div class="head">
+
+                                <div>
+                                    <div class="eyebrow" data-i18n="priceDiscovery">
+                                        PRICE DISCOVERY
+                                    </div>
+
+                                    <h2 data-i18n="onionPriceTrend">
+                                        Onion price trend
+                                    </h2>
+                                </div>
+
+                                <span class="muted" data-i18n="last7Days">
+                                    Last 7 days
+                                </span>
+
+                            </div>
+
+
+                            <div class="chart">
+
+                                <svg viewBox="0 0 700 230" preserveAspectRatio="none">
+
+                                    <g stroke="#edf1ec" stroke-width="1">
+                                        <line x1="45" y1="25" x2="680" y2="25" />
+                                        <line x1="45" y1="80" x2="680" y2="80" />
+                                        <line x1="45" y1="135" x2="680" y2="135" />
+                                        <line x1="45" y1="190" x2="680" y2="190" />
+                                    </g>
+
+                                    <polyline points="55,165 155,150 255,125 355,137 455,102 555,65 665,45" fill="none" stroke="#66a248" stroke-width="4" />
+
+                                    <polygon points="55,165 155,150 255,125 355,137 455,102 555,65 665,45 665,205 55,205" fill="#66a248" opacity=".09" />
+
+                                    <g fill="#66a248">
+
+                                        <circle cx="55" cy="165" r="5" />
+                                        <circle cx="155" cy="150" r="5" />
+                                        <circle cx="255" cy="125" r="5" />
+                                        <circle cx="355" cy="137" r="5" />
+                                        <circle cx="455" cy="102" r="5" />
+                                        <circle cx="555" cy="65" r="5" />
+                                        <circle cx="665" cy="45" r="5" />
+
+                                    </g>
+
+                                    <g font-size="10" fill="#839087">
+                                        <text x="50" y="222">Mon</text>
+                                        <text x="150" y="222">Tue</text>
+                                        <text x="250" y="222">Wed</text>
+                                        <text x="350" y="222">Thu</text>
+                                        <text x="450" y="222">Fri</text>
+                                        <text x="550" y="222">Sat</text>
+                                        <text x="650" y="222">Sun</text>
+                                    </g>
+
+                                </svg>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card">
+
+                            <div class="head">
+
+                                <div>
+                                    <div class="eyebrow" data-i18n="smartAlerts">
+                                        SMART ALERTS
+                                    </div>
+
+                                    <h2 data-i18n="priceMarketAlerts">
+                                        Price & market alerts
+                                    </h2>
+                                </div>
+
+                                <button class="mini-btn" data-go="prices">
+                                    <span data-i18n="viewAll">View all</span>
+                                </button>
+
+                            </div>
+
+
+                            <div class="alert">
+
+                                <div class="bubble">↗</div>
+
+                                <div>
+                                    <b data-i18n="onionPricesRising">
+                                        Onion prices rising
+                                    </b>
+
+                                    <p data-i18n="onionPriceAlert">
+                                        Lasalgaon modal price is ₹3,420/q, up 8.4%.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="alert">
+
+                                <div class="bubble">●</div>
+
+                                <div>
+                                    <b data-i18n="newBuyerDemand">
+                                        New buyer demand
+                                    </b>
+
+                                    <p data-i18n="freshKartDemand">
+                                        FreshKart needs 20 q of Grade A onion.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="alert">
+
+                                <div class="bubble">◷</div>
+
+                                <div>
+                                    <b data-i18n="goodSaleWindow">
+                                        Good sale window
+                                    </b>
+
+                                    <p data-i18n="recommendedWindow">
+                                        Recommended window: next 3–5 days.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OFFERS -->
+
+                    <div class="grid">
+
+                        <div class="card">
+
+                            <div class="head">
+
+                                <div>
+                                    <div class="eyebrow" data-i18n="bestOpportunities">
+                                        BEST OPPORTUNITIES
+                                    </div>
+
+                                    <h2 data-i18n="nearbyBuyerOffers">
+                                        Nearby buyer offers
+                                    </h2>
+                                </div>
+
+                            </div>
+
+
+                            <div class="offer">
+
+                                <div>
+                                    <b>FreshKart</b>
+                                    <small>Onion · 20 q · Verified</small>
+                                </div>
+
+                                <strong>₹3,500/q</strong>
+
+                                <button class="mini-btn" onclick="toastKey('offerDetailsOpened')">
+                                    <span data-i18n="review">Review</span>
+                                </button>
+
+                            </div>
+
+
+                            <div class="offer">
+
+                                <div>
+                                    <b>AgroMart</b>
+                                    <small>Wheat · 50 q · Verified</small>
+                                </div>
+
+                                <strong>₹2,680/q</strong>
+
+                                <button class="mini-btn" onclick="toastKey('offerDetailsOpened')">
+                                    <span data-i18n="review">Review</span>
+                                </button>
+
+                            </div>
+
+
+                            <div class="offer">
+
+                                <div>
+                                    <b>GreenHarvest</b>
+                                    <small>Soybean · 30 q · Verified</small>
+                                </div>
+
+                                <strong>₹4,820/q</strong>
+
+                                <button class="mini-btn" onclick="toastKey('offerDetailsOpened')">
+                                    <span data-i18n="review">Review</span>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card recommend">
+
+                            <div class="eyebrow" data-i18n="recommendation">
+                                RECOMMENDATION
+                            </div>
+
+                            <h2 data-i18n="holdBetterWindow">
+                                Hold for a better window
+                            </h2>
+
+                            <p data-i18n="recommendationText">
+                                Recent local trends indicate stronger onion demand
+                                in the next few days.
+                            </p>
+
+                            <strong data-i18n="expectedRange">
+                                Expected range: ₹3,500–₹3,650/q
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= PRICES ================= -->
+
+                <section id="prices" class="section">
+
+                    <div class="title">
+
+                        <div>
+                            <div class="eyebrow" data-i18n="marketIntelligenceUpper">
+                                MARKET INTELLIGENCE
+                            </div>
+
+                            <h1 data-i18n="priceDiscoveryTitle">
+                                Price Discovery
+                            </h1>
+
+                            <p class="muted" data-i18n="compareMandi">
+                                Compare nearby mandi prices before you sell.
+                            </p>
+                        </div>
+
+                        <button class="btn primary" data-modal="alert">
+                            ＋ <span data-i18n="createPriceAlert">Create Price Alert</span>
+                        </button>
+
+                    </div>
+
+
+                    <div class="summary">
+
+                        <div class="card price-big">
+                            <span class="muted">Onion · Grade A</span>
+                            <b>₹3,420 <small>/ quintal</small></b>
+                            <span class="up">▲ 8.4% vs 7 days ago</span>
+                        </div>
+
+                        <div class="card mini">
+                            <span class="muted" data-i18n="highestMarket">Highest market</span>
+                            <b>Lasalgaon</b>
+                            <small>₹3,420/q</small>
+                        </div>
+
+                        <div class="card mini">
+                            <span class="muted" data-i18n="lowestMarket">Lowest market</span>
+                            <b>Nagpur</b>
+                            <small>₹3,050/q</small>
+                        </div>
+
+                        <div class="card mini">
+                            <span class="muted" data-i18n="expectedRangeLabel">Expected range</span>
+                            <b>₹3,500–₹3,650</b>
+                            <small class="up" data-i18n="positiveTrend">
+                                Positive trend
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card table-card">
+
+                        <div class="head">
+
+                            <div>
+                                <div class="eyebrow" data-i18n="nearbyMandis">
+                                    NEARBY MANDIS
+                                </div>
+
+                                <h2 data-i18n="marketComparison">
+                                    Market comparison
+                                </h2>
+                            </div>
+
+                            <span class="muted">
+                                ● <span data-i18n="updatedToday">Updated today</span>
+                            </span>
+
+                        </div>
+
+
+                        <div class="table-wrap">
+
+                            <table>
+
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="market">Market</th>
+                                        <th data-i18n="distance">Distance</th>
+                                        <th>Min</th>
+                                        <th>Modal</th>
+                                        <th>Max</th>
+                                        <th data-i18n="trend">Trend</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="markets"></tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= PRODUCTS ================= -->
+
+                <section id="products" class="section">
+
+                    <div class="title">
+
+                        <div>
+                            <div class="eyebrow" data-i18n="marketplace">
+                                MARKETPLACE
+                            </div>
+
+                            <h1 data-i18n="productAvailabilityTitle">
+                                Product Availability
+                            </h1>
+
+                            <p class="muted" data-i18n="browseLots">
+                                Browse available farmer lots and buyer demand.
+                            </p>
+                        </div>
+
+                        <button class="btn primary" data-modal="listing">
+                            ＋ <span data-i18n="listProduce">List Produce</span>
+                        </button>
+
+                    </div>
+
+
+                    <div class="card filters">
+
+                        <input id="cropFilter" data-placeholder="searchCrop" placeholder="Search crop...">
+
+                        <select id="gradeFilter">
+                            <option value="" data-i18n="allGrades">All grades</option>
+                            <option>Grade A</option>
+                            <option>Grade B</option>
+                            <option>Premium</option>
+                        </select>
+
+                        <select id="locationFilter">
+                            <option value="" data-i18n="allLocations">All locations</option>
+                            <option>Lasalgaon</option>
+                            <option>Nagpur</option>
+                            <option>Pune</option>
+                        </select>
+
+                        <button class="btn secondary" id="clear">
+                            <span data-i18n="clear">Clear</span>
+                        </button>
+
+                    </div>
+
+
+                    <div class="products" id="productsGrid"></div>
+
+                </section>
+
+
+                <!-- ================= COLLECTIVE ================= -->
+
+                <section id="collective" class="section">
+
+                    <div class="title">
+
+                        <div>
+                            <div class="eyebrow" data-i18n="fpoBulkBuying">
+                                FPO / BULK BUYING
+                            </div>
+
+                            <h1 data-i18n="farmerCollectiveMode">
+                                Farmer Collective Mode
+                            </h1>
+
+                            <p class="muted" data-i18n="aggregateProduce">
+                                Aggregate produce from farmers for larger buyers.
+                            </p>
+                        </div>
+
+                        <button class="btn primary" data-modal="collectiveModal">
+                            ＋ <span data-i18n="createCollectiveLot">Create Collective Lot</span>
+                        </button>
+
+                    </div>
+
+
+                    <div class="card collective">
+
+                        <div class="collective-icon">👥</div>
+
+                        <div>
+
+                            <div class="eyebrow" data-i18n="activeCollection">
+                                ACTIVE COLLECTION
+                            </div>
+
+                            <h2>Onion — Grade A Bulk Lot</h2>
+
+                            <p class="muted" data-i18n="collectionDetails">
+                                8 farmers joined · 160 q aggregated · 3 buyers interested
+                            </p>
+
+                            <div class="progress">
+                                <i></i>
+                            </div>
+
+                            <small>160 / 220 q target</small>
+
+                        </div>
+
+                        <strong>
+                            ₹3,480/q<br>
+                            <small data-i18n="currentOffer">current offer</small>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="grid">
+
+                        <div class="card">
+
+                            <div class="head">
+                                <h2 data-i18n="farmerMembers">Farmer members</h2>
+                            </div>
+
+                            <div id="members"></div>
+
+                        </div>
+
+
+                        <div class="card">
+
+                            <div class="head">
+                                <h2 data-i18n="bulkBuyerDemand">Bulk buyer demand</h2>
+                            </div>
+
+                            <div id="buyers"></div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= SCHEDULE ================= -->
+
+                <section id="schedule" class="section">
+
+                    <div class="title">
+
+                        <div>
+                            <div class="eyebrow" data-i18n="logistics">
+                                LOGISTICS
+                            </div>
+
+                            <h1 data-i18n="smartScheduleTitle">
+                                Smart Schedule
+                            </h1>
+
+                            <p class="muted" data-i18n="coordinateLogistics">
+                                Coordinate grading, pickup, delivery and payment milestones.
+                            </p>
+                        </div>
+
+                        <button class="btn primary" onclick="toastKey('scheduleBackend')">
+                            ＋ <span data-i18n="addSchedule">Add Schedule</span>
+                        </button>
+
+                    </div>
+
+
+                    <div class="card timeline">
+
+                        <div class="item">
+
+                            <div class="time">08:30 AM</div>
+                            <div class="dot"></div>
+
+                            <div>
+                                <strong data-i18n="priceCheck">Price check</strong>
+                                <p data-i18n="priceCheckDesc">
+                                    Compare nearby mandi prices and active buyer demand.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="item">
+
+                            <div class="time">10:00 AM</div>
+                            <div class="dot"></div>
+
+                            <div>
+                                <strong data-i18n="qualityGrading">Quality grading</strong>
+                                <p data-i18n="qualityGradingDesc">
+                                    Grade your onion lot and update quality details.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="item">
+
+                            <div class="time">01:30 PM</div>
+                            <div class="dot"></div>
+
+                            <div>
+                                <strong data-i18n="pickupWindow">Pickup window</strong>
+                                <p data-i18n="pickupDesc">
+                                    FreshKart pickup · Vehicle MH-XX-1234.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="item">
+
+                            <div class="time">04:00 PM</div>
+                            <div class="dot"></div>
+
+                            <div>
+                                <strong data-i18n="paymentTracking">Payment tracking</strong>
+                                <p data-i18n="paymentTrackingDesc">
+                                    Expected settlement after delivery confirmation.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= TRANSACTIONS ================= -->
+
+                <section id="transactions" class="section">
+
+                    <div class="title">
+
+                        <div>
+                            <div class="eyebrow" data-i18n="transparentLedger">
+                                TRANSPARENT LEDGER
+                            </div>
+
+                            <h1 data-i18n="transactionsTitle">
+                                Transactions
+                            </h1>
+
+                            <p class="muted" data-i18n="transactionDescription">
+                                Offers, quantity, payments and delivery status in one place.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="transaction-summary">
+
+                        <div class="card">
+                            <span class="muted" data-i18n="totalSales">Total sales</span>
+                            <b>₹2,84,600</b>
+                        </div>
+
+                        <div class="card">
+                            <span class="muted" data-i18n="pendingPayment">Pending payment</span>
+                            <b>₹42,800</b>
+                        </div>
+
+                        <div class="card">
+                            <span class="muted" data-i18n="completed">Completed</span>
+                            <b>18</b>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card table-wrap">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th data-i18n="transaction">Transaction</th>
+                                    <th data-i18n="buyer">Buyer</th>
+                                    <th data-i18n="produce">Produce</th>
+                                    <th data-i18n="amount">Amount</th>
+                                    <th data-i18n="payment">Payment</th>
+                                    <th data-i18n="delivery">Delivery</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>#FL-1048</td>
+                                    <td>FreshKart</td>
+                                    <td>Onion · 80 q</td>
+                                    <td>₹2,80,000</td>
+                                    <td class="up" data-i18n="paid">Paid</td>
+                                    <td data-i18n="delivered">Delivered</td>
+                                </tr>
+
+                                <tr>
+                                    <td>#FL-1042</td>
+                                    <td>AgroMart</td>
+                                    <td>Wheat · 50 q</td>
+                                    <td>₹1,34,000</td>
+                                    <td class="pending" data-i18n="pending">Pending</td>
+                                    <td data-i18n="pickupScheduled">Pickup scheduled</td>
+                                </tr>
+
+                                <tr>
+                                    <td>#FL-1037</td>
+                                    <td>GreenHarvest</td>
+                                    <td>Soybean · 30 q</td>
+                                    <td>₹1,44,600</td>
+                                    <td class="up" data-i18n="paid">Paid</td>
+                                    <td data-i18n="delivered">Delivered</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= FEEDBACK ================= -->
+
+                <section id="feedback" class="section">
+
+                    <div class="title">
+
+                        <div>
+                            <div class="eyebrow" data-i18n="trustCommunity">
+                                TRUST & COMMUNITY
+                            </div>
+
+                            <h1 data-i18n="reviewsFeedbackTitle">
+                                Reviews & Feedback
+                            </h1>
+
+                            <p class="muted" data-i18n="ratingsDescription">
+                                Ratings help farmers and buyers build reliable relationships.
+                            </p>
+                        </div>
+
+                        <button class="btn primary" data-modal="feedbackModal">
+                            ＋ <span data-i18n="giveFeedback">Give Feedback</span>
+                        </button>
+
+                    </div>
+
+
+                    <div class="grid">
+
+                        <div class="card center-card">
+
+                            <h1 class="rating-number">4.8</h1>
+
+                            <div class="stars">★★★★★</div>
+
+                            <small class="muted" data-i18n="averageBuyerRating">
+                                Average buyer rating
+                            </small>
+
+                        </div>
+
+
+                        <div class="card">
+
+                            <h2 data-i18n="whyRatingsMatter">
+                                Why ratings matter
+                            </h2>
+
+                            <p class="muted" data-i18n="ratingsMatterDescription">
+                                Transparent reviews help farmers identify reliable buyers
+                                and help buyers source consistently graded produce.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="feedback-grid" id="reviews"></div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================= LISTING MODAL ================= -->
+
+    <div class="modal-bg" id="listing">
+
+        <div class="modal">
+
+            <button class="close" data-close>×</button>
+
+            <div class="eyebrow" data-i18n="newListing">NEW LISTING</div>
+
+            <h2 data-i18n="listYourProduce">List your produce</h2>
+
+            <p class="muted" data-i18n="listingDescription">
+                This saves a local demo listing. Backend integration comes next.
+            </p>
+
+            <form id="listingForm">
+
+                <label>
+                    <span data-i18n="crop">Crop</span>
+                    <input name="crop" required placeholder="Onion">
+                </label>
+
+                <div class="form-row">
+
+                    <label>
+                        <span data-i18n="quantity">Quantity (q)</span>
+                        <input name="qty" type="number" required>
+                    </label>
+
+                    <label>
+                        <span data-i18n="grade">Grade</span>
+
+                        <select name="grade">
+                            <option>Grade A</option>
+                            <option>Grade B</option>
+                            <option>Premium</option>
+                        </select>
+
+                    </label>
+
+                </div>
+
+                <label>
+                    <span data-i18n="expectedPrice">Expected price / q</span>
+                    <input name="price" type="number" required>
+                </label>
+
+                <label>
+                    <span data-i18n="location">Location</span>
+                    <input name="location" required placeholder="Nagpur">
+                </label>
+
+                <button class="btn primary" type="submit">
+                    <span data-i18n="publishLot">Publish Lot</span>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= COLLECTIVE MODAL ================= -->
+
+    <div class="modal-bg" id="collectiveModal">
+
+        <div class="modal">
+
+            <button class="close" data-close>×</button>
+
+            <div class="eyebrow" data-i18n="collectiveMode">
+                COLLECTIVE MODE
+            </div>
+
+            <h2 data-i18n="createBulkLot">Create bulk lot</h2>
+
+            <form id="collectiveForm">
+
+                <label>
+                    <span data-i18n="crop">Crop</span>
+                    <input required placeholder="Onion">
+                </label>
+
+                <label>
+                    <span data-i18n="targetQuantity">Target quantity</span>
+                    <input type="number" required>
+                </label>
+
+                <label>
+                    <span data-i18n="minimumPrice">Minimum price</span>
+                    <input type="number" required>
+                </label>
+
+                <label>
+                    <span data-i18n="buyerRequirement">Buyer requirement</span>
+                    <textarea rows="3" data-placeholder="buyerRequirementPlaceholder" placeholder="Grade A, pickup within 3 days"></textarea>
+                </label>
+
+                <button class="btn primary" type="submit">
+                    <span data-i18n="createCollectiveLot">Create Collective Lot</span>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= ALERT MODAL ================= -->
+
+    <div class="modal-bg" id="alert">
+
+        <div class="modal">
+
+            <button class="close" data-close>×</button>
+
+            <div class="eyebrow" data-i18n="priceAlert">
+                PRICE ALERT
+            </div>
+
+            <h2 data-i18n="createPriceAlert">Create price alert</h2>
+
+            <form id="alertForm">
+
+                <label>
+                    <span data-i18n="crop">Crop</span>
+
+                    <select>
+                        <option>Onion</option>
+                        <option>Tomato</option>
+                        <option>Wheat</option>
+                        <option>Soybean</option>
+                    </select>
+                </label>
+
+                <label>
+                    <span data-i18n="alertPrice">Alert price / q</span>
+                    <input type="number" value="3500">
+                </label>
+
+                <button class="btn primary" type="submit">
+                    <span data-i18n="activateAlert">Activate Alert</span>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FEEDBACK MODAL ================= -->
+
+    <div class="modal-bg" id="feedbackModal">
+
+        <div class="modal">
+
+            <button class="close" data-close>×</button>
+
+            <div class="eyebrow" data-i18n="yourVoiceMatters">
+                YOUR VOICE MATTERS
+            </div>
+
+            <h2 data-i18n="sendFeedback">Send feedback</h2>
+
+            <form id="feedbackForm">
+
+                <label>
+                    <span data-i18n="rating">Rating</span>
+
+                    <select name="rating">
+                        <option>5</option>
+                        <option>4</option>
+                        <option>3</option>
+                        <option>2</option>
+                        <option>1</option>
+                    </select>
+                </label>
+
+                <label>
+
+                    <span data-i18n="feedback">Feedback</span>
+
+                    <textarea name="message" rows="4" required data-placeholder="feedbackPlaceholder" placeholder="Tell us what can be improved..."></textarea>
+
+                </label>
+
+                <button class="btn primary" type="submit">
+                    <span data-i18n="submitFeedback">Submit Feedback</span>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
