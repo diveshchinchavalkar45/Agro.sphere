@@ -1,4 +1,4 @@
-# AgroSphere (FarmLink) — Farmer Market Intelligence Platform
+# Agrosphere — Farmer Market Intelligence Platform
 
 A comprehensive web platform empowering farmers with market intelligence, crop price tracking, collective selling, weather updates, smart scheduling, and direct transactions.
 

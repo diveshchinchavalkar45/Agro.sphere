@@ -1,5 +1,5 @@
 /* =========================================================
-   FARMLINK - MULTI LANGUAGE SYSTEM
+   AGROSPHERE - MULTI LANGUAGE SYSTEM
    ========================================================= */
 
 const translations = {
@@ -1011,6 +1011,7 @@ const $$ = selector => [...document.querySelectorAll(selector)];
    ========================================================= */
 
 let currentLanguage =
+    localStorage.getItem("agrosphereLanguage") ||
     localStorage.getItem("farmlinkLanguage") || "en";
 
 
@@ -1070,7 +1071,7 @@ function changeLanguage(language) {
     currentLanguage = language;
 
     localStorage.setItem(
-        "farmlinkLanguage",
+        "agrosphereLanguage",
         language
     );
 
