@@ -1,5 +1,5 @@
 /* =========================================================
-   AGROSPHERE - MULTI LANGUAGE SYSTEM
+   AGRO-SPHERE - MULTI LANGUAGE SYSTEM
    ========================================================= */
 
 const translations = {
