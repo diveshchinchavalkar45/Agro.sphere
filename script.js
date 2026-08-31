@@ -915,6 +915,16 @@ translations.pahadi = {
    APPLICATION STATE
    ========================================================= */
 
+const defaultCropImages = {
+    "onion": "https://images.unsplash.com/photo-1664975367131-4c7ac2efa704?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "tomato": "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "tomatoes": "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "soybean": "https://images.unsplash.com/photo-1639843606783-b2f9c50a7468?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "wheat": "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "potato": "https://plus.unsplash.com/premium_photo-1724849333632-d88aa5a73d9c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "potatoes": "https://plus.unsplash.com/premium_photo-1724849333632-d88aa5a73d9c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+};
+
 const state = {
 
     products: [{
@@ -924,6 +934,7 @@ const state = {
             location: "Lasalgaon",
             qty: 80,
             price: 3420,
+            img: "https://images.unsplash.com/photo-1664975367131-4c7ac2efa704?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             e: "🧅",
             buyer: "FreshKart"
         },
@@ -934,6 +945,7 @@ const state = {
             location: "Nagpur",
             qty: 35,
             price: 2850,
+            img: "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             e: "🍅",
             buyer: "CityFresh Foods"
         },
@@ -944,6 +956,7 @@ const state = {
             location: "Pune",
             qty: 120,
             price: 2640,
+            img: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             e: "🌾",
             buyer: "AgroMart"
         },
@@ -954,6 +967,7 @@ const state = {
             location: "Nagpur",
             qty: 65,
             price: 4750,
+            img: "https://images.unsplash.com/photo-1639843606783-b2f9c50a7468?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             e: "🫘",
             buyer: "GreenHarvest"
         },
@@ -964,6 +978,7 @@ const state = {
             location: "Pune",
             qty: 50,
             price: 3180,
+            img: "https://images.unsplash.com/photo-1664975367131-4c7ac2efa704?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             e: "🧅",
             buyer: "Metro Wholesale"
         },
@@ -974,8 +989,31 @@ const state = {
             location: "Lasalgaon",
             qty: 40,
             price: 3020,
+            img: "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             e: "🍅",
             buyer: "FreshBasket"
+        },
+        {
+            id: 7,
+            crop: "Potato",
+            grade: "Grade A",
+            location: "Pune",
+            qty: 90,
+            price: 2150,
+            img: "https://plus.unsplash.com/premium_photo-1724849333632-d88aa5a73d9c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            e: "🥔",
+            buyer: "SpudCorp Logistics"
+        },
+        {
+            id: 8,
+            crop: "Potato",
+            grade: "Grade B",
+            location: "Nagpur",
+            qty: 70,
+            price: 1920,
+            img: "https://plus.unsplash.com/premium_photo-1724849333632-d88aa5a73d9c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            e: "🥔",
+            buyer: "Bharat Foods"
         }
     ],
 
@@ -1376,7 +1414,7 @@ function renderProducts() {
                 <article class="product">
 
                     <div class="crop-img">
-                        ${product.e}
+                        ${product.img ? `<img src="${product.img}" alt="${product.crop} ${product.grade}" loading="lazy">` : product.e}
                     </div>
 
                     <div class="product-body">
@@ -1610,6 +1648,8 @@ $("#listingForm").onsubmit = event => {
     const location =
         form.get("location");
 
+    const cropKey = (crop || "").toLowerCase().trim();
+    const defaultImg = defaultCropImages[cropKey] || "";
 
     state.products.unshift({
 
@@ -1624,6 +1664,8 @@ $("#listingForm").onsubmit = event => {
         qty,
 
         price,
+
+        img: defaultImg,
 
         e: "🌾",
 
