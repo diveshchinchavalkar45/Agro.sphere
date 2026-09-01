@@ -1263,6 +1263,7 @@ const state = {
             packagingSpec: "50kg Bags",
             pesticideSpec: "Certified Quality",
             harvestSpec: "Processed"
+        }
     ],
 
     reviews: [
