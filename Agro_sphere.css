@@ -643,6 +643,302 @@ td {
     font-size: 9px;
 }
 
+/* =========================================================
+   CATEGORY TABS & URGENT SALE STYLES
+   ========================================================= */
+
+.category-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+}
+
+.category-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.cat-tab {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cat-tab:hover {
+    background: #f0f7ec;
+    border-color: #bcdbb0;
+    color: var(--primary);
+}
+
+.cat-tab.active {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(33, 73, 29, 0.2);
+}
+
+.cat-tab.urgent-tab {
+    border-color: #f5c6cb;
+    color: #c0392b;
+}
+
+.cat-tab.urgent-tab:hover {
+    background: #fdf2f2;
+    border-color: #e74c3c;
+}
+
+.cat-tab.urgent-tab.active {
+    background: #c0392b;
+    color: #ffffff;
+    border-color: #c0392b;
+    box-shadow: 0 2px 8px rgba(192, 57, 43, 0.3);
+}
+
+.actions-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn.urgent-btn {
+    background: #e74c3c;
+    color: #ffffff;
+    border: 1px solid #c0392b;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+    animation: urgentGlow 2.5s infinite ease-in-out;
+}
+
+.btn.urgent-btn:hover {
+    background: #c0392b;
+}
+
+@keyframes urgentGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(231, 76, 60, 0); }
+}
+
+/* URGENT CARD BADGE */
+.urgent-badge {
+    background: #fdf2f2;
+    color: #c0392b;
+    border: 1px solid #f5c6cb;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: 4px;
+}
+
+.card-actions-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.btn-details {
+    background: #f4f8f2;
+    border: 1px solid #dbe6d6;
+    color: #2b5722;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 9px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-details:hover {
+    background: #e4f0dc;
+    border-color: #bcdbb0;
+}
+
+/* =========================================================
+   QUALITY INSPECTION MODAL STYLES
+   ========================================================= */
+
+.quality-modal-content {
+    max-width: 620px;
+    width: 95%;
+}
+
+.quality-modal-header {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin: 14px 0 16px;
+    flex-wrap: wrap;
+}
+
+.q-modal-img-container {
+    width: 130px;
+    height: 130px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #e1ecdd;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+}
+
+.q-modal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.grade-badge {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: #2d6a2e;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.urgent-ribbon {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    background: #c0392b;
+    color: #ffffff;
+    font-size: 8px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.q-modal-main-info {
+    flex: 1;
+    min-width: 220px;
+}
+
+.q-modal-main-info h2 {
+    margin: 0 0 4px;
+    font-size: 20px;
+}
+
+.q-price-tag {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin: 8px 0;
+}
+
+.q-price-val {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.q-qty-badge {
+    background: #eef5ea;
+    color: #2b5722;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid #d4e5ce;
+}
+
+.urgent-banner-box {
+    background: #fdf3f2;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 11px;
+    color: #90261f;
+    margin-top: 6px;
+}
+
+.quality-specs-section {
+    background: #fbfdfa;
+    border: 1px solid #e3ebd9;
+    border-radius: 12px;
+    padding: 14px;
+    margin: 14px 0;
+}
+
+.quality-specs-section h3 {
+    margin: 0 0 10px;
+    font-size: 13px;
+    color: #245525;
+}
+
+.quality-spec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+}
+
+.q-spec-item {
+    background: #ffffff;
+    border: 1px solid #e7efe3;
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.q-icon {
+    font-size: 16px;
+    background: #f0f7ec;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.q-spec-item small {
+    display: block;
+    color: var(--muted);
+    font-size: 9px;
+}
+
+.q-spec-item b {
+    font-size: 11px;
+    color: var(--text);
+}
+
+.weighbridge-guarantee-note {
+    background: #f3f8f0;
+    border: 1px dashed #bed8b4;
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 11px;
+    color: #23521d;
+    margin-bottom: 16px;
+}
+
+.modal-actions-row {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
 /* COLLECTIVE */
 
 .collective {

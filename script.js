@@ -917,8 +917,26 @@ translations.pahadi = {
 
 const defaultCropImages = {
     "onion": "https://images.unsplash.com/photo-1664975367131-4c7ac2efa704?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "onions": "https://images.unsplash.com/photo-1664975367131-4c7ac2efa704?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "tomato": "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "tomatoes": "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "lemon": "https://images.unsplash.com/photo-1533083602670-40d40ff8fa92?q=80&w=1000&auto=format&fit=crop",
+    "lemons": "https://images.unsplash.com/photo-1533083602670-40d40ff8fa92?q=80&w=1000&auto=format&fit=crop",
+    "nimbu": "https://images.unsplash.com/photo-1533083602670-40d40ff8fa92?q=80&w=1000&auto=format&fit=crop",
+    "limbu": "https://images.unsplash.com/photo-1533083602670-40d40ff8fa92?q=80&w=1000&auto=format&fit=crop",
+    "pomegranate": "https://images.unsplash.com/photo-1541344999736-83eca872f240?q=80&w=1000&auto=format&fit=crop",
+    "anar": "https://images.unsplash.com/photo-1541344999736-83eca872f240?q=80&w=1000&auto=format&fit=crop",
+    "banana": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?q=80&w=1000&auto=format&fit=crop",
+    "kela": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?q=80&w=1000&auto=format&fit=crop",
+    "grapes": "https://images.unsplash.com/photo-1596363505729-4190a9506133?q=80&w=1000&auto=format&fit=crop",
+    "angoor": "https://images.unsplash.com/photo-1596363505729-4190a9506133?q=80&w=1000&auto=format&fit=crop",
+    "mango": "https://images.unsplash.com/photo-1553279768-865429fa0078?q=80&w=1000&auto=format&fit=crop",
+    "aam": "https://images.unsplash.com/photo-1553279768-865429fa0078?q=80&w=1000&auto=format&fit=crop",
+    "alphonso": "https://images.unsplash.com/photo-1553279768-865429fa0078?q=80&w=1000&auto=format&fit=crop",
+    "orange": "https://images.unsplash.com/photo-1582979512210-99b6a53386f9?q=80&w=1000&auto=format&fit=crop",
+    "santra": "https://images.unsplash.com/photo-1582979512210-99b6a53386f9?q=80&w=1000&auto=format&fit=crop",
+    "guava": "https://images.unsplash.com/photo-1536511135899-73d82a17406a?q=80&w=1000&auto=format&fit=crop",
+    "amrood": "https://images.unsplash.com/photo-1536511135899-73d82a17406a?q=80&w=1000&auto=format&fit=crop",
     "soybean": "https://images.unsplash.com/photo-1639843606783-b2f9c50a7468?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "wheat": "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "potato": "https://plus.unsplash.com/premium_photo-1724849333632-d88aa5a73d9c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -927,93 +945,303 @@ const defaultCropImages = {
 
 const state = {
 
-    products: [{
+    products: [
+        // --- VEGETABLES ---
+        {
             id: 1,
             crop: "Onion",
+            category: "vegetables",
             grade: "Grade A",
             location: "Lasalgaon",
             qty: 80,
             price: 3420,
             img: "https://images.unsplash.com/photo-1664975367131-4c7ac2efa704?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             e: "🧅",
-            buyer: "FreshKart"
+            buyer: "FreshKart",
+            isUrgent: false,
+            sizeSpec: "55mm - 70mm Uniform",
+            freshnessSpec: "94% Dry Cured (Lasalgaon Red)",
+            packagingSpec: "50kg Ventilated Jute Bags",
+            pesticideSpec: "Lab Tested / GAP Verified",
+            harvestSpec: "Cured 3 days ago"
         },
         {
             id: 2,
             crop: "Tomato",
+            category: "vegetables",
             grade: "Premium",
             location: "Nagpur",
             qty: 35,
             price: 2850,
             img: "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             e: "🍅",
-            buyer: "CityFresh Foods"
+            buyer: "CityFresh Foods",
+            isUrgent: true,
+            hoursLeft: "24 hrs left",
+            sizeSpec: "60mm - 75mm Firm Red",
+            freshnessSpec: "96% Farm Fresh (Firm Ripe)",
+            packagingSpec: "25kg Plastic Crates",
+            pesticideSpec: "Zero Chemical Residue",
+            harvestSpec: "Harvested Yesterday Morning"
         },
         {
             id: 3,
-            crop: "Wheat",
+            crop: "Lemon",
+            category: "vegetables",
             grade: "Grade A",
-            location: "Pune",
-            qty: 120,
-            price: 2640,
-            img: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            e: "🌾",
-            buyer: "AgroMart"
+            location: "Nagpur",
+            qty: 45,
+            price: 4600,
+            img: "https://images.unsplash.com/photo-1533083602670-40d40ff8fa92?q=80&w=1000&auto=format&fit=crop",
+            e: "🍋",
+            buyer: "CitrusCo Direct",
+            isUrgent: false,
+            sizeSpec: "45mm - 55mm (Kagzi Juicy)",
+            freshnessSpec: "95% Juicy · Thin Skin",
+            packagingSpec: "20kg Ventilated Crates",
+            pesticideSpec: "100% Organic / Residue Free",
+            harvestSpec: "Harvested Yesterday"
         },
         {
             id: 4,
-            crop: "Soybean",
-            grade: "Grade A",
-            location: "Nagpur",
-            qty: 65,
-            price: 4750,
-            img: "https://images.unsplash.com/photo-1639843606783-b2f9c50a7468?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            e: "🫘",
-            buyer: "GreenHarvest"
+            crop: "Lemon",
+            category: "vegetables",
+            grade: "Grade B",
+            location: "Pune",
+            qty: 30,
+            price: 3800,
+            img: "https://images.unsplash.com/photo-1533083602670-40d40ff8fa92?q=80&w=1000&auto=format&fit=crop",
+            e: "🍋",
+            buyer: "JuiceMasters Processing",
+            isUrgent: true,
+            hoursLeft: "18 hrs left",
+            sizeSpec: "38mm - 45mm Processing Grade",
+            freshnessSpec: "90% Juicy Extract Grade",
+            packagingSpec: "30kg Mesh Bags",
+            pesticideSpec: "GAP Certified",
+            harvestSpec: "Harvested 2 days ago"
         },
         {
             id: 5,
-            crop: "Onion",
-            grade: "Grade B",
-            location: "Pune",
-            qty: 50,
-            price: 3180,
-            img: "https://images.unsplash.com/photo-1664975367131-4c7ac2efa704?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            e: "🧅",
-            buyer: "Metro Wholesale"
-        },
-        {
-            id: 6,
-            crop: "Tomato",
-            grade: "Grade A",
-            location: "Lasalgaon",
-            qty: 40,
-            price: 3020,
-            img: "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            e: "🍅",
-            buyer: "FreshBasket"
-        },
-        {
-            id: 7,
             crop: "Potato",
+            category: "vegetables",
             grade: "Grade A",
             location: "Pune",
             qty: 90,
             price: 2150,
             img: "https://plus.unsplash.com/premium_photo-1724849333632-d88aa5a73d9c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             e: "🥔",
-            buyer: "SpudCorp Logistics"
+            buyer: "SpudCorp Logistics",
+            isUrgent: false,
+            sizeSpec: "50mm+ Jyoti Variety",
+            freshnessSpec: "Dry Farm Stored",
+            packagingSpec: "50kg Jute Sacks",
+            pesticideSpec: "Verified Clean",
+            harvestSpec: "Graded & Packed"
         },
         {
-            id: 8,
+            id: 6,
             crop: "Potato",
+            category: "vegetables",
             grade: "Grade B",
             location: "Nagpur",
             qty: 70,
             price: 1920,
             img: "https://plus.unsplash.com/premium_photo-1724849333632-d88aa5a73d9c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             e: "🥔",
-            buyer: "Bharat Foods"
+            buyer: "Bharat Foods",
+            isUrgent: false,
+            sizeSpec: "40mm - 50mm",
+            freshnessSpec: "Standard Table Quality",
+            packagingSpec: "50kg Gunny Bags",
+            pesticideSpec: "Lab Tested",
+            harvestSpec: "Packed"
+        },
+        {
+            id: 7,
+            crop: "Onion",
+            category: "vegetables",
+            grade: "Grade B",
+            location: "Pune",
+            qty: 50,
+            price: 3180,
+            img: "https://images.unsplash.com/photo-1664975367131-4c7ac2efa704?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            e: "🧅",
+            buyer: "Metro Wholesale",
+            isUrgent: false,
+            sizeSpec: "45mm - 55mm Medium",
+            freshnessSpec: "Dry Cured",
+            packagingSpec: "45kg Mesh Bags",
+            pesticideSpec: "Standard Grade",
+            harvestSpec: "Packed"
+        },
+        {
+            id: 8,
+            crop: "Tomato",
+            category: "vegetables",
+            grade: "Grade A",
+            location: "Lasalgaon",
+            qty: 40,
+            price: 3020,
+            img: "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            e: "🍅",
+            buyer: "FreshBasket",
+            isUrgent: false,
+            sizeSpec: "55mm - 65mm",
+            freshnessSpec: "92% Fresh",
+            packagingSpec: "25kg Plastic Crates",
+            pesticideSpec: "Zero Residue",
+            harvestSpec: "Packed Today"
+        },
+
+        // --- FRUITS SUB-SECTION ---
+        {
+            id: 9,
+            crop: "Pomegranate",
+            category: "fruits",
+            grade: "Grade A",
+            location: "Lasalgaon",
+            qty: 55,
+            price: 7200,
+            img: "https://images.unsplash.com/photo-1541344999736-83eca872f240?q=80&w=1000&auto=format&fit=crop",
+            e: "🍎",
+            buyer: "FreshFruit Exporters",
+            isUrgent: false,
+            sizeSpec: "250g - 350g (Bhagwa Ruby)",
+            freshnessSpec: "98% Export Grade · Glossy Skin",
+            packagingSpec: "10kg Corrugated Boxes",
+            pesticideSpec: "Global GAP Certified",
+            harvestSpec: "Harvested Today"
+        },
+        {
+            id: 10,
+            crop: "Banana",
+            category: "fruits",
+            grade: "Grade A",
+            location: "Nagpur",
+            qty: 85,
+            price: 1850,
+            img: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?q=80&w=1000&auto=format&fit=crop",
+            e: "🍌",
+            buyer: "BigBasket Direct",
+            isUrgent: true,
+            hoursLeft: "36 hrs left",
+            sizeSpec: "7-8 inch fingers (Grand Naine)",
+            freshnessSpec: "95% Semi-Ripe / Firm",
+            packagingSpec: "13kg CFB Ventilated Crates",
+            pesticideSpec: "Certified Safe",
+            harvestSpec: "Freshly Cut from Plantation"
+        },
+        {
+            id: 11,
+            crop: "Grapes",
+            category: "fruits",
+            grade: "Grade A",
+            location: "Lasalgaon",
+            qty: 60,
+            price: 5400,
+            img: "https://images.unsplash.com/photo-1596363505729-4190a9506133?q=80&w=1000&auto=format&fit=crop",
+            e: "🍇",
+            buyer: "SunGrapes Agro",
+            isUrgent: false,
+            sizeSpec: "16mm - 18mm Berry (Thompson)",
+            freshnessSpec: "98% Cold-Chain Maintained",
+            packagingSpec: "5kg Punnet Boxes",
+            pesticideSpec: "Export MRL Compliant",
+            harvestSpec: "Packed in Cold Storage"
+        },
+        {
+            id: 12,
+            crop: "Mango",
+            category: "fruits",
+            grade: "Premium",
+            location: "Pune",
+            qty: 40,
+            price: 12500,
+            img: "https://images.unsplash.com/photo-1553279768-865429fa0078?q=80&w=1000&auto=format&fit=crop",
+            e: "🥭",
+            buyer: "Gourmet Fruit Hub",
+            isUrgent: true,
+            hoursLeft: "24 hrs left",
+            sizeSpec: "220g - 280g (Alphonso / Kesar)",
+            freshnessSpec: "Naturally Ripened · Rich Aroma",
+            packagingSpec: "Wooden Gift Crates (12 Dozen)",
+            pesticideSpec: "Organic Certified",
+            harvestSpec: "Tree-Ripened 2 Days Ago"
+        },
+        {
+            id: 13,
+            crop: "Orange",
+            category: "fruits",
+            grade: "Grade A",
+            location: "Nagpur",
+            qty: 75,
+            price: 4200,
+            img: "https://images.unsplash.com/photo-1582979512210-99b6a53386f9?q=80&w=1000&auto=format&fit=crop",
+            e: "🍊",
+            buyer: "Citrus Exporters",
+            isUrgent: false,
+            sizeSpec: "65mm - 75mm (Nagpur Mandarin)",
+            freshnessSpec: "94% Juicy · High Brix Sweetness",
+            packagingSpec: "25kg Wooden Crates",
+            pesticideSpec: "Residue Free",
+            harvestSpec: "Harvested Yesterday"
+        },
+        {
+            id: 14,
+            crop: "Guava",
+            category: "fruits",
+            grade: "Grade A",
+            location: "Pune",
+            qty: 35,
+            price: 3100,
+            img: "https://images.unsplash.com/photo-1536511135899-73d82a17406a?q=80&w=1000&auto=format&fit=crop",
+            e: "🍐",
+            buyer: "FarmDirect Fruits",
+            isUrgent: false,
+            sizeSpec: "300g Jumbo White (VNR Bihi)",
+            freshnessSpec: "Crisp, Sweet & Seedless Pulp",
+            packagingSpec: "Foam Net Wrapped Crates",
+            pesticideSpec: "GAP Certified",
+            harvestSpec: "Harvested This Morning"
+        },
+
+        // --- GRAINS & PULSES ---
+        {
+            id: 15,
+            crop: "Wheat",
+            category: "grains",
+            grade: "Grade A",
+            location: "Pune",
+            qty: 120,
+            price: 2640,
+            img: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            e: "🌾",
+            buyer: "AgroMart",
+            isUrgent: false,
+            sizeSpec: "Sharbati Gold Grain",
+            freshnessSpec: "Moisture < 11% Clean Dry",
+            packagingSpec: "50kg HDPE Bags",
+            pesticideSpec: "FSSAI Grade A",
+            harvestSpec: "Cleaned & Machine Sorted"
+        },
+        {
+            id: 16,
+            crop: "Soybean",
+            category: "grains",
+            grade: "Grade A",
+            location: "Nagpur",
+            qty: 65,
+            price: 4750,
+            img: "https://images.unsplash.com/photo-1639843606783-b2f9c50a7468?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            e: "🫘",
+            buyer: "GreenHarvest",
+            isUrgent: false,
+            sizeSpec: "Yellow Bold Variety",
+            freshnessSpec: "Moisture 10% · Oil Content 19%",
+            packagingSpec: "50kg Bags",
+            pesticideSpec: "Certified Quality",
+            harvestSpec: "Processed"
         }
     ],
 
@@ -1350,157 +1578,181 @@ function renderMarkets() {
 
 
 /* =========================================================
-   PRODUCTS
+   PRODUCTS & CATEGORIES
    ========================================================= */
+
+let activeProductCategory = "all";
+
+function updateCategoryCounts() {
+    if ($("#countAll")) $("#countAll").textContent = state.products.length;
+    if ($("#countVeg")) $("#countVeg").textContent = state.products.filter(p => p.category === "vegetables").length;
+    if ($("#countFruits")) $("#countFruits").textContent = state.products.filter(p => p.category === "fruits").length;
+    if ($("#countGrains")) $("#countGrains").textContent = state.products.filter(p => p.category === "grains").length;
+    if ($("#countUrgent")) $("#countUrgent").textContent = state.products.filter(p => p.isUrgent).length;
+}
 
 function renderProducts() {
 
     const cropInput = $("#cropFilter");
+    if (!cropInput) return;
 
-    if (!cropInput) {
-        return;
-    }
+    const q = cropInput.value.toLowerCase().trim();
+    const grade = $("#gradeFilter").value;
+    const location = $("#locationFilter").value;
 
-    const q =
-        cropInput.value.toLowerCase();
+    const filtered = state.products.filter(product => {
+        const matchesQuery = product.crop.toLowerCase().includes(q) || (product.category && product.category.toLowerCase().includes(q));
+        const matchesGrade = !grade || product.grade === grade;
+        const matchesLocation = !location || product.location === location;
 
-    const grade =
-        $("#gradeFilter").value;
+        let matchesCat = true;
+        if (activeProductCategory === "urgent") {
+            matchesCat = product.isUrgent === true;
+        } else if (activeProductCategory !== "all") {
+            matchesCat = product.category === activeProductCategory;
+        }
 
-    const location =
-        $("#locationFilter").value;
+        return matchesQuery && matchesGrade && matchesLocation && matchesCat;
+    });
 
-
-    const filtered =
-        state.products.filter(product =>
-
-            product.crop
-            .toLowerCase()
-            .includes(q)
-
-            &&
-
-            (!grade ||
-                product.grade === grade)
-
-            &&
-
-            (!location ||
-                product.location === location)
-
-        );
-
+    updateCategoryCounts();
 
     if (!filtered.length) {
-
         $("#productsGrid").innerHTML = `
-            <div
-                class="card"
-                style="grid-column:1/-1;text-align:center"
-            >
-                ${t("noMatchingLots")}
+            <div class="card" style="grid-column:1/-1;text-align:center;padding:32px 16px;">
+                <p style="font-size:24px;margin-bottom:8px;">🔍</p>
+                <b>${t("noMatchingLots")}</b>
+                <p class="muted" style="margin-top:4px;font-size:12px;">Try selecting another category tab or clearing your search filters.</p>
             </div>
         `;
-
         return;
     }
 
+    $("#productsGrid").innerHTML = filtered.map(product => `
+        <article class="product">
 
-    $("#productsGrid").innerHTML =
+            <div class="crop-img" onclick="openQualityModal(${product.id})" title="Click to view full quality specifications" style="cursor:pointer;">
+                ${product.img ? `<img src="${product.img}" alt="${product.crop} ${product.grade}" loading="lazy">` : product.e}
+            </div>
 
-        filtered
-        .map(product => `
+            <div class="product-body">
 
-                <article class="product">
+                <div style="display:flex;justify-content:space-between;align-items:start;">
+                    <h3>
+                        ${product.crop} · ${product.grade}
+                    </h3>
+                </div>
 
-                    <div class="crop-img">
-                        ${product.img ? `<img src="${product.img}" alt="${product.crop} ${product.grade}" loading="lazy">` : product.e}
+                ${product.isUrgent ? `
+                    <div class="urgent-badge">
+                        ⚡ URGENT CLEARANCE (${product.hoursLeft || "24h left"})
                     </div>
+                ` : ""}
 
-                    <div class="product-body">
+                <div class="meta" style="margin-top:6px;">
+                    <span>📍 ${product.location}</span>
+                    <span>⚖ ${product.qty} q</span>
+                    <span>📦 ${product.packagingSpec ? product.packagingSpec.split(" ")[0] : "Standard"}</span>
+                </div>
 
-                        <h3>
-                            ${product.crop} · ${product.grade}
-                        </h3>
-
-                        <div class="meta">
-
-                            <span>
-                                📍 ${product.location}
-                            </span>
-
-                            <span>
-                                ⚖ ${product.qty} q
-                            </span>
-
-                        </div>
-
-                        <div class="product-price">
-
-                            <div>
-
-                                <b>
-                                    ₹${product.price.toLocaleString("en-IN")}
-                                </b>
-
-                                <small>
-                                    per quintal · ${product.buyer}
-                                </small>
-
-                            </div>
-
-                            <button
-                                class="mini-btn"
-                                onclick="toastKey('interestSent')"
-                            >
-                                ${t("review")}
-                            </button>
-
-                        </div>
-
+                <div class="product-price">
+                    <div>
+                        <b>₹${product.price.toLocaleString("en-IN")}</b>
+                        <small>per quintal · ${product.buyer}</small>
                     </div>
+                </div>
 
-                </article>
+                <div class="card-actions-row">
+                    <button class="btn-details" onclick="openQualityModal(${product.id})">
+                        🔍 Quality Info
+                    </button>
+                    <button class="mini-btn" onclick="toast('✅ Buy interest registered for ${product.crop} (${product.qty}q) · Farmer User1 notified!')">
+                        ⚡ Buy Lot
+                    </button>
+                </div>
 
-            `)
-        .join("");
+            </div>
 
+        </article>
+    `).join("");
 }
 
+/* Open Quality Inspection Modal */
+window.openQualityModal = function(id) {
+    const product = state.products.find(p => p.id === id);
+    if (!product) return;
 
-/* Filters */
+    if ($("#qModalImg")) $("#qModalImg").src = product.img || "assets/logo.png";
+    if ($("#qModalGradeBadge")) $("#qModalGradeBadge").textContent = product.grade;
+    if ($("#qModalTitle")) $("#qModalTitle").textContent = `${product.crop} · ${product.grade}`;
+    if ($("#qModalPrice")) $("#qModalPrice").textContent = `₹${product.price.toLocaleString("en-IN")}`;
+    if ($("#qModalQty")) $("#qModalQty").textContent = `${product.qty} q available`;
+    if ($("#qModalFarmerInfo")) {
+        $("#qModalFarmerInfo").innerHTML = `👨‍🌾 Farmer: <b>User1 Farmer</b> · 📍 ${product.location} Mandi Hub · 4.9 ★ Verified`;
+    }
 
-[
-    "cropFilter",
-    "gradeFilter",
-    "locationFilter"
-].forEach(id => {
+    if (product.isUrgent) {
+        if ($("#qModalUrgentBadge")) $("#qModalUrgentBadge").style.display = "block";
+        if ($("#qModalUrgentAlert")) $("#qModalUrgentAlert").style.display = "block";
+        if ($("#qModalHoursLeft")) $("#qModalHoursLeft").textContent = product.hoursLeft || "24-48 hrs";
+    } else {
+        if ($("#qModalUrgentBadge")) $("#qModalUrgentBadge").style.display = "none";
+        if ($("#qModalUrgentAlert")) $("#qModalUrgentAlert").style.display = "none";
+    }
 
-    const element = $("#" + id);
+    if ($("#qSpecSize")) $("#qSpecSize").textContent = product.sizeSpec || "45mm - 65mm Uniform Grade";
+    if ($("#qSpecFreshness")) $("#qSpecFreshness").textContent = product.freshnessSpec || "95% Fresh Harvest Quality";
+    if ($("#qSpecPackaging")) $("#qSpecPackaging").textContent = product.packagingSpec || "25kg Standard Aerated Packing";
+    if ($("#qSpecPesticide")) $("#qSpecPesticide").textContent = product.pesticideSpec || "Residue Free / GAP Verified";
+    if ($("#qSpecDefect")) $("#qSpecDefect").textContent = "< 2% (Strict Hand-Sorted)";
+    if ($("#qSpecHarvest")) $("#qSpecHarvest").textContent = product.harvestSpec || "Harvested recently · Ready for Dispatch";
 
-    if (!element) return;
+    const modal = $("#qualityModal");
+    if (modal) modal.classList.add("show");
+};
 
-    element.addEventListener(
-        "input",
-        renderProducts
-    );
+/* Quick Urgent Listing mode helper */
+window.setUrgentListingMode = function(isUrgent) {
+    const chk = $("#listingIsUrgent");
+    if (chk) chk.checked = isUrgent;
+    const modal = $("#listing");
+    if (modal) modal.classList.add("show");
+};
 
-    element.addEventListener(
-        "change",
-        renderProducts
-    );
-
+/* Category Tabs Event Listeners */
+$$(".cat-tab").forEach(tab => {
+    tab.onclick = () => {
+        $$(".cat-tab").forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        activeProductCategory = tab.dataset.cat || "all";
+        renderProducts();
+    };
 });
 
+if ($("#urgentSellQuickBtn")) {
+    $("#urgentSellQuickBtn").onclick = () => setUrgentListingMode(true);
+}
+if ($("#listProduceBtn")) {
+    $("#listProduceBtn").onclick = () => setUrgentListingMode(false);
+}
+
+/* Filters */
+["cropFilter", "gradeFilter", "locationFilter"].forEach(id => {
+    const element = $("#" + id);
+    if (!element) return;
+    element.addEventListener("input", renderProducts);
+    element.addEventListener("change", renderProducts);
+});
 
 $("#clear").onclick = () => {
-
     $("#cropFilter").value = "";
     $("#gradeFilter").value = "";
     $("#locationFilter").value = "";
-
+    activeProductCategory = "all";
+    $$(".cat-tab").forEach(t => t.classList.remove("active"));
+    const firstTab = $(".cat-tab[data-cat='all']");
+    if (firstTab) firstTab.classList.add("active");
     renderProducts();
-
 };
 
 
@@ -1629,68 +1881,69 @@ $("#listingForm").onsubmit = event => {
 
     event.preventDefault();
 
-    const form =
-        new FormData(event.target);
+    const form = new FormData(event.target);
 
-
-    const crop =
-        form.get("crop");
-
-    const qty =
-        Number(form.get("qty"));
-
-    const price =
-        Number(form.get("price"));
-
-    const grade =
-        form.get("grade");
-
-    const location =
-        form.get("location");
+    const category = form.get("category") || "vegetables";
+    const crop = form.get("crop") || "Produce";
+    const qty = Number(form.get("qty")) || 10;
+    const price = Number(form.get("price")) || 2000;
+    const grade = form.get("grade") || "Grade A";
+    const location = form.get("location") || "Lasalgaon";
+    const customImg = form.get("imageUrl") ? form.get("imageUrl").trim() : "";
+    const sizeSpec = form.get("sizeSpec") || "Standard Uniform Grade";
+    const packagingSpec = form.get("packagingSpec") || "25kg Standard Packing";
+    const isUrgent = event.target.querySelector("#listingIsUrgent") ? event.target.querySelector("#listingIsUrgent").checked : false;
 
     const cropKey = (crop || "").toLowerCase().trim();
-    const defaultImg = defaultCropImages[cropKey] || "";
+    const defaultImg = defaultCropImages[cropKey] || defaultCropImages[category] || "assets/logo.png";
+    const finalImg = customImg || defaultImg;
+
+    let emoji = "🥦";
+    if (category === "fruits") emoji = "🍎";
+    else if (category === "grains") emoji = "🌾";
+    if (cropKey.includes("lemon") || cropKey.includes("nimbu")) emoji = "🍋";
+    else if (cropKey.includes("pomegranate") || cropKey.includes("anar")) emoji = "🍎";
+    else if (cropKey.includes("banana") || cropKey.includes("kela")) emoji = "🍌";
+    else if (cropKey.includes("mango") || cropKey.includes("aam")) emoji = "🥭";
+    else if (cropKey.includes("grape") || cropKey.includes("angoor")) emoji = "🍇";
+    else if (cropKey.includes("onion")) emoji = "🧅";
+    else if (cropKey.includes("tomato")) emoji = "🍅";
+    else if (cropKey.includes("potato")) emoji = "🥔";
 
     state.products.unshift({
-
         id: Date.now(),
-
         crop,
-
+        category,
         grade,
-
         location,
-
         qty,
-
         price,
-
-        img: defaultImg,
-
-        e: "🌾",
-
-        buyer: "Open to buyers"
-
+        img: finalImg,
+        e: emoji,
+        buyer: "Open to Verified Buyers",
+        isUrgent,
+        hoursLeft: isUrgent ? "24 hrs left (Perishable Spoilage Risk)" : undefined,
+        sizeSpec,
+        freshnessSpec: isUrgent ? "98% Farm Fresh · Fast Sale Clearance" : "95% Graded Harvest Quality",
+        packagingSpec,
+        pesticideSpec: "Lab Tested / GAP Verified",
+        harvestSpec: "Harvested Today"
     });
-
 
     renderProducts();
 
-    $("#lotCount").textContent =
+    if ($("#lotCount")) {
+        $("#lotCount").textContent = Number($("#lotCount").textContent) + 1;
+    }
 
-        Number($("#lotCount").textContent) + 1;
-
-
-    event.target
-        .closest(".modal-bg")
-        .classList.remove("show");
-
-
+    event.target.closest(".modal-bg").classList.remove("show");
     event.target.reset();
 
-
-    toastKey("producePublished");
-
+    if (isUrgent) {
+        toast(`⚡ Urgent Clearance Lot for ${crop} (${qty}q) published! Buyers notified.`);
+    } else {
+        toastKey("producePublished");
+    }
 };
 
 

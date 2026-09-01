@@ -586,7 +586,7 @@
 
                         <div>
                             <div class="eyebrow" data-i18n="marketplace">
-                                MARKETPLACE
+                                MARKETPLACE & HARVEST LOTS
                             </div>
 
                             <h1 data-i18n="productAvailabilityTitle">
@@ -594,20 +594,33 @@
                             </h1>
 
                             <p class="muted" data-i18n="browseLots">
-                                Browse available farmer lots and buyer demand.
+                                Verified farmer lots, quality specifications, fruits & vegetables categories, and fast zero-waste clearance.
                             </p>
                         </div>
 
-                        <button class="btn primary" data-modal="listing">
-                            ＋ <span data-i18n="listProduce">List Produce</span>
-                        </button>
+                        <div class="actions-group">
+                            <button class="btn urgent-btn" data-modal="listing" id="urgentSellQuickBtn">
+                                ⚡ <span data-i18n="urgentSaleBtn">Urgent Clearance Sell</span>
+                            </button>
+                            <button class="btn primary" data-modal="listing" id="listProduceBtn">
+                                ＋ <span data-i18n="listProduce">List Produce</span>
+                            </button>
+                        </div>
 
                     </div>
 
+                    <!-- CATEGORY SUB-SECTIONS -->
+                    <div class="category-tabs" id="categoryTabs">
+                        <button class="cat-tab active" data-cat="all">🌱 All Produce (<span id="countAll">0</span>)</button>
+                        <button class="cat-tab" data-cat="vegetables">🥬 Vegetables (<span id="countVeg">0</span>)</button>
+                        <button class="cat-tab" data-cat="fruits">🍎 Fruits (<span id="countFruits">0</span>)</button>
+                        <button class="cat-tab" data-cat="grains">🌾 Grains & Pulses (<span id="countGrains">0</span>)</button>
+                        <button class="cat-tab urgent-tab" data-cat="urgent">⚡ Urgent / Fast Sell (<span id="countUrgent">0</span>)</button>
+                    </div>
 
                     <div class="card filters">
 
-                        <input id="cropFilter" data-placeholder="searchCrop" placeholder="Search crop...">
+                        <input id="cropFilter" data-placeholder="searchCrop" placeholder="Search crop or fruit (e.g. Lemon, Onion, Mango, Pomegranate)...">
 
                         <select id="gradeFilter">
                             <option value="" data-i18n="allGrades">All grades</option>
@@ -1125,21 +1138,32 @@
             <h2 data-i18n="listYourProduce">List your produce</h2>
 
             <p class="muted" data-i18n="listingDescription">
-                This saves a local demo listing. Backend integration comes next.
+                List vegetables, fruits, or grains with verified quality grading and optional urgent clearance.
             </p>
 
             <form id="listingForm">
 
-                <label>
-                    <span data-i18n="crop">Crop</span>
-                    <input name="crop" required placeholder="Onion">
-                </label>
+                <div class="form-row">
+                    <label>
+                        <span data-i18n="category">Category</span>
+                        <select name="category" id="listingCategory">
+                            <option value="vegetables">🥬 Vegetables</option>
+                            <option value="fruits">🍎 Fruits</option>
+                            <option value="grains">🌾 Grains & Pulses</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        <span data-i18n="crop">Crop / Fruit Name</span>
+                        <input name="crop" id="listingCrop" required placeholder="e.g. Lemon, Tomato, Pomegranate">
+                    </label>
+                </div>
 
                 <div class="form-row">
 
                     <label>
                         <span data-i18n="quantity">Quantity (q)</span>
-                        <input name="qty" type="number" required>
+                        <input name="qty" type="number" required placeholder="e.g. 45">
                     </label>
 
                     <label>
@@ -1155,18 +1179,48 @@
 
                 </div>
 
-                <label>
-                    <span data-i18n="expectedPrice">Expected price / q</span>
-                    <input name="price" type="number" required>
-                </label>
+                <div class="form-row">
+                    <label>
+                        <span data-i18n="expectedPrice">Expected price / q</span>
+                        <input name="price" type="number" required placeholder="e.g. 3400">
+                    </label>
+
+                    <label>
+                        <span data-i18n="location">Location</span>
+                        <input name="location" required placeholder="e.g. Lasalgaon / Nagpur / Pune" value="Lasalgaon">
+                    </label>
+                </div>
 
                 <label>
-                    <span data-i18n="location">Location</span>
-                    <input name="location" required placeholder="Nagpur">
+                    <span data-i18n="imageUrl">Crop Image URL (Optional)</span>
+                    <input name="imageUrl" id="listingImageUrl" placeholder="Paste custom image URL or leave empty for auto-assign">
                 </label>
+
+                <div class="form-row">
+                    <label>
+                        <span>Size / Diameter Spec</span>
+                        <input name="sizeSpec" placeholder="e.g. 45mm - 55mm Uniform" value="45mm - 55mm Uniform">
+                    </label>
+
+                    <label>
+                        <span>Packaging Format</span>
+                        <input name="packagingSpec" placeholder="e.g. 20kg Crates / 50kg Bags" value="25kg Standard Crates">
+                    </label>
+                </div>
+
+                <!-- URGENT CLEARANCE TOGGLE -->
+                <div style="background: #fdf3f2; border: 1px solid #f5c6cb; border-radius: 8px; padding: 10px 12px; margin: 10px 0;">
+                    <label style="display: flex; align-items: center; gap: 8px; font-weight: bold; color: #c0392b; cursor: pointer; margin: 0;">
+                        <input type="checkbox" name="isUrgent" id="listingIsUrgent">
+                        <span>⚡ Mark as Urgent Fast-Sale (Zero-Waste Clearance)</span>
+                    </label>
+                    <small class="muted" style="display:block; margin-top: 4px; font-size: 10px; color: #88221b;">
+                        Select if produce is perishable surplus and you want to attract quick buyers within 24-48 hours.
+                    </small>
+                </div>
 
                 <button class="btn primary" type="submit">
-                    <span data-i18n="publishLot">Publish Lot</span>
+                    <span data-i18n="publishLot">Publish Produce Lot</span>
                 </button>
 
             </form>
@@ -1384,6 +1438,108 @@
                 </button>
 
             </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= QUALITY & PRODUCT INSPECTION MODAL ================= -->
+
+    <div class="modal-bg" id="qualityModal">
+
+        <div class="modal quality-modal-content">
+
+            <button class="close" data-close>×</button>
+
+            <div class="eyebrow" data-i18n="qualityInspection">
+                VERIFIED LOT & QUALITY INSPECTION
+            </div>
+
+            <div class="quality-modal-header">
+                <div class="q-modal-img-container">
+                    <img id="qModalImg" src="" alt="Crop preview" class="q-modal-img">
+                    <span id="qModalGradeBadge" class="grade-badge">Grade A</span>
+                    <span id="qModalUrgentBadge" class="urgent-ribbon" style="display:none;">⚡ URGENT CLEARANCE</span>
+                </div>
+
+                <div class="q-modal-main-info">
+                    <h2 id="qModalTitle">Lemon · Grade A</h2>
+                    <p class="muted" id="qModalFarmerInfo">
+                        👨‍🌾 Farmer: <b>User1 Farmer</b> · 📍 Lasalgaon, Nashik · 4.9 ★ Verified
+                    </p>
+                    <div class="q-price-tag">
+                        <span class="q-price-val" id="qModalPrice">₹4,600</span>
+                        <small>/ quintal</small>
+                        <span class="q-qty-badge" id="qModalQty">45 q available</span>
+                    </div>
+                    <div id="qModalUrgentAlert" class="urgent-banner-box" style="display:none;">
+                        🔥 <b>Zero-Waste Fast Sale:</b> Harvested fresh. Spoilage risk in <span id="qModalHoursLeft">36 hrs</span>. Discounted direct price for fast bulk buyer pickup!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quality Spec Grid -->
+            <div class="quality-specs-section">
+                <h3 data-i18n="qualityParameters">🔍 Verified Quality & Grading Parameters</h3>
+                <div class="quality-spec-grid">
+                    <div class="q-spec-item">
+                        <span class="q-icon">📏</span>
+                        <div>
+                            <small>Size & Diameter</small>
+                            <b id="qSpecSize">45mm - 55mm (Uniform)</b>
+                        </div>
+                    </div>
+                    <div class="q-spec-item">
+                        <span class="q-icon">💧</span>
+                        <div>
+                            <small>Moisture & Freshness</small>
+                            <b id="qSpecFreshness">94% Fresh · High Juice Yield</b>
+                        </div>
+                    </div>
+                    <div class="q-spec-item">
+                        <span class="q-icon">📦</span>
+                        <div>
+                            <small>Packaging & Storage</small>
+                            <b id="qSpecPackaging">20kg Aerated Plastic Crates</b>
+                        </div>
+                    </div>
+                    <div class="q-spec-item">
+                        <span class="q-icon">🧪</span>
+                        <div>
+                            <small>Pesticide & Lab Test</small>
+                            <b id="qSpecPesticide">Zero Residue / GAP Certified</b>
+                        </div>
+                    </div>
+                    <div class="q-spec-item">
+                        <span class="q-icon">🛡️</span>
+                        <div>
+                            <small>Defect / Damage Limit</small>
+                            <b id="qSpecDefect">&lt; 2% (Strict Hand-Sorted)</b>
+                        </div>
+                    </div>
+                    <div class="q-spec-item">
+                        <span class="q-icon">⏱️</span>
+                        <div>
+                            <small>Harvest & Dispatch Time</small>
+                            <b id="qSpecHarvest">Harvested Yesterday · Ready for Dispatch</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weighbridge-guarantee-note">
+                🔒 <b>Agro-Sphere Buyer Guarantee:</b> 100% Quality inspection verified at digital weighbridge before payment settlement.
+            </div>
+
+            <div class="modal-actions-row">
+                <button class="btn secondary" onclick="toast('📞 Connecting to farmer User1 (+91 98765 43210)...')">
+                    📞 <span data-i18n="callFarmer">Call Farmer</span>
+                </button>
+                <button class="btn primary" onclick="toast('✅ Purchase request & transport allocation sent for this lot!')">
+                    🛒 <span data-i18n="placeBuyRequest">Place Buy Order / Book Lot</span>
+                </button>
+            </div>
 
         </div>
 
