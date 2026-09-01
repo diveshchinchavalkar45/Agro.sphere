@@ -14,6 +14,7 @@ const translations = {
         smartSchedule: "Smart Schedule",
         transactions: "Transactions",
         reviewsFeedback: "Reviews & Feedback",
+        customerCareNav: "Customer Care",
 
         demoMode: "Demo mode",
         localData: "All data is local. Backend can be connected later.",
@@ -207,6 +208,7 @@ const translations = {
         smartSchedule: "स्मार्ट शेड्यूल",
         transactions: "लेन-देन",
         reviewsFeedback: "समीक्षा और प्रतिक्रिया",
+        customerCareNav: "किसान सहायता",
 
         demoMode: "डेमो मोड",
         localData: "सारा डेटा स्थानीय है। बैकएंड बाद में जोड़ा जा सकता है।",
@@ -400,6 +402,7 @@ const translations = {
         smartSchedule: "स्मार्ट वेळापत्रक",
         transactions: "व्यवहार",
         reviewsFeedback: "अभिप्राय आणि प्रतिक्रिया",
+        customerCareNav: "शेतकरी सहाय्यता",
 
         demoMode: "डेमो मोड",
         localData: "सर्व डेटा स्थानिक आहे. बॅकएंड नंतर जोडता येईल.",
@@ -2166,6 +2169,11 @@ function performGlobalSearch(rawQuery) {
         value.includes("review") ||
         value.includes("rating") ||
         value.includes("star") ||
+        value.includes("समीक्षा") ||
+        value.includes("फीडबैक")
+    ) {
+        go("feedback");
+    } else if (
         value.includes("care") ||
         value.includes("customer") ||
         value.includes("helpline") ||
@@ -2176,15 +2184,10 @@ function performGlobalSearch(rawQuery) {
         value.includes("whatsapp") ||
         value.includes("sahayata") ||
         value.includes("सहायता") ||
-        value.includes("समीक्षा") ||
         value.includes("मदत") ||
-        value.includes("फीडबैक")
+        value.includes("toll")
     ) {
-        go("feedback");
-        setTimeout(() => {
-            const cc = $("#customerCare");
-            if (cc) cc.scrollIntoView({ behavior: "smooth" });
-        }, 150);
+        go("support");
     } else {
         // Search in Product Availability (fruits, vegetables, grains, locations, grades)
         go("products");

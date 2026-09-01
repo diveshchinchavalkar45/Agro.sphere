@@ -54,6 +54,10 @@
                 <button data-go="feedback">
                     ★ &nbsp; <span data-i18n="reviewsFeedback">Reviews & Feedback</span>
                 </button>
+
+                <button data-go="support">
+                    📞 &nbsp; <span data-i18n="customerCareNav">Customer Care</span>
+                </button>
             </nav>
 
             <div class="bottom">
@@ -1116,113 +1120,119 @@
 
                     <div class="feedback-grid" id="reviews"></div>
 
-                    <!-- ================= CUSTOMER CARE & KISAN HELPLINE ================= -->
-                    <div class="customer-care-section" id="customerCare">
+                </section>
 
-                        <div class="care-header">
+
+                <!-- ================= CUSTOMER CARE & SUPPORT ================= -->
+
+                <section id="support" class="section">
+
+                    <div class="title">
+
+                        <div>
+                            <div class="eyebrow" style="color:#2d6930; font-weight: bold;" data-i18n="kisanHelplineUpper">
+                                🌾 KISAN SUPPORT & HELPLINE · किसान सहायता केंद्र
+                            </div>
+
+                            <h1 data-i18n="customerCareTitle">
+                                Customer Care & Farmer Support
+                            </h1>
+
+                            <p class="muted" data-i18n="customerCareSubtitle">
+                                Free 24x7 farmer assistance for mandi prices, quality grading, instant vehicle booking, and fair payment guarantees.
+                            </p>
+                        </div>
+
+                        <div class="care-badge-247">
+                            <span>🟢</span> <span data-i18n="supportAvailable247">24x7 Free Support Available</span>
+                        </div>
+
+                    </div>
+
+                    <!-- 3 Direct Channels -->
+                    <div class="care-channels-grid">
+
+                        <!-- Channel 1: Toll Free Call -->
+                        <div class="care-channel-card highlight">
                             <div>
-                                <div class="eyebrow" style="color:#2d6930; font-weight: bold;" data-i18n="kisanHelplineUpper">
-                                    🌾 KISAN SUPPORT & HELPLINE · किसान सहायता केंद्र
-                                </div>
-                                <h2 data-i18n="customerCareTitle">
-                                    Need Help? Talk to our Agro-Sphere Farmer Advisor
-                                </h2>
-                                <p class="muted" style="margin: 4px 0 0; font-size: 12px;" data-i18n="customerCareSubtitle">
-                                    Free 24x7 farmer assistance for mandi prices, quality grading, instant vehicle booking, and fair payment guarantees.
+                                <div class="care-icon-box">📞</div>
+                                <h3 data-i18n="tollFreeHelplineTitle">Toll-Free Kisan Helpline</h3>
+                                <div class="care-number">1800-889-2476</div>
+                                <p class="care-desc" data-i18n="tollFreeDesc">
+                                    100% Free Call · No mobile balance required. Direct advisory on fair price discovery and APMC rates.
                                 </p>
                             </div>
-
-                            <div class="care-badge-247">
-                                <span>🟢</span> <span data-i18n="supportAvailable247">24x7 Free Support Available</span>
-                            </div>
+                            <a href="tel:18008892476" class="care-action-btn call-btn" onclick="toast('📞 Dialing Toll-Free Helpline: 1800-889-2476...')">
+                                📞 <span data-i18n="callTollFreeNow">Call Toll-Free Now</span>
+                            </a>
                         </div>
 
-                        <!-- 3 Direct Channels -->
-                        <div class="care-channels-grid">
-
-                            <!-- Channel 1: Toll Free Call -->
-                            <div class="care-channel-card highlight">
-                                <div>
-                                    <div class="care-icon-box">📞</div>
-                                    <h3 data-i18n="tollFreeHelplineTitle">Toll-Free Kisan Helpline</h3>
-                                    <div class="care-number">1800-889-2476</div>
-                                    <p class="care-desc" data-i18n="tollFreeDesc">
-                                        100% Free Call · No mobile balance required. Direct advisory on fair price discovery and APMC rates.
-                                    </p>
-                                </div>
-                                <a href="tel:18008892476" class="care-action-btn call-btn" onclick="toast('📞 Dialing Toll-Free Helpline: 1800-889-2476...')">
-                                    📞 <span data-i18n="callTollFreeNow">Call Toll-Free Now</span>
-                                </a>
+                        <!-- Channel 2: WhatsApp Support & Photo Grading -->
+                        <div class="care-channel-card">
+                            <div>
+                                <div class="care-icon-box" style="background:#eaf8ef;">💬</div>
+                                <h3 data-i18n="whatsappHelplineTitle">WhatsApp Kisan Seva</h3>
+                                <div class="care-number" style="color:#1b6e36;">+91 98200 45678</div>
+                                <p class="care-desc" data-i18n="whatsappDesc">
+                                    Send crop photos & voice notes for instant quality grade evaluation and buyer interest in 10 minutes.
+                                </p>
                             </div>
-
-                            <!-- Channel 2: WhatsApp Support & Photo Grading -->
-                            <div class="care-channel-card">
-                                <div>
-                                    <div class="care-icon-box" style="background:#eaf8ef;">💬</div>
-                                    <h3 data-i18n="whatsappHelplineTitle">WhatsApp Kisan Seva</h3>
-                                    <div class="care-number" style="color:#1b6e36;">+91 98200 45678</div>
-                                    <p class="care-desc" data-i18n="whatsappDesc">
-                                        Send crop photos & voice notes for instant quality grade evaluation and buyer interest in 10 minutes.
-                                    </p>
-                                </div>
-                                <a href="https://wa.me/919820045678?text=Hello%20AgroSphere%20Kisan%20Help%20Center" target="_blank" class="care-action-btn wa-btn" onclick="toast('💬 Opening Agro-Sphere WhatsApp Kisan Support (+91 98200 45678)...')">
-                                    💬 <span data-i18n="chatOnWhatsApp">Chat on WhatsApp</span>
-                                </a>
-                            </div>
-
-                            <!-- Channel 3: Local Mandi Hub Officer -->
-                            <div class="care-channel-card">
-                                <div>
-                                    <div class="care-icon-box" style="background:#e8f1f5;">👨‍🌾</div>
-                                    <h3 data-i18n="mandiOfficerTitle">Local Mandi Field Officer</h3>
-                                    <div class="care-number" style="color:#204b6b;">Lasalgaon / Nagpur / Pune</div>
-                                    <p class="care-desc" data-i18n="mandiOfficerDesc">
-                                        On-ground weighbridge assistance, digital scale dispute resolution, and instant pickup coordination.
-                                    </p>
-                                </div>
-                                <button class="care-action-btn mandi-btn" onclick="toast('📍 Connected with Lasalgaon & Nagpur APMC Field Officer Ramesh (+91 98765 43210)')">
-                                    📍 <span data-i18n="contactFieldOfficer">Contact Local Mandi Officer</span>
-                                </button>
-                            </div>
-
+                            <a href="https://wa.me/919820045678?text=Hello%20AgroSphere%20Kisan%20Help%20Center" target="_blank" class="care-action-btn wa-btn" onclick="toast('💬 Opening Agro-Sphere WhatsApp Kisan Support (+91 98200 45678)...')">
+                                💬 <span data-i18n="chatOnWhatsApp">Chat on WhatsApp</span>
+                            </a>
                         </div>
 
-                        <!-- Instant Callback Request Form -->
-                        <div class="callback-box">
-                            <div class="callback-info">
-                                <h4 data-i18n="callbackBoxTitle">📞 Want Us to Call You Back? (निःशुल्क कॉल बैक)</h4>
-                                <p data-i18n="callbackBoxDesc">Enter your phone number below and our agricultural officer will call you back within 15 minutes.</p>
+                        <!-- Channel 3: Local Mandi Hub Officer -->
+                        <div class="care-channel-card">
+                            <div>
+                                <div class="care-icon-box" style="background:#e8f1f5;">👨‍🌾</div>
+                                <h3 data-i18n="mandiOfficerTitle">Local Mandi Field Officer</h3>
+                                <div class="care-number" style="color:#204b6b;">Lasalgaon / Nagpur / Pune</div>
+                                <p class="care-desc" data-i18n="mandiOfficerDesc">
+                                    On-ground weighbridge assistance, digital scale dispute resolution, and instant pickup coordination.
+                                </p>
                             </div>
-
-                            <form id="callbackForm" class="callback-form-row" onsubmit="event.preventDefault(); const ph = this.elements['cbPhone'].value; toast('✅ Call back request registered for ' + ph + '! Our Kisan Advisor will call you within 15 minutes.'); this.reset();">
-                                <input type="text" name="cbName" data-placeholder="yourNamePlaceholder" placeholder="Your Name / किसान का नाम" required style="min-width: 150px;">
-                                <input type="tel" name="cbPhone" data-placeholder="mobilePlaceholder" placeholder="Mobile No. (e.g. 9876543210)" required pattern="[0-9]{10}" style="min-width: 170px;">
-                                <select name="cbTopic">
-                                    <option value="price">📈 Mandi Price Advisory</option>
-                                    <option value="truck">🚚 Vehicle / Transport Help</option>
-                                    <option value="grading">🌾 Produce Grading & Listing</option>
-                                    <option value="payment">₹ Payment & Disputes</option>
-                                </select>
-                                <button type="submit" class="btn primary" style="padding: 9px 16px; font-weight: bold;">
-                                    📞 <span data-i18n="requestCallBackBtn">Request Call Back</span>
-                                </button>
-                            </form>
+                            <button class="care-action-btn mandi-btn" onclick="toast('📍 Connected with Lasalgaon & Nagpur APMC Field Officer Ramesh (+91 98765 43210)')">
+                                📍 <span data-i18n="contactFieldOfficer">Contact Local Mandi Officer</span>
+                            </button>
                         </div>
 
-                        <!-- Multi-lingual Language Support Strip -->
-                        <div class="lang-support-strip">
-                            <span>🗣️ <b data-i18n="languagesSupportedTitle">Support Available in Your Mother Tongue (मातृभाषा):</b></span>
-                            <div class="lang-pills">
-                                <span class="lang-pill">हिन्दी (Hindi)</span>
-                                <span class="lang-pill">मराठी (Marathi)</span>
-                                <span class="lang-pill">English</span>
-                                <span class="lang-pill">ਪੰਜਾਬੀ (Punjabi)</span>
-                                <span class="lang-pill">ગુજરાતી (Gujarati)</span>
-                                <span class="lang-pill">தமிழ் (Tamil)</span>
-                                <span class="lang-pill">తెలుగు (Telugu)</span>
-                            </div>
+                    </div>
+
+                    <!-- Instant Callback Request Form -->
+                    <div class="callback-box">
+                        <div class="callback-info">
+                            <h4 data-i18n="callbackBoxTitle">📞 Want Us to Call You Back? (निःशुल्क कॉल बैक)</h4>
+                            <p data-i18n="callbackBoxDesc">Enter your phone number below and our agricultural officer will call you back within 15 minutes.</p>
                         </div>
 
+                        <form id="callbackForm" class="callback-form-row" onsubmit="event.preventDefault(); const ph = this.elements['cbPhone'].value; toast('✅ Call back request registered for ' + ph + '! Our Kisan Advisor will call you within 15 minutes.'); this.reset();">
+                            <input type="text" name="cbName" data-placeholder="yourNamePlaceholder" placeholder="Your Name / किसान का नाम" required style="min-width: 150px;">
+                            <input type="tel" name="cbPhone" data-placeholder="mobilePlaceholder" placeholder="Mobile No. (e.g. 9876543210)" required pattern="[0-9]{10}" style="min-width: 170px;">
+                            <select name="cbTopic">
+                                <option value="price">📈 Mandi Price Advisory</option>
+                                <option value="truck">🚚 Vehicle / Transport Help</option>
+                                <option value="grading">🌾 Produce Grading & Listing</option>
+                                <option value="payment">₹ Payment & Disputes</option>
+                            </select>
+                            <button type="submit" class="btn primary" style="padding: 9px 16px; font-weight: bold;">
+                                📞 <span data-i18n="requestCallBackBtn">Request Call Back</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Multi-lingual Language Support Strip -->
+                    <div class="lang-support-strip">
+                        <span>🗣️ <b data-i18n="languagesSupportedTitle">Support Available in Your Mother Tongue (मातृभाषा):</b></span>
+                        <div class="lang-pills">
+                            <span class="lang-pill">हिन्दी (Hindi)</span>
+                            <span class="lang-pill">मराठी (Marathi)</span>
+                            <span class="lang-pill">English</span>
+                            <span class="lang-pill">ਪੰਜਾਬੀ (Punjabi)</span>
+                            <span class="lang-pill">ગુજરાતી (Gujarati)</span>
+                            <span class="lang-pill">தமிழ் (Tamil)</span>
+                            <span class="lang-pill">తెలుగు (Telugu)</span>
+                        </div>
                     </div>
 
                 </section>

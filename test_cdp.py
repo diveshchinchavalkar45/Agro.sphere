@@ -39,41 +39,21 @@ try:
         except websocket.WebSocketTimeoutException:
             pass
 
-    # Evaluate JS tests
-    test_eval = """
-    (() => {
-        return {
-            stateProductsLength: window.state ? window.state.products.length : 'NO STATE',
-            productsGridHTMLCount: document.querySelector('#productsGrid') ? document.querySelector('#productsGrid').children.length : 'NO GRID',
-            reviewsCount: document.querySelector('#reviews') ? document.querySelector('#reviews').children.length : 'NO REVIEWS',
-            catTabsCount: document.querySelectorAll('.cat-tab').length,
-            searchElem: !!document.querySelector('#search'),
-            activeSection: document.querySelector('.section.active') ? document.querySelector('.section.active').id : 'NONE'
-        };
-    })()
-    """
-    ws.send(json.dumps({"id": 10, "method": "Runtime.evaluate", "params": {"expression": test_eval, "returnByValue": True}}))
-    while True:
-        res_msg = json.loads(ws.recv())
-        if res_msg.get("id") == 10:
-            break
-    print("Test Results:", json.dumps(res_msg.get("result", {}), indent=2))
-
-    # Test navigating to products
-    ws.send(json.dumps({"id": 11, "method": "Runtime.evaluate", "params": {"expression": "go('products')", "returnByValue": True}}))
+    # Test navigating to support
+    ws.send(json.dumps({"id": 11, "method": "Runtime.evaluate", "params": {"expression": "go('support')", "returnByValue": True}}))
     time.sleep(0.5)
     ws.send(json.dumps({"id": 12, "method": "Runtime.evaluate", "params": {"expression": "document.querySelector('.section.active').id", "returnByValue": True}}))
     while True:
         res12 = json.loads(ws.recv())
         if res12.get("id") == 12:
             break
-    print("Active Section after go('products'):", res12.get("result", {}).get("result", {}).get("value"))
+    print("Active Section after go('support'):", res12.get("result", {}).get("result", {}).get("value"))
 
-    # Test typing in global search
+    # Test typing in global search for helpline
     search_test = """
     (() => {
         const s = document.querySelector('#search');
-        s.value = 'onion';
+        s.value = 'helpline';
         s.dispatchEvent(new Event('input', { bubbles: true }));
         return {
             activeSectionAfterSearch: document.querySelector('.section.active').id
@@ -85,7 +65,7 @@ try:
         res13 = json.loads(ws.recv())
         if res13.get("id") == 13:
             break
-    print("Search Test Result:", json.dumps(res13.get("result", {}), indent=2))
+    print("Search Test Result for helpline:", json.dumps(res13.get("result", {}), indent=2))
 
 finally:
     proc.terminate()
