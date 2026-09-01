@@ -61,13 +61,22 @@ button {
 }
 
 .logo {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: var(--lime);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #ffffff;
     display: grid;
     place-items: center;
-    font-size: 22px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    border: 2px solid rgba(179, 219, 114, 0.5);
+    flex-shrink: 0;
+}
+
+.brand-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .brand b {
@@ -927,10 +936,30 @@ td {
 
 /* REAL-TIME CALENDAR STYLES */
 .calendar-card {
-    background: #ffffff;
-    border: 1px solid var(--line);
-    border-radius: 14px;
+    background: #ffffff url("assets/calendar_bg.jpg") no-repeat center bottom / cover;
+    border: 1px solid #d2e4cb;
+    border-radius: 16px;
     padding: 18px;
+    position: relative;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
+
+.calendar-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.88) 55%, rgba(255, 255, 255, 0.35) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.calendar-header,
+.calendar-weekdays,
+.calendar-days,
+.cal-events-box {
+    position: relative;
+    z-index: 1;
 }
 
 .calendar-header {
@@ -938,6 +967,11 @@ td {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(220, 235, 215, 0.85);
+    backdrop-filter: blur(4px);
 }
 
 .cal-title-box b {
@@ -979,7 +1013,7 @@ td {
     text-align: center;
     font-size: 11px;
     font-weight: 600;
-    color: var(--muted);
+    color: #3b5f33;
     margin-bottom: 6px;
 }
 
@@ -999,29 +1033,37 @@ td {
     border-radius: 8px;
     cursor: pointer;
     position: relative;
-    transition: background 0.15s ease;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(225, 238, 220, 0.85);
+    backdrop-filter: blur(2px);
+    transition: all 0.15s ease;
 }
 
 .cal-day:hover {
-    background: var(--accent);
+    background: #eff7ea;
+    border-color: #bcdbb0;
 }
 
 .cal-day.empty {
     cursor: default;
     background: transparent !important;
+    border-color: transparent !important;
 }
 
 .cal-day.today {
     background: #e4f0dc;
     color: #265922;
     font-weight: bold;
-    border: 1px solid #c2dbb5;
+    border: 1.5px solid #9dc88c;
+    box-shadow: 0 2px 6px rgba(46, 139, 87, 0.15);
 }
 
 .cal-day.selected {
     background: var(--primary) !important;
     color: #ffffff !important;
+    border-color: var(--primary) !important;
     font-weight: bold;
+    box-shadow: 0 3px 8px rgba(33, 73, 29, 0.25);
 }
 
 .cal-day.has-event::after {
@@ -1040,8 +1082,12 @@ td {
 
 .cal-events-box {
     margin-top: 16px;
-    padding-top: 14px;
-    border-top: 1px solid #edf1ec;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    border: 1px solid rgba(220, 235, 215, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 #calendarEventsList {
