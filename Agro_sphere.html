@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agro-Sphere — Farmer Market Intelligence</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3.0.0">
 </head>
 
 <body>
@@ -168,7 +168,7 @@
 
                     <div class="stats">
 
-                        <div class="stat">
+                        <div class="stat" data-go="prices" style="cursor:pointer;" title="Click to view Price Intelligence">
 
                             <div class="ico">₹</div>
 
@@ -183,13 +183,13 @@
                         </div>
 
 
-                        <div class="stat">
+                        <div class="stat" data-go="products" style="cursor:pointer;" title="Click to view Product Availability">
 
                             <div class="ico">▦</div>
 
                             <div>
                                 <span data-i18n="activeLots">Active Lots</span>
-                                <b id="lotCount">12</b>
+                                <b id="lotCount">17</b>
                                 <small>
                                     3 <span data-i18n="receivingOffers">receiving offers</span>
                                 </small>
@@ -198,7 +198,7 @@
                         </div>
 
 
-                        <div class="stat">
+                        <div class="stat" data-go="collective" style="cursor:pointer;" title="Click to view Farmer Collective">
 
                             <div class="ico">👥</div>
 
@@ -213,7 +213,7 @@
                         </div>
 
 
-                        <div class="stat">
+                        <div class="stat" data-go="prices" style="cursor:pointer;" title="Click to view Market Trends">
 
                             <div class="ico">₹</div>
 
@@ -1546,7 +1546,7 @@
     </div>
 
 
-    <script src="script.js"></script>
+    <script src="script.js?v=3.0.0"></script>
 
 </body>
 

@@ -1288,6 +1288,7 @@ const state = {
     ]
 };
 
+window.state = state;
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
@@ -1426,7 +1427,7 @@ function go(id) {
     });
 
 
-    $("#sidebar").classList.remove("open");
+    if ($("#sidebar")) $("#sidebar").classList.remove("open");
 
     window.scrollTo({
         top: 0,
@@ -1434,6 +1435,8 @@ function go(id) {
     });
 }
 
+window.go = go;
+window.toast = toast;
 
 $$("[data-go]").forEach(button => {
 
@@ -2046,42 +2049,89 @@ $("#feedbackForm").onsubmit = event => {
 
 
 /* =========================================================
-   GLOBAL SEARCH
+   GLOBAL SEARCH & SMART ROUTING
    ========================================================= */
 
-$("#search").oninput = event => {
-
-    const value =
-        event.target.value.toLowerCase();
-
+function performGlobalSearch(rawQuery) {
+    const value = (rawQuery || "").toLowerCase().trim();
+    if (!value) return;
 
     if (
         value.includes("price") ||
         value.includes("mandi") ||
         value.includes("कीमत") ||
         value.includes("भाव") ||
-        value.includes("किंमत")
+        value.includes("किंमत") ||
+        value.includes("rate") ||
+        value.includes("trend") ||
+        value.includes("bhav") ||
+        value.includes("alert")
     ) {
-
         go("prices");
-
     } else if (
-
-        value.includes("crop") ||
-        value.includes("onion") ||
-        value.includes("tomato") ||
-        value.includes("wheat") ||
-        value.includes("soybean") ||
-        value.includes("फसल") ||
-        value.includes("पीक")
-
+        value.includes("schedule") ||
+        value.includes("calendar") ||
+        value.includes("truck") ||
+        value.includes("track") ||
+        value.includes("pickup") ||
+        value.includes("vehicle") ||
+        value.includes("transport") ||
+        value.includes("logistics") ||
+        value.includes("ड्राइवर") ||
+        value.includes("गाड़ी") ||
+        value.includes("टाइम")
     ) {
-
+        go("schedule");
+    } else if (
+        value.includes("collective") ||
+        value.includes("group") ||
+        value.includes("bulk") ||
+        value.includes("fpo") ||
+        value.includes("समूह") ||
+        value.includes("गट")
+    ) {
+        go("collective");
+    } else if (
+        value.includes("transaction") ||
+        value.includes("payment") ||
+        value.includes("ledger") ||
+        value.includes("history") ||
+        value.includes("bill") ||
+        value.includes("लेनदेन") ||
+        value.includes("हिशोब")
+    ) {
+        go("transactions");
+    } else if (
+        value.includes("feedback") ||
+        value.includes("review") ||
+        value.includes("rating") ||
+        value.includes("star") ||
+        value.includes("समीक्षा") ||
+        value.includes("फीडबैक")
+    ) {
+        go("feedback");
+    } else {
+        // Search in Product Availability (fruits, vegetables, grains, locations, grades)
         go("products");
-
+        const cropInput = $("#cropFilter");
+        if (cropInput) {
+            cropInput.value = value;
+            renderProducts();
+        }
     }
+}
 
-};
+if ($("#search")) {
+    $("#search").oninput = event => {
+        performGlobalSearch(event.target.value);
+    };
+
+    $("#search").onkeydown = event => {
+        if (event.key === "Enter") {
+            performGlobalSearch(event.target.value);
+        }
+    };
+}
 
 
 /* =========================================================
