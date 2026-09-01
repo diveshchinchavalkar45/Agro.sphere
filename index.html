@@ -41,7 +41,7 @@
                 </button>
 
                 <button data-go="schedule">
-                    ◷ &nbsp; <span data-i18n="smartSchedule">Smart Schedule</span>
+                    🚚 &nbsp; <span data-i18n="smartSchedule">Logistics & Schedule</span>
                 </button>
 
                 <button data-go="transactions">
@@ -719,7 +719,7 @@
                 </section>
 
 
-                <!-- ================= SCHEDULE ================= -->
+                <!-- ================= SCHEDULE & LOGISTICS ================= -->
 
                 <section id="schedule" class="section">
 
@@ -727,82 +727,214 @@
 
                         <div>
                             <div class="eyebrow" data-i18n="logistics">
-                                LOGISTICS
+                                LOGISTICS & TRANSPORTS
                             </div>
 
                             <h1 data-i18n="smartScheduleTitle">
-                                Smart Schedule
+                                Smart Schedule & Logistics
                             </h1>
 
                             <p class="muted" data-i18n="coordinateLogistics">
-                                Coordinate grading, pickup, delivery and payment milestones.
+                                Live truck tracking, active lot pickups, transport assignment and calendar milestones.
                             </p>
                         </div>
 
-                        <button class="btn primary" onclick="toastKey('scheduleBackend')">
-                            ＋ <span data-i18n="addSchedule">Add Schedule</span>
+                        <button class="btn primary" data-modal="vehicleModal">
+                            🚚 <span data-i18n="assignVehicle">Assign Vehicle / Add Truck</span>
                         </button>
 
                     </div>
 
+                    <div class="schedule-layout">
 
-                    <div class="card timeline">
+                        <!-- LEFT: Logistics & Live Tracking & Timeline -->
+                        <div class="schedule-main">
 
-                        <div class="item">
+                            <!-- ACTIVE ORDER & LIVE TRUCK TRACKER -->
+                            <div class="active-order-card" id="activeOrderCard">
 
-                            <div class="time">08:30 AM</div>
-                            <div class="dot"></div>
+                                <div class="order-header">
+                                    <div>
+                                        <div class="eyebrow" data-i18n="activeOrder">ACTIVE PICKUP ORDER</div>
+                                        <h2>🧅 Onion — 80q (Grade A)</h2>
+                                        <p class="muted">
+                                            Destination: <b>Lasalgaon APMC Mandi</b> · Buyer: <b>FreshKart</b>
+                                        </p>
+                                    </div>
 
-                            <div>
-                                <strong data-i18n="priceCheck">Price check</strong>
-                                <p data-i18n="priceCheckDesc">
-                                    Compare nearby mandi prices and active buyer demand.
-                                </p>
+                                    <button class="btn secondary" data-modal="vehicleModal" style="padding: 8px 12px; font-size: 11px;">
+                                        ✏️ <span data-i18n="updateTransport">Update Transport</span>
+                                    </button>
+                                </div>
+
+                                <!-- LIVE TRUCK VISUALIZER -->
+                                <div class="truck-tracking-card">
+
+                                    <div class="tracking-top">
+                                        <div class="tracking-status">
+                                            <span class="pulse-dot"></span>
+                                            <b>LIVE VEHICLE TRACKING: <span id="truckStatusText">In Transit</span></b>
+                                        </div>
+                                        <span class="badge live" id="truckStatusBadge">ETA: 45 Mins</span>
+                                    </div>
+
+                                    <!-- Animated Route Line & Moving Truck -->
+                                    <div class="route-progress-bar">
+                                        <div class="route-line">
+                                            <div class="route-fill" id="routeFill" style="width: 65%;"></div>
+                                            <div class="truck-marker" id="truckMarker" style="left: 65%;">
+                                                <div class="truck-icon-pulse">🚚</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="route-stops">
+                                            <div class="stop passed">
+                                                <div class="stop-dot">✓</div>
+                                                <span>Farm (Nashik)</span>
+                                                <small>Dispatched 01:15 PM</small>
+                                            </div>
+                                            <div class="stop current">
+                                                <div class="stop-dot">📍</div>
+                                                <span>Highway NH-60</span>
+                                                <small id="truckSpeed">En Route (42 km/h)</small>
+                                            </div>
+                                            <div class="stop upcoming">
+                                                <div class="stop-dot">🏁</div>
+                                                <span>Lasalgaon Mandi</span>
+                                                <small>Exp. 02:00 PM</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Vehicle Details -->
+                                    <div class="vehicle-details-grid">
+                                        <div class="v-detail">
+                                            <small data-i18n="vehicleNumber">Vehicle Number</small>
+                                            <b id="assignedVehicleNo">MH-15-AB-1234</b>
+                                        </div>
+                                        <div class="v-detail">
+                                            <small data-i18n="driverName">Driver Contact</small>
+                                            <b id="assignedDriver">Ramesh Shinde</b>
+                                            <span id="assignedPhone">📞 +91 98765 43210</span>
+                                        </div>
+                                        <div class="v-detail">
+                                            <small data-i18n="transportAgency">Transport Agency</small>
+                                            <b id="assignedAgency">Kisan Express Logistics</b>
+                                        </div>
+                                        <div class="v-detail">
+                                            <small data-i18n="securityOtp">Pickup Verification PIN</small>
+                                            <b class="otp-code">4829</b>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- TIMELINE -->
+                            <div class="card timeline">
+
+                                <div class="head" style="margin-bottom: 16px;">
+                                    <div>
+                                        <div class="eyebrow" data-i18n="dailyMilestones">DAILY MILESTONES</div>
+                                        <h2 data-i18n="pickupTimeline">Pickup & Delivery Timeline</h2>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="time">08:30 AM</div>
+                                    <div class="dot"></div>
+                                    <div>
+                                        <strong data-i18n="priceCheck">Price check & Mandi Trends</strong>
+                                        <p data-i18n="priceCheckDesc">
+                                            Compare nearby mandi prices and active buyer demand.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="time">10:00 AM</div>
+                                    <div class="dot"></div>
+                                    <div>
+                                        <strong data-i18n="qualityGrading">Quality grading & Bagging</strong>
+                                        <p data-i18n="qualityGradingDesc">
+                                            Grade your onion lot (Grade A) and pack in standardized 50kg mesh bags.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="time">01:30 PM</div>
+                                    <div class="dot active-dot"></div>
+                                    <div>
+                                        <strong data-i18n="pickupWindow">Pickup window</strong>
+                                        <p id="timelinePickupText" data-i18n="pickupDesc">
+                                            FreshKart pickup · Vehicle <span id="timelineVehicle">MH-15-AB-1234</span> (Driver: Ramesh Shinde).
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="time">04:00 PM</div>
+                                    <div class="dot"></div>
+                                    <div>
+                                        <strong data-i18n="paymentTracking">Delivery Confirmation & Payment</strong>
+                                        <p data-i18n="paymentTrackingDesc">
+                                            Instant bank settlement upon digital weighbridge receipt confirmation.
+                                        </p>
+                                    </div>
+                                </div>
+
                             </div>
 
                         </div>
 
+                        <!-- RIGHT: REAL-TIME CALENDAR -->
+                        <div class="schedule-sidebar">
 
-                        <div class="item">
+                            <div class="calendar-card">
 
-                            <div class="time">10:00 AM</div>
-                            <div class="dot"></div>
+                                <div class="calendar-header">
+                                    <div class="cal-title-box">
+                                        <b id="calMonthYear">September 2026</b>
+                                        <span class="live-clock" id="liveClock">🕒 Live Clock</span>
+                                    </div>
 
-                            <div>
-                                <strong data-i18n="qualityGrading">Quality grading</strong>
-                                <p data-i18n="qualityGradingDesc">
-                                    Grade your onion lot and update quality details.
-                                </p>
-                            </div>
+                                    <div class="cal-nav">
+                                        <button class="cal-btn" id="calPrev" title="Previous Month">‹</button>
+                                        <button class="cal-btn" id="calNext" title="Next Month">›</button>
+                                    </div>
+                                </div>
 
-                        </div>
+                                <!-- Weekday headers -->
+                                <div class="calendar-weekdays">
+                                    <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                                </div>
 
+                                <!-- Dynamic Days Grid -->
+                                <div class="calendar-days" id="calendarDays"></div>
 
-                        <div class="item">
+                                <!-- Selected Date Events Box -->
+                                <div class="cal-events-box">
+                                    <div class="eyebrow" id="selectedDateLabel">SCHEDULE FOR SELECTED DATE</div>
+                                    <div id="calendarEventsList">
+                                        <div class="cal-event-item highlight">
+                                            <span class="event-time">01:30 PM</span>
+                                            <div>
+                                                <b>🚚 FreshKart Onion Pickup</b>
+                                                <small>Vehicle: <span id="calEventVehicle">MH-15-AB-1234</span> · 80q</small>
+                                            </div>
+                                        </div>
+                                        <div class="cal-event-item">
+                                            <span class="event-time">04:00 PM</span>
+                                            <div>
+                                                <b>₹ Payment Settlement</b>
+                                                <small>Expected: ₹2,73,600</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <div class="time">01:30 PM</div>
-                            <div class="dot"></div>
-
-                            <div>
-                                <strong data-i18n="pickupWindow">Pickup window</strong>
-                                <p data-i18n="pickupDesc">
-                                    FreshKart pickup · Vehicle MH-XX-1234.
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <div class="item">
-
-                            <div class="time">04:00 PM</div>
-                            <div class="dot"></div>
-
-                            <div>
-                                <strong data-i18n="paymentTracking">Payment tracking</strong>
-                                <p data-i18n="paymentTrackingDesc">
-                                    Expected settlement after delivery confirmation.
-                                </p>
                             </div>
 
                         </div>
@@ -1169,6 +1301,83 @@
 
                 <button class="btn primary" type="submit">
                     <span data-i18n="submitFeedback">Submit Feedback</span>
+                </button>
+
+    <!-- ================= ASSIGN VEHICLE MODAL ================= -->
+
+    <div class="modal-bg" id="vehicleModal">
+
+        <div class="modal">
+
+            <button class="close" data-close>×</button>
+
+            <div class="eyebrow" data-i18n="transportDetails">
+                LOGISTICS & DISPATCH
+            </div>
+
+            <h2 data-i18n="assignVehicleTitle">Assign Truck & Transport Details</h2>
+
+            <p class="muted" data-i18n="assignVehicleDesc">
+                Link transport vehicle and driver details to your active pickup order timeline.
+            </p>
+
+            <form id="vehicleForm">
+
+                <label>
+                    <span data-i18n="selectOrder">Select Active Lot / Order</span>
+                    <select name="orderLot" id="vehicleOrderSelect">
+                        <option value="onion">🧅 Active Onion Lot (80q) — FreshKart [Lasalgaon APMC]</option>
+                        <option value="tomato">🍅 Tomato Lot (35q) — CityFresh [Nagpur Mandi]</option>
+                        <option value="wheat">🌾 Wheat Lot (120q) — AgroMart [Pune Mandi]</option>
+                        <option value="potato">🥔 Potato Lot (90q) — SpudCorp [Pune Mandi]</option>
+                    </select>
+                </label>
+
+                <label>
+                    <span data-i18n="vehicleNumberLabel">Vehicle Number (e.g., MH-XX-1234)</span>
+                    <input name="vehicleNo" id="inputVehicleNo" required placeholder="MH-15-AB-1234" value="MH-15-AB-1234">
+                </label>
+
+                <div class="form-row">
+
+                    <label>
+                        <span data-i18n="driverNameLabel">Driver Name</span>
+                        <input name="driverName" id="inputDriverName" required placeholder="Ramesh Shinde" value="Ramesh Shinde">
+                    </label>
+
+                    <label>
+                        <span data-i18n="driverPhoneLabel">Driver Contact Number</span>
+                        <input name="driverPhone" id="inputDriverPhone" required placeholder="+91 98765 43210" value="+91 98765 43210">
+                    </label>
+
+                </div>
+
+                <label>
+                    <span data-i18n="agencyNameLabel">Transport Agency Name</span>
+                    <input name="agencyName" id="inputAgencyName" placeholder="Kisan Express Logistics" value="Kisan Express Logistics">
+                </label>
+
+                <div class="form-row">
+
+                    <label>
+                        <span data-i18n="pickupTimeLabel">Pickup Time Window</span>
+                        <input name="pickupTime" id="inputPickupTime" value="01:30 PM">
+                    </label>
+
+                    <label>
+                        <span data-i18n="initialStatusLabel">Vehicle Status</span>
+                        <select name="status" id="inputStatus">
+                            <option value="In Transit">🚚 In Transit (En Route)</option>
+                            <option value="Dispatched">📦 Dispatched from Farm</option>
+                            <option value="Scheduled">⏱ Scheduled for Pickup</option>
+                            <option value="Arrived">🏁 Arrived at Mandi</option>
+                        </select>
+                    </label>
+
+                </div>
+
+                <button class="btn primary" type="submit">
+                    <span data-i18n="saveAndLinkVehicle">Submit & Link to Timeline</span>
                 </button>
 
             </form>

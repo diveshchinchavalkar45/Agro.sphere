@@ -714,6 +714,377 @@ td {
 .timeline p {
     font-size: 10px;
     color: var(--muted);
+    margin: 3px 0 0;
+}
+
+.dot.active-dot {
+    background: #2d6a2e;
+    box-shadow: 0 0 0 3px rgba(45, 106, 46, 0.2);
+}
+
+/* =========================================================
+   LOGISTICS & REAL-TIME CALENDAR
+   ========================================================= */
+
+.schedule-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+@media (max-width: 950px) {
+    .schedule-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.schedule-main {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.active-order-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.order-header h2 {
+    margin: 3px 0;
+    font-size: 18px;
+}
+
+.truck-tracking-card {
+    background: #f8fbf6;
+    border: 1px solid #e1ecdd;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.tracking-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.tracking-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #245525;
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background: #2e8b57;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(46, 139, 87, 0.7);
+    animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 139, 87, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(46, 139, 87, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 139, 87, 0); }
+}
+
+.route-progress-bar {
+    position: relative;
+    margin: 24px 8px 18px;
+}
+
+.route-line {
+    height: 6px;
+    background: #dde7da;
+    border-radius: 6px;
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.route-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4d853e, #6ea34e);
+    border-radius: 6px;
+    transition: width 0.5s ease;
+}
+
+.truck-marker {
+    position: absolute;
+    top: -16px;
+    transform: translateX(-50%);
+    transition: left 0.5s ease;
+}
+
+.truck-icon-pulse {
+    font-size: 20px;
+    background: #ffffff;
+    border: 2px solid #3b732f;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    animation: bounceTruck 1.8s infinite ease-in-out;
+}
+
+@keyframes bounceTruck {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.route-stops {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.stop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.stop-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #e3ebd9;
+    color: #436b36;
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.stop.passed .stop-dot {
+    background: #477b3d;
+    color: #ffffff;
+}
+
+.stop.current {
+    color: #1d2b1a;
+    font-weight: 600;
+}
+
+.stop.current .stop-dot {
+    background: #2d6a2e;
+    color: #ffffff;
+}
+
+.vehicle-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed #dbe6d6;
+}
+
+.v-detail small {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    margin-bottom: 2px;
+}
+
+.v-detail b {
+    font-size: 13px;
+    color: var(--text);
+}
+
+.v-detail span {
+    display: block;
+    font-size: 10px;
+    color: var(--muted);
+}
+
+.otp-code {
+    letter-spacing: 2px;
+    background: #eef5ea;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--primary);
+}
+
+/* REAL-TIME CALENDAR STYLES */
+.calendar-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.cal-title-box b {
+    font-size: 15px;
+    display: block;
+}
+
+.live-clock {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.cal-nav {
+    display: flex;
+    gap: 6px;
+}
+
+.cal-btn {
+    border: 1px solid var(--line);
+    background: #fbfdfa;
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+    display: grid;
+    place-items: center;
+    transition: all 0.15s ease;
+}
+
+.cal-btn:hover {
+    background: var(--accent);
+    color: var(--primary);
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.15s ease;
+}
+
+.cal-day:hover {
+    background: var(--accent);
+}
+
+.cal-day.empty {
+    cursor: default;
+    background: transparent !important;
+}
+
+.cal-day.today {
+    background: #e4f0dc;
+    color: #265922;
+    font-weight: bold;
+    border: 1px solid #c2dbb5;
+}
+
+.cal-day.selected {
+    background: var(--primary) !important;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+.cal-day.has-event::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    background: #e67e22;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 3px;
+}
+
+.cal-day.selected.has-event::after {
+    background: #ffffff;
+}
+
+.cal-events-box {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #edf1ec;
+}
+
+#calendarEventsList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.cal-event-item {
+    background: #f8faf6;
+    border: 1px solid #e7efe3;
+    border-radius: 9px;
+    padding: 9px 12px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.cal-event-item.highlight {
+    background: #f0f7ec;
+    border-left: 3px solid var(--primary);
+}
+
+.event-time {
+    font-size: 10px;
+    font-weight: bold;
+    color: var(--primary);
+    background: #ffffff;
+    padding: 3px 6px;
+    border-radius: 5px;
+    border: 1px solid #dbe8d4;
+    white-space: nowrap;
+}
+
+.cal-event-item b {
+    font-size: 12px;
+    display: block;
+}
+
+.cal-event-item small {
+    font-size: 10px;
+    color: var(--muted);
 }
 
 /* TRANSACTIONS */

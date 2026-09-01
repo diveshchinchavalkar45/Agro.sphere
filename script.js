@@ -1845,6 +1845,274 @@ $("#languageSelect").addEventListener(
 
 
 /* =========================================================
+   LOGISTICS & VEHICLE TRACKING
+   ========================================================= */
+
+const initialVehicle = {
+    vehicleNo: "MH-15-AB-1234",
+    driverName: "Ramesh Shinde",
+    driverPhone: "+91 98765 43210",
+    agencyName: "Kisan Express Logistics",
+    pickupTime: "01:30 PM",
+    status: "In Transit",
+    eta: "45 Mins",
+    speed: "En Route (42 km/h)",
+    progress: 65
+};
+
+let vehicleState = JSON.parse(localStorage.getItem("agrosphereVehicleInfo")) || initialVehicle;
+
+function updateVehicleDisplay() {
+    if ($("#assignedVehicleNo")) $("#assignedVehicleNo").textContent = vehicleState.vehicleNo;
+    if ($("#assignedDriver")) $("#assignedDriver").textContent = vehicleState.driverName;
+    if ($("#assignedPhone")) $("#assignedPhone").textContent = "📞 " + vehicleState.driverPhone;
+    if ($("#assignedAgency")) $("#assignedAgency").textContent = vehicleState.agencyName || "Direct Carrier";
+    if ($("#truckStatusText")) $("#truckStatusText").textContent = vehicleState.status;
+    if ($("#truckStatusBadge")) $("#truckStatusBadge").textContent = "ETA: " + vehicleState.eta;
+    if ($("#truckSpeed")) $("#truckSpeed").textContent = vehicleState.speed || "En Route (42 km/h)";
+
+    if ($("#routeFill")) $("#routeFill").style.width = (vehicleState.progress || 65) + "%";
+    if ($("#truckMarker")) $("#truckMarker").style.left = (vehicleState.progress || 65) + "%";
+
+    if ($("#timelineVehicle")) $("#timelineVehicle").textContent = vehicleState.vehicleNo;
+    if ($("#calEventVehicle")) $("#calEventVehicle").textContent = vehicleState.vehicleNo;
+
+    if ($("#timelinePickupText")) {
+        $("#timelinePickupText").innerHTML = `FreshKart pickup · Vehicle <b>${vehicleState.vehicleNo}</b> (Driver: ${vehicleState.driverName}).`;
+    }
+}
+
+if ($("#vehicleForm")) {
+    $("#vehicleForm").onsubmit = event => {
+        event.preventDefault();
+        const form = new FormData(event.target);
+
+        const vehicleNo = form.get("vehicleNo") || "MH-15-AB-1234";
+        const driverName = form.get("driverName") || "Ramesh Shinde";
+        const driverPhone = form.get("driverPhone") || "+91 98765 43210";
+        const agencyName = form.get("agencyName") || "Kisan Express Logistics";
+        const pickupTime = form.get("pickupTime") || "01:30 PM";
+        const status = form.get("status") || "In Transit";
+
+        let progress = 65;
+        let eta = "45 Mins";
+        let speed = "En Route (42 km/h)";
+
+        if (status === "Dispatched") {
+            progress = 25;
+            eta = "1 hr 15 mins";
+            speed = "Leaving Farm (25 km/h)";
+        } else if (status === "Scheduled") {
+            progress = 5;
+            eta = "Scheduled 01:30 PM";
+            speed = "Waiting for dispatch";
+        } else if (status === "Arrived") {
+            progress = 100;
+            eta = "Arrived at Mandi";
+            speed = "Unloading at Lasalgaon";
+        }
+
+        vehicleState = {
+            vehicleNo,
+            driverName,
+            driverPhone,
+            agencyName,
+            pickupTime,
+            status,
+            eta,
+            speed,
+            progress
+        };
+
+        localStorage.setItem("agrosphereVehicleInfo", JSON.stringify(vehicleState));
+        updateVehicleDisplay();
+
+        event.target.closest(".modal-bg").classList.remove("show");
+        toast(`✅ Vehicle ${vehicleNo} (${driverName}) linked to pickup timeline!`);
+    };
+}
+
+/* =========================================================
+   REAL-TIME CALENDAR SYSTEM
+   ========================================================= */
+
+let calCurrentDate = new Date();
+let calSelectedDate = new Date();
+
+function updateLiveClock() {
+    const clockEl = $("#liveClock");
+    if (!clockEl) return;
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+    clockEl.textContent = "🕒 " + timeStr;
+}
+setInterval(updateLiveClock, 1000);
+
+function renderCalendar() {
+    const monthYearEl = $("#calMonthYear");
+    const daysGrid = $("#calendarDays");
+    if (!monthYearEl || !daysGrid) return;
+
+    const year = calCurrentDate.getFullYear();
+    const month = calCurrentDate.getMonth();
+
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    monthYearEl.textContent = `${monthNames[month]} ${year}`;
+
+    const firstDayIndex = new Date(year, month, 1).getDay();
+    const totalDays = new Date(year, month + 1, 0).getDate();
+
+    const today = new Date();
+    const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
+    const todayDateNum = today.getDate();
+
+    let html = "";
+
+    for (let i = 0; i < firstDayIndex; i++) {
+        html += `<div class="cal-day empty"></div>`;
+    }
+
+    for (let day = 1; day <= totalDays; day++) {
+        const isToday = isCurrentMonth && day === todayDateNum;
+        const isSelected = calSelectedDate.getFullYear() === year &&
+            calSelectedDate.getMonth() === month &&
+            calSelectedDate.getDate() === day;
+
+        const hasEvent = isToday || day === (todayDateNum + 2) || day === (todayDateNum + 5) || day === 15 || day === 28;
+
+        const classes = [
+            "cal-day",
+            isToday ? "today" : "",
+            isSelected ? "selected" : "",
+            hasEvent ? "has-event" : ""
+        ].filter(Boolean).join(" ");
+
+        html += `<div class="${classes}" data-day="${day}">${day}</div>`;
+    }
+
+    daysGrid.innerHTML = html;
+
+    $$(".cal-day[data-day]").forEach(el => {
+        el.onclick = () => {
+            const clickedDay = Number(el.dataset.day);
+            calSelectedDate = new Date(year, month, clickedDay);
+            renderCalendar();
+            renderCalendarEvents(calSelectedDate);
+        };
+    });
+}
+
+function renderCalendarEvents(date) {
+    const listEl = $("#calendarEventsList");
+    const labelEl = $("#selectedDateLabel");
+    if (!listEl || !labelEl) return;
+
+    const today = new Date();
+    const isToday = date.toDateString() === today.toDateString();
+
+    const dateStr = date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        weekday: "short"
+    });
+    labelEl.textContent = isToday ? `SCHEDULE FOR TODAY (${dateStr.toUpperCase()})` : `SCHEDULE FOR ${dateStr.toUpperCase()}`;
+
+    let events = [];
+    if (isToday) {
+        events = [
+            {
+                time: "08:30 AM",
+                title: "📈 Mandi Price Check",
+                desc: "Lasalgaon modal: ₹3,420/q (▲ 8.4%)"
+            },
+            {
+                time: "01:30 PM",
+                title: `🚚 FreshKart Onion Pickup`,
+                desc: `Vehicle: ${vehicleState.vehicleNo} (Driver: ${vehicleState.driverName}) · 80q`,
+                highlight: true
+            },
+            {
+                time: "04:00 PM",
+                title: "₹ Payment Settlement",
+                desc: "Direct NEFT transfer: ₹2,73,600"
+            }
+        ];
+    } else if (date.getDate() === today.getDate() + 2) {
+        events = [
+            {
+                time: "07:30 AM",
+                title: "🍅 Tomato Harvesting & Sorting",
+                desc: "Harvest 35 quintals Grade A tomatoes"
+            },
+            {
+                time: "02:00 PM",
+                title: "🚚 CityFresh Foods Pickup",
+                desc: "Nagpur Mandi delivery dispatch",
+                highlight: true
+            }
+        ];
+    } else if (date.getDate() === today.getDate() + 5) {
+        events = [
+            {
+                time: "09:00 AM",
+                title: "🌾 Wheat Bulk Lot Dispatch",
+                desc: "120 quintals to AgroMart Pune"
+            },
+            {
+                time: "03:30 PM",
+                title: "👥 Collective Settlement",
+                desc: "Farmer revenue distribution"
+            }
+        ];
+    } else {
+        events = [
+            {
+                time: "08:00 AM",
+                title: "🌱 Farm Irrigation & Maintenance",
+                desc: "Monitor soil moisture & weather alert"
+            },
+            {
+                time: "05:00 PM",
+                title: "📊 Mandi Daily Closing Report",
+                desc: "Check updated APMC arrival trends"
+            }
+        ];
+    }
+
+    listEl.innerHTML = events.map(ev => `
+        <div class="cal-event-item ${ev.highlight ? "highlight" : ""}">
+            <span class="event-time">${ev.time}</span>
+            <div>
+                <b>${ev.title}</b>
+                <small>${ev.desc}</small>
+            </div>
+        </div>
+    `).join("");
+}
+
+if ($("#calPrev")) {
+    $("#calPrev").onclick = () => {
+        calCurrentDate.setMonth(calCurrentDate.getMonth() - 1);
+        renderCalendar();
+    };
+}
+
+if ($("#calNext")) {
+    $("#calNext").onclick = () => {
+        calCurrentDate.setMonth(calCurrentDate.getMonth() + 1);
+        renderCalendar();
+    };
+}
+
+/* =========================================================
    INITIALIZE
    ========================================================= */
 
@@ -1853,5 +2121,9 @@ renderProducts();
 renderMembers();
 renderBuyers();
 renderReviews();
+updateVehicleDisplay();
+renderCalendar();
+renderCalendarEvents(calSelectedDate);
+updateLiveClock();
 
 applyTranslations();
