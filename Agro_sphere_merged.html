@@ -1591,9 +1591,233 @@ td {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .summary {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* =========================================================
+   CUSTOMER CARE & KISAN SAHAYATA KENDRA
+   ========================================================= */
+
+.customer-care-section {
+    margin-top: 32px;
+    background: linear-gradient(135deg, #ffffff 0%, #f4f9f2 100%);
+    border: 1px solid #d2e4ce;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 18px rgba(23, 58, 37, 0.05);
+}
+
+.care-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e1eee0;
+    padding-bottom: 16px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.care-header h2 {
+    margin: 4px 0 0;
+    font-size: 20px;
+    color: var(--green);
+}
+
+.care-badge-247 {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #e8f6e4;
+    color: #2b7428;
+    border: 1px solid #c2e6bc;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.care-channels-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.care-channel-card {
+    background: #ffffff;
+    border: 1px solid #e0ebe0;
+    border-radius: 12px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.care-channel-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    border-color: #aed5a4;
+}
+
+.care-channel-card.highlight {
+    border-color: #9cd495;
+    background: linear-gradient(180deg, #ffffff 0%, #f7fcf5 100%);
+}
+
+.care-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #eaf5e6;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    margin-bottom: 14px;
+}
+
+.care-channel-card h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    color: var(--green);
+}
+
+.care-number {
+    font-size: 17px;
+    font-weight: 800;
+    color: #1b5327;
+    margin: 6px 0;
+    letter-spacing: 0.3px;
+}
+
+.care-desc {
+    font-size: 11px;
+    color: var(--muted);
+    margin: 0 0 16px;
+    line-height: 1.4;
+}
+
+.care-action-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    transition: all 0.2s ease;
+}
+
+.care-action-btn.call-btn {
+    background: var(--lime);
+    color: #173a25;
+}
+
+.care-action-btn.call-btn:hover {
+    background: #aae056;
+}
+
+.care-action-btn.wa-btn {
+    background: #25d366;
+    color: #ffffff;
+}
+
+.care-action-btn.wa-btn:hover {
+    background: #20ba5a;
+}
+
+.care-action-btn.mandi-btn {
+    background: #173a25;
+    color: #ffffff;
+}
+
+.care-action-btn.mandi-btn:hover {
+    background: #245638;
+}
+
+.callback-box {
+    background: #ffffff;
+    border: 1px solid #e2ede0;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.callback-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.callback-info h4 {
+    margin: 0 0 4px;
+    font-size: 14px;
+    color: var(--green);
+}
+
+.callback-info p {
+    margin: 0;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.callback-form-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.callback-form-row input,
+.callback-form-row select {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 12px;
+    background: #fcfdfc;
+    outline: none;
+}
+
+.callback-form-row input:focus,
+.callback-form-row select:focus {
+    border-color: var(--green);
+}
+
+.lang-support-strip {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed #dbe9da;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #556b59;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.lang-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.lang-pill {
+    background: #edf5eb;
+    border: 1px solid #d3e6cf;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #2b5731;
 }
 
 @media(max-width:760px) {
@@ -2823,6 +3047,115 @@ td {
 
                     <div class="feedback-grid" id="reviews"></div>
 
+                    <!-- ================= CUSTOMER CARE & KISAN HELPLINE ================= -->
+                    <div class="customer-care-section" id="customerCare">
+
+                        <div class="care-header">
+                            <div>
+                                <div class="eyebrow" style="color:#2d6930; font-weight: bold;" data-i18n="kisanHelplineUpper">
+                                    🌾 KISAN SUPPORT & HELPLINE · किसान सहायता केंद्र
+                                </div>
+                                <h2 data-i18n="customerCareTitle">
+                                    Need Help? Talk to our Agro-Sphere Farmer Advisor
+                                </h2>
+                                <p class="muted" style="margin: 4px 0 0; font-size: 12px;" data-i18n="customerCareSubtitle">
+                                    Free 24x7 farmer assistance for mandi prices, quality grading, instant vehicle booking, and fair payment guarantees.
+                                </p>
+                            </div>
+
+                            <div class="care-badge-247">
+                                <span>🟢</span> <span data-i18n="supportAvailable247">24x7 Free Support Available</span>
+                            </div>
+                        </div>
+
+                        <!-- 3 Direct Channels -->
+                        <div class="care-channels-grid">
+
+                            <!-- Channel 1: Toll Free Call -->
+                            <div class="care-channel-card highlight">
+                                <div>
+                                    <div class="care-icon-box">📞</div>
+                                    <h3 data-i18n="tollFreeHelplineTitle">Toll-Free Kisan Helpline</h3>
+                                    <div class="care-number">1800-889-2476</div>
+                                    <p class="care-desc" data-i18n="tollFreeDesc">
+                                        100% Free Call · No mobile balance required. Direct advisory on fair price discovery and APMC rates.
+                                    </p>
+                                </div>
+                                <a href="tel:18008892476" class="care-action-btn call-btn" onclick="toast('📞 Dialing Toll-Free Helpline: 1800-889-2476...')">
+                                    📞 <span data-i18n="callTollFreeNow">Call Toll-Free Now</span>
+                                </a>
+                            </div>
+
+                            <!-- Channel 2: WhatsApp Support & Photo Grading -->
+                            <div class="care-channel-card">
+                                <div>
+                                    <div class="care-icon-box" style="background:#eaf8ef;">💬</div>
+                                    <h3 data-i18n="whatsappHelplineTitle">WhatsApp Kisan Seva</h3>
+                                    <div class="care-number" style="color:#1b6e36;">+91 98200 45678</div>
+                                    <p class="care-desc" data-i18n="whatsappDesc">
+                                        Send crop photos & voice notes for instant quality grade evaluation and buyer interest in 10 minutes.
+                                    </p>
+                                </div>
+                                <a href="https://wa.me/919820045678?text=Hello%20AgroSphere%20Kisan%20Help%20Center" target="_blank" class="care-action-btn wa-btn" onclick="toast('💬 Opening Agro-Sphere WhatsApp Kisan Support (+91 98200 45678)...')">
+                                    💬 <span data-i18n="chatOnWhatsApp">Chat on WhatsApp</span>
+                                </a>
+                            </div>
+
+                            <!-- Channel 3: Local Mandi Hub Officer -->
+                            <div class="care-channel-card">
+                                <div>
+                                    <div class="care-icon-box" style="background:#e8f1f5;">👨‍🌾</div>
+                                    <h3 data-i18n="mandiOfficerTitle">Local Mandi Field Officer</h3>
+                                    <div class="care-number" style="color:#204b6b;">Lasalgaon / Nagpur / Pune</div>
+                                    <p class="care-desc" data-i18n="mandiOfficerDesc">
+                                        On-ground weighbridge assistance, digital scale dispute resolution, and instant pickup coordination.
+                                    </p>
+                                </div>
+                                <button class="care-action-btn mandi-btn" onclick="toast('📍 Connected with Lasalgaon & Nagpur APMC Field Officer Ramesh (+91 98765 43210)')">
+                                    📍 <span data-i18n="contactFieldOfficer">Contact Local Mandi Officer</span>
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <!-- Instant Callback Request Form -->
+                        <div class="callback-box">
+                            <div class="callback-info">
+                                <h4 data-i18n="callbackBoxTitle">📞 Want Us to Call You Back? (निःशुल्क कॉल बैक)</h4>
+                                <p data-i18n="callbackBoxDesc">Enter your phone number below and our agricultural officer will call you back within 15 minutes.</p>
+                            </div>
+
+                            <form id="callbackForm" class="callback-form-row" onsubmit="event.preventDefault(); const ph = this.elements['cbPhone'].value; toast('✅ Call back request registered for ' + ph + '! Our Kisan Advisor will call you within 15 minutes.'); this.reset();">
+                                <input type="text" name="cbName" data-placeholder="yourNamePlaceholder" placeholder="Your Name / किसान का नाम" required style="min-width: 150px;">
+                                <input type="tel" name="cbPhone" data-placeholder="mobilePlaceholder" placeholder="Mobile No. (e.g. 9876543210)" required pattern="[0-9]{10}" style="min-width: 170px;">
+                                <select name="cbTopic">
+                                    <option value="price">📈 Mandi Price Advisory</option>
+                                    <option value="truck">🚚 Vehicle / Transport Help</option>
+                                    <option value="grading">🌾 Produce Grading & Listing</option>
+                                    <option value="payment">₹ Payment & Disputes</option>
+                                </select>
+                                <button type="submit" class="btn primary" style="padding: 9px 16px; font-weight: bold;">
+                                    📞 <span data-i18n="requestCallBackBtn">Request Call Back</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Multi-lingual Language Support Strip -->
+                        <div class="lang-support-strip">
+                            <span>🗣️ <b data-i18n="languagesSupportedTitle">Support Available in Your Mother Tongue (मातृभाषा):</b></span>
+                            <div class="lang-pills">
+                                <span class="lang-pill">हिन्दी (Hindi)</span>
+                                <span class="lang-pill">मराठी (Marathi)</span>
+                                <span class="lang-pill">English</span>
+                                <span class="lang-pill">ਪੰਜਾਬੀ (Punjabi)</span>
+                                <span class="lang-pill">ગુજરાતી (Gujarati)</span>
+                                <span class="lang-pill">தமிழ் (Tamil)</span>
+                                <span class="lang-pill">తెలుగు (Telugu)</span>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </section>
 
             </div>
@@ -3429,7 +3762,27 @@ const translations = {
         collectiveCreated: "Collective bulk lot created!",
         priceAlertActivated: "Price alert activated!",
         feedbackSubmitted: "Thank you! Feedback submitted.",
-        demoReset: "Demo reset"
+        demoReset: "Demo reset",
+
+        kisanHelplineUpper: "🌾 KISAN SUPPORT & HELPLINE · KISAN SAHAYATA KENDRA",
+        customerCareTitle: "Need Help? Talk to our Agro-Sphere Farmer Advisor",
+        customerCareSubtitle: "Free 24x7 farmer assistance for mandi prices, quality grading, instant vehicle booking, and fair payment guarantees.",
+        supportAvailable247: "24x7 Free Support Available",
+        tollFreeHelplineTitle: "Toll-Free Kisan Helpline",
+        tollFreeDesc: "100% Free Call · No mobile balance required. Direct advisory on fair price discovery and APMC rates.",
+        callTollFreeNow: "Call Toll-Free Now",
+        whatsappHelplineTitle: "WhatsApp Kisan Seva",
+        whatsappDesc: "Send crop photos & voice notes for instant quality grade evaluation and buyer interest in 10 minutes.",
+        chatOnWhatsApp: "Chat on WhatsApp",
+        mandiOfficerTitle: "Local Mandi Field Officer",
+        mandiOfficerDesc: "On-ground weighbridge assistance, digital scale dispute resolution, and instant pickup coordination.",
+        contactFieldOfficer: "Contact Local Mandi Officer",
+        callbackBoxTitle: "📞 Want Us to Call You Back? (Free Callback)",
+        callbackBoxDesc: "Enter your phone number below and our agricultural officer will call you back within 15 minutes.",
+        yourNamePlaceholder: "Your Name / Farmer Name",
+        mobilePlaceholder: "Mobile No. (e.g. 9876543210)",
+        requestCallBackBtn: "Request Call Back",
+        languagesSupportedTitle: "Support Available in Your Mother Tongue (मातृभाषा):"
     },
 
 
@@ -3602,7 +3955,27 @@ const translations = {
         collectiveCreated: "सामूहिक थोक लॉट बनाया गया!",
         priceAlertActivated: "मूल्य अलर्ट सक्रिय किया गया!",
         feedbackSubmitted: "धन्यवाद! आपकी प्रतिक्रिया भेज दी गई।",
-        demoReset: "डेमो रीसेट किया गया"
+        demoReset: "डेमो रीसेट किया गया",
+
+        kisanHelplineUpper: "🌾 किसान सहायता एवं हेल्पलाइन · 24x7 सेवा",
+        customerCareTitle: "मदद चाहिए? हमारे एग्रो-स्फीयर किसान सलाहकार से बात करें",
+        customerCareSubtitle: "मंडी भाव, गुणवत्ता ग्रेडिंग, तुरंत वाहन बुकिंग और सुरक्षित भुगतान के लिए 24x7 मुफ्त किसान सहायता।",
+        supportAvailable247: "24x7 मुफ्त सहायता उपलब्ध",
+        tollFreeHelplineTitle: "टोल-फ्री किसान हेल्पलाइन",
+        tollFreeDesc: "100% मुफ्त कॉल · मोबाइल बैलेंस की आवश्यकता नहीं। उचित मूल्य खोज और APMC दरों पर सीधी सलाह।",
+        callTollFreeNow: "अभी टोल-फ्री कॉल करें",
+        whatsappHelplineTitle: "व्हाट्सएप किसान सेवा",
+        whatsappDesc: "10 मिनट में गुणवत्ता ग्रेड मूल्यांकन और खरीदार रुचि के लिए फसल की फोटो और वॉयस नोट भेजें।",
+        chatOnWhatsApp: "व्हाट्सएप पर चैट करें",
+        mandiOfficerTitle: "स्थानीय मंडी क्षेत्रीय अधिकारी",
+        mandiOfficerDesc: "धर्मकांटा (वेब्रिज) सहायता, वजन विवाद समाधान और तुरंत पिकअप समन्वय।",
+        contactFieldOfficer: "मंडी अधिकारी से संपर्क करें",
+        callbackBoxTitle: "📞 क्या आप चाहते हैं कि हम आपको कॉल करें? (निःशुल्क कॉल बैक)",
+        callbackBoxDesc: "अपना फोन नंबर दर्ज करें, हमारे कृषि अधिकारी 15 मिनट के भीतर आपको कॉल करेंगे।",
+        yourNamePlaceholder: "आपका नाम",
+        mobilePlaceholder: "मोबाइल नंबर (उदा. 9876543210)",
+        requestCallBackBtn: "कॉल बैक का अनुरोध करें",
+        languagesSupportedTitle: "आपकी मातृभाषा में सहायता उपलब्ध:"
     },
 
 
@@ -3775,7 +4148,27 @@ const translations = {
         collectiveCreated: "सामूहिक लॉट तयार झाला!",
         priceAlertActivated: "किंमत अलर्ट सक्रिय झाला!",
         feedbackSubmitted: "धन्यवाद! तुमचा अभिप्राय पाठवला गेला.",
-        demoReset: "डेमो रीसेट झाला"
+        demoReset: "डेमो रीसेट झाला",
+
+        kisanHelplineUpper: "🌾 शेतकरी सहाय्यता आणि हेल्पलाइन · 24x7 सेवा",
+        customerCareTitle: "मदत हवी आहे? आमच्या ॲग्रो-स्फिअर शेतकरी सल्लागाराशी बोला",
+        customerCareSubtitle: "बाजार भाव, प्रतवारी (ग्रेडिंग), त्वरित वाहन बुकिंग आणि हमी पेमेंटसाठी 24x7 मोफत शेतकरी सहाय्य.",
+        supportAvailable247: "24x7 मोफत सहाय्य उपलब्ध",
+        tollFreeHelplineTitle: "टोल-फ्री शेतकरी हेल्पलाइन",
+        tollFreeDesc: "100% मोफत कॉल · मोबाईल बॅलन्सची आवश्यकता नाही. योग्य बाजारभाव आणि APMC दरांवर थेट मार्गदर्शन.",
+        callTollFreeNow: "आत्ताच टोल-फ्री कॉल करा",
+        whatsappHelplineTitle: "व्हॉट्सॲप शेतकरी सेवा",
+        whatsappDesc: "10 मिनिटांत प्रतवारी आणि खरेदीदार शोधासाठी पिकांचे फोटो आणि व्हॉइस मेसेज पाठवा.",
+        chatOnWhatsApp: "व्हॉट्सॲपवर चॅट करा",
+        mandiOfficerTitle: "स्थानिक कृषी उत्पन्न बाजार प्रतिनिधी",
+        mandiOfficerDesc: "काटा वजन मदत, डिजिटल स्केल वाद निवारण आणि त्वरित पिकअप समन्वय.",
+        contactFieldOfficer: "बाजार प्रतिनिधीशी संपर्क साधा",
+        callbackBoxTitle: "📞 आम्ही तुम्हाला कॉल करावा का? (मोफत कॉल बॅक)",
+        callbackBoxDesc: "खाली तुमचा फोन नंबर टाका, आमचे कृषी अधिकारी 15 मिनिटांत तुम्हाला कॉल करतील.",
+        yourNamePlaceholder: "तुमचे नाव",
+        mobilePlaceholder: "मोबाईल नंबर (उदा. 9876543210)",
+        requestCallBackBtn: "कॉल बॅक विनंती पाठवा",
+        languagesSupportedTitle: "तुमच्या मातृभाषेत मदत उपलब्ध:"
     }
 
 };
@@ -5362,10 +5755,25 @@ function performGlobalSearch(rawQuery) {
         value.includes("review") ||
         value.includes("rating") ||
         value.includes("star") ||
+        value.includes("care") ||
+        value.includes("customer") ||
+        value.includes("helpline") ||
+        value.includes("support") ||
+        value.includes("contact") ||
+        value.includes("call") ||
+        value.includes("phone") ||
+        value.includes("whatsapp") ||
+        value.includes("sahayata") ||
+        value.includes("सहायता") ||
         value.includes("समीक्षा") ||
+        value.includes("मदत") ||
         value.includes("फीडबैक")
     ) {
         go("feedback");
+        setTimeout(() => {
+            const cc = $("#customerCare");
+            if (cc) cc.scrollIntoView({ behavior: "smooth" });
+        }, 150);
     } else {
         // Search in Product Availability (fruits, vegetables, grains, locations, grades)
         go("products");

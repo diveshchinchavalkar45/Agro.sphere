@@ -1582,9 +1582,233 @@ td {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .summary {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* =========================================================
+   CUSTOMER CARE & KISAN SAHAYATA KENDRA
+   ========================================================= */
+
+.customer-care-section {
+    margin-top: 32px;
+    background: linear-gradient(135deg, #ffffff 0%, #f4f9f2 100%);
+    border: 1px solid #d2e4ce;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 18px rgba(23, 58, 37, 0.05);
+}
+
+.care-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e1eee0;
+    padding-bottom: 16px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.care-header h2 {
+    margin: 4px 0 0;
+    font-size: 20px;
+    color: var(--green);
+}
+
+.care-badge-247 {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #e8f6e4;
+    color: #2b7428;
+    border: 1px solid #c2e6bc;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.care-channels-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.care-channel-card {
+    background: #ffffff;
+    border: 1px solid #e0ebe0;
+    border-radius: 12px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.care-channel-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    border-color: #aed5a4;
+}
+
+.care-channel-card.highlight {
+    border-color: #9cd495;
+    background: linear-gradient(180deg, #ffffff 0%, #f7fcf5 100%);
+}
+
+.care-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #eaf5e6;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    margin-bottom: 14px;
+}
+
+.care-channel-card h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    color: var(--green);
+}
+
+.care-number {
+    font-size: 17px;
+    font-weight: 800;
+    color: #1b5327;
+    margin: 6px 0;
+    letter-spacing: 0.3px;
+}
+
+.care-desc {
+    font-size: 11px;
+    color: var(--muted);
+    margin: 0 0 16px;
+    line-height: 1.4;
+}
+
+.care-action-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    transition: all 0.2s ease;
+}
+
+.care-action-btn.call-btn {
+    background: var(--lime);
+    color: #173a25;
+}
+
+.care-action-btn.call-btn:hover {
+    background: #aae056;
+}
+
+.care-action-btn.wa-btn {
+    background: #25d366;
+    color: #ffffff;
+}
+
+.care-action-btn.wa-btn:hover {
+    background: #20ba5a;
+}
+
+.care-action-btn.mandi-btn {
+    background: #173a25;
+    color: #ffffff;
+}
+
+.care-action-btn.mandi-btn:hover {
+    background: #245638;
+}
+
+.callback-box {
+    background: #ffffff;
+    border: 1px solid #e2ede0;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.callback-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.callback-info h4 {
+    margin: 0 0 4px;
+    font-size: 14px;
+    color: var(--green);
+}
+
+.callback-info p {
+    margin: 0;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.callback-form-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.callback-form-row input,
+.callback-form-row select {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 12px;
+    background: #fcfdfc;
+    outline: none;
+}
+
+.callback-form-row input:focus,
+.callback-form-row select:focus {
+    border-color: var(--green);
+}
+
+.lang-support-strip {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed #dbe9da;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #556b59;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.lang-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.lang-pill {
+    background: #edf5eb;
+    border: 1px solid #d3e6cf;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #2b5731;
 }
 
 @media(max-width:760px) {

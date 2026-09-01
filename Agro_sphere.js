@@ -173,7 +173,27 @@ const translations = {
         collectiveCreated: "Collective bulk lot created!",
         priceAlertActivated: "Price alert activated!",
         feedbackSubmitted: "Thank you! Feedback submitted.",
-        demoReset: "Demo reset"
+        demoReset: "Demo reset",
+
+        kisanHelplineUpper: "🌾 KISAN SUPPORT & HELPLINE · KISAN SAHAYATA KENDRA",
+        customerCareTitle: "Need Help? Talk to our Agro-Sphere Farmer Advisor",
+        customerCareSubtitle: "Free 24x7 farmer assistance for mandi prices, quality grading, instant vehicle booking, and fair payment guarantees.",
+        supportAvailable247: "24x7 Free Support Available",
+        tollFreeHelplineTitle: "Toll-Free Kisan Helpline",
+        tollFreeDesc: "100% Free Call · No mobile balance required. Direct advisory on fair price discovery and APMC rates.",
+        callTollFreeNow: "Call Toll-Free Now",
+        whatsappHelplineTitle: "WhatsApp Kisan Seva",
+        whatsappDesc: "Send crop photos & voice notes for instant quality grade evaluation and buyer interest in 10 minutes.",
+        chatOnWhatsApp: "Chat on WhatsApp",
+        mandiOfficerTitle: "Local Mandi Field Officer",
+        mandiOfficerDesc: "On-ground weighbridge assistance, digital scale dispute resolution, and instant pickup coordination.",
+        contactFieldOfficer: "Contact Local Mandi Officer",
+        callbackBoxTitle: "📞 Want Us to Call You Back? (Free Callback)",
+        callbackBoxDesc: "Enter your phone number below and our agricultural officer will call you back within 15 minutes.",
+        yourNamePlaceholder: "Your Name / Farmer Name",
+        mobilePlaceholder: "Mobile No. (e.g. 9876543210)",
+        requestCallBackBtn: "Request Call Back",
+        languagesSupportedTitle: "Support Available in Your Mother Tongue (मातृभाषा):"
     },
 
 
@@ -346,7 +366,27 @@ const translations = {
         collectiveCreated: "सामूहिक थोक लॉट बनाया गया!",
         priceAlertActivated: "मूल्य अलर्ट सक्रिय किया गया!",
         feedbackSubmitted: "धन्यवाद! आपकी प्रतिक्रिया भेज दी गई।",
-        demoReset: "डेमो रीसेट किया गया"
+        demoReset: "डेमो रीसेट किया गया",
+
+        kisanHelplineUpper: "🌾 किसान सहायता एवं हेल्पलाइन · 24x7 सेवा",
+        customerCareTitle: "मदद चाहिए? हमारे एग्रो-स्फीयर किसान सलाहकार से बात करें",
+        customerCareSubtitle: "मंडी भाव, गुणवत्ता ग्रेडिंग, तुरंत वाहन बुकिंग और सुरक्षित भुगतान के लिए 24x7 मुफ्त किसान सहायता।",
+        supportAvailable247: "24x7 मुफ्त सहायता उपलब्ध",
+        tollFreeHelplineTitle: "टोल-फ्री किसान हेल्पलाइन",
+        tollFreeDesc: "100% मुफ्त कॉल · मोबाइल बैलेंस की आवश्यकता नहीं। उचित मूल्य खोज और APMC दरों पर सीधी सलाह।",
+        callTollFreeNow: "अभी टोल-फ्री कॉल करें",
+        whatsappHelplineTitle: "व्हाट्सएप किसान सेवा",
+        whatsappDesc: "10 मिनट में गुणवत्ता ग्रेड मूल्यांकन और खरीदार रुचि के लिए फसल की फोटो और वॉयस नोट भेजें।",
+        chatOnWhatsApp: "व्हाट्सएप पर चैट करें",
+        mandiOfficerTitle: "स्थानीय मंडी क्षेत्रीय अधिकारी",
+        mandiOfficerDesc: "धर्मकांटा (वेब्रिज) सहायता, वजन विवाद समाधान और तुरंत पिकअप समन्वय।",
+        contactFieldOfficer: "मंडी अधिकारी से संपर्क करें",
+        callbackBoxTitle: "📞 क्या आप चाहते हैं कि हम आपको कॉल करें? (निःशुल्क कॉल बैक)",
+        callbackBoxDesc: "अपना फोन नंबर दर्ज करें, हमारे कृषि अधिकारी 15 मिनट के भीतर आपको कॉल करेंगे।",
+        yourNamePlaceholder: "आपका नाम",
+        mobilePlaceholder: "मोबाइल नंबर (उदा. 9876543210)",
+        requestCallBackBtn: "कॉल बैक का अनुरोध करें",
+        languagesSupportedTitle: "आपकी मातृभाषा में सहायता उपलब्ध:"
     },
 
 
@@ -519,7 +559,27 @@ const translations = {
         collectiveCreated: "सामूहिक लॉट तयार झाला!",
         priceAlertActivated: "किंमत अलर्ट सक्रिय झाला!",
         feedbackSubmitted: "धन्यवाद! तुमचा अभिप्राय पाठवला गेला.",
-        demoReset: "डेमो रीसेट झाला"
+        demoReset: "डेमो रीसेट झाला",
+
+        kisanHelplineUpper: "🌾 शेतकरी सहाय्यता आणि हेल्पलाइन · 24x7 सेवा",
+        customerCareTitle: "मदत हवी आहे? आमच्या ॲग्रो-स्फिअर शेतकरी सल्लागाराशी बोला",
+        customerCareSubtitle: "बाजार भाव, प्रतवारी (ग्रेडिंग), त्वरित वाहन बुकिंग आणि हमी पेमेंटसाठी 24x7 मोफत शेतकरी सहाय्य.",
+        supportAvailable247: "24x7 मोफत सहाय्य उपलब्ध",
+        tollFreeHelplineTitle: "टोल-फ्री शेतकरी हेल्पलाइन",
+        tollFreeDesc: "100% मोफत कॉल · मोबाईल बॅलन्सची आवश्यकता नाही. योग्य बाजारभाव आणि APMC दरांवर थेट मार्गदर्शन.",
+        callTollFreeNow: "आत्ताच टोल-फ्री कॉल करा",
+        whatsappHelplineTitle: "व्हॉट्सॲप शेतकरी सेवा",
+        whatsappDesc: "10 मिनिटांत प्रतवारी आणि खरेदीदार शोधासाठी पिकांचे फोटो आणि व्हॉइस मेसेज पाठवा.",
+        chatOnWhatsApp: "व्हॉट्सॲपवर चॅट करा",
+        mandiOfficerTitle: "स्थानिक कृषी उत्पन्न बाजार प्रतिनिधी",
+        mandiOfficerDesc: "काटा वजन मदत, डिजिटल स्केल वाद निवारण आणि त्वरित पिकअप समन्वय.",
+        contactFieldOfficer: "बाजार प्रतिनिधीशी संपर्क साधा",
+        callbackBoxTitle: "📞 आम्ही तुम्हाला कॉल करावा का? (मोफत कॉल बॅक)",
+        callbackBoxDesc: "खाली तुमचा फोन नंबर टाका, आमचे कृषी अधिकारी 15 मिनिटांत तुम्हाला कॉल करतील.",
+        yourNamePlaceholder: "तुमचे नाव",
+        mobilePlaceholder: "मोबाईल नंबर (उदा. 9876543210)",
+        requestCallBackBtn: "कॉल बॅक विनंती पाठवा",
+        languagesSupportedTitle: "तुमच्या मातृभाषेत मदत उपलब्ध:"
     }
 
 };
@@ -2106,10 +2166,25 @@ function performGlobalSearch(rawQuery) {
         value.includes("review") ||
         value.includes("rating") ||
         value.includes("star") ||
+        value.includes("care") ||
+        value.includes("customer") ||
+        value.includes("helpline") ||
+        value.includes("support") ||
+        value.includes("contact") ||
+        value.includes("call") ||
+        value.includes("phone") ||
+        value.includes("whatsapp") ||
+        value.includes("sahayata") ||
+        value.includes("सहायता") ||
         value.includes("समीक्षा") ||
+        value.includes("मदत") ||
         value.includes("फीडबैक")
     ) {
         go("feedback");
+        setTimeout(() => {
+            const cc = $("#customerCare");
+            if (cc) cc.scrollIntoView({ behavior: "smooth" });
+        }, 150);
     } else {
         // Search in Product Availability (fruits, vegetables, grains, locations, grades)
         go("products");
