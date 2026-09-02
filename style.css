@@ -1872,6 +1872,227 @@ td {
     }
 }
 
+/* =========================================================
+   AI KISAN ASSISTANT CARD (BELOW SMART ALERTS ON DASHBOARD)
+   ========================================================= */
+
+.ai-kisan-assistant-card {
+    margin-top: 18px;
+    margin-bottom: 22px;
+    background: linear-gradient(135deg, #173a25 0%, #1f5027 45%, #2d7335 100%);
+    border: 2px solid #84cf73;
+    border-radius: 20px;
+    padding: 22px;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(23, 58, 37, 0.22);
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-kisan-assistant-card::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(184, 232, 106, 0.22) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.ai-kisan-card-layout {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.ai-kisan-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.ai-kisan-avatar-img {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3.5px solid #b8e86a;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: block;
+}
+
+.ai-kisan-avatar-wrap:hover .ai-kisan-avatar-img {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+.ai-kisan-online-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    background: #27ae60;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 20px;
+    border: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.ai-kisan-content-main {
+    flex: 1;
+    min-width: 280px;
+}
+
+.ai-kisan-bubble {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #f1fbf0;
+}
+
+.ai-kisan-bubble b {
+    color: #b8e86a;
+}
+
+.comfort-lang-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.comfort-lang-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #b8e86a;
+    margin-right: 4px;
+}
+
+.comfort-lang-btn {
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.comfort-lang-btn:hover,
+.comfort-lang-btn.active {
+    background: var(--lime);
+    color: #173a25;
+    border-color: var(--lime);
+    font-weight: 800;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+
+.ai-kisan-actions-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ai-kisan-mic-btn {
+    background: var(--lime);
+    color: #173a25;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 11px 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.ai-kisan-mic-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    background: #c8f57d;
+}
+
+.ai-kisan-chat-btn {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 18px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.ai-kisan-chat-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.chatbot-input-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    align-items: center;
+}
+
+.chatbot-input-row input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1.5px solid #d2e4ce;
+    border-radius: 25px;
+    font-size: 13px;
+    outline: none;
+    background: #ffffff;
+    color: var(--text);
+}
+
+.chatbot-input-row input:focus {
+    border-color: #2b7428;
+    box-shadow: 0 0 0 3px rgba(43, 116, 40, 0.15);
+}
+
+.chatbot-send-btn {
+    background: #2b7428;
+    color: #ffffff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.chatbot-send-btn:hover {
+    background: #173a25;
+}
+
 .voice-modal-content {
     max-width: 520px;
     background: linear-gradient(180deg, #ffffff 0%, #f6fbf4 100%);

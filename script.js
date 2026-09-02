@@ -2521,6 +2521,108 @@ if ($("#calNext")) {
 let voiceRecognition = null;
 let isVoiceListening = false;
 let isVoiceSpeaking = false;
+let comfortLanguage = "hi";
+
+const comfortLanguageConfigs = {
+    hi: {
+        code: "hi-IN",
+        name: "हिंदी",
+        greeting: "🙏 <b>नमस्ते किसान भाई!</b> मैं आपकी <b>AI किसान सहायिका</b> हूँ। मंडी भाव, फल-सब्जी उपलब्धता, या ट्रक ट्रैकिंग के बारे में बोलकर या लिखकर पूछें!",
+        micBtn: "बोलकर पूछें / Tap to Speak",
+        chatBtn: "चैटबॉट खोलें / Open Chatbot"
+    },
+    mr: {
+        code: "mr-IN",
+        name: "मराठी",
+        greeting: "🙏 <b>नमस्कार शेतकरी बंधूंनो!</b> मी तुमची <b>AI किसान सहाय्यक</b> आहे. बाजारभाव, फळे-भाजीपाला किंवा ट्रक ट्रॅकिंगबद्दल विचारण्यासाठी बोला किंवा टाइप करा!",
+        micBtn: "बोलून विचारा / Tap to Speak",
+        chatBtn: "चॅटबॉट उघडा / Open Chatbot"
+    },
+    en: {
+        code: "en-IN",
+        name: "English",
+        greeting: "🙏 <b>Hello Farmer!</b> I am your <b>AI Kisan Assistant</b>. Ask me anything about mandi prices, produce availability, or truck tracking by voice or text!",
+        micBtn: "Tap to Speak / Voice AI",
+        chatBtn: "Open Chatbot / Type"
+    },
+    pa: {
+        code: "pa-IN",
+        name: "ਪੰਜਾਬੀ",
+        greeting: "🙏 <b>ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਕਿਸਾਨ ਵੀਰੋ!</b> ਮੈਂ ਤੁਹਾਡੀ <b>AI ਕਿਸਾਨ ਸਹਾਇਕ</b> ਹਾਂ। ਮੰਡੀ ਰੇਟ, ਫਸਲ ਜਾਂ ਟਰੱਕ ਟਰੈਕਿੰਗ ਬਾਰੇ ਪੁੱਛੋ!",
+        micBtn: "ਬੋਲ ਕੇ ਪੁੱਛੋ / Tap to Speak",
+        chatBtn: "ਚੈਟਬਾਕਸ ਖੋਲ੍ਹੋ"
+    },
+    gu: {
+        code: "gu-IN",
+        name: "ગુજરાતી",
+        greeting: "🙏 <b>નમસ્તે ખેડૂત મિત્રો!</b> હું તમારી <b>AI કિસાન સહાયક</b> છું. મંડીના ભાવ, ફળો-શાકભાજી કે ટ્રક ટ્રેકિંગ વિશે પૂછો!",
+        micBtn: "બોલીને પૂછો / Tap to Speak",
+        chatBtn: "ચેટબોટ ખોલો"
+    },
+    ta: {
+        code: "ta-IN",
+        name: "தமிழ்",
+        greeting: "🙏 <b>வணக்கம் விவசாய பெருமக்களே!</b> நான் உங்கள் <b>AI வேளாண் உதவியாளர்</b>. மண்டி விலை, விளைபொருட்கள் அல்லது லாரி விவரங்களை கேளுங்கள்!",
+        micBtn: "பேசி கேளுங்கள் / Speak",
+        chatBtn: "சாட்பாட் திறக்கவும்"
+    },
+    te: {
+        code: "te-IN",
+        name: "తెలుగు",
+        greeting: "🙏 <b>నమస్కారం రైతు సోదరులారా!</b> నేను మీ <b>AI కిసాన్ సహాయకురాలిని</b>. మార్కెట్ ధరలు, లారీ ట్రాకింగ్ వివరాలు అడగండి!",
+        micBtn: "మాట్లాడి అడగండి / Speak",
+        chatBtn: "చాట్‌బాట్ తెరవండి"
+    },
+    kn: {
+        code: "kn-IN",
+        name: "ಕನ್ನಡ",
+        greeting: "🙏 <b>ನಮಸ್ಕಾರ ರೈತ ಬಾಂಧವರೇ!</b> ನಾನು ನಿಮ್ಮ <b>AI ಕಿಸಾನ್ ಸಹಾಯಕ</b>. ಮಾರುಕಟ್ಟೆ ದರಗಳು ಅಥವಾ ವಾಹನ ಟ್ರ್ಯಾಕಿಂಗ್ ಬಗ್ಗೆ ಕೇಳಿ!",
+        micBtn: "ಮಾತನಾಡಿ ಕೇಳಿ / Speak",
+        chatBtn: "ಚಾಟ್‌ಬಾಟ್ ತೆರೆಯಿರಿ"
+    },
+    bn: {
+        code: "bn-IN",
+        name: "বাংলা",
+        greeting: "🙏 <b>নমস্কার কৃষক ভাই!</b> আমি আপনার <b>AI কিষাণ সহায়ক</b>। মান্ডি দর, ফল-সবজি বা ট্রাক ট্র্যাকিং সম্পর্কে জিজ্ঞাসা করুন!",
+        micBtn: "কথা বলে জিজ্ঞাসা করুন",
+        chatBtn: "চ্যাটবট খুলুন"
+    }
+};
+
+function setComfortLanguage(langCode) {
+    if (!comfortLanguageConfigs[langCode]) return;
+    comfortLanguage = langCode;
+
+    // Update buttons active states
+    $$(".comfort-lang-btn").forEach(btn => {
+        if (btn.dataset.lang === langCode || btn.dataset.modalLang === langCode) {
+            btn.classList.add("active");
+        } else {
+            btn.classList.remove("active");
+        }
+    });
+
+    const cfg = comfortLanguageConfigs[langCode];
+    const greetingEl = $("#aiKisanGreetingText");
+    if (greetingEl) greetingEl.innerHTML = cfg.greeting;
+
+    const micBtnEl = $("#micBtnText");
+    if (micBtnEl) micBtnEl.textContent = cfg.micBtn;
+
+    const chatBtnEl = $("#chatBtnText");
+    if (chatBtnEl) chatBtnEl.textContent = cfg.chatBtn;
+
+    // Also update speech recognition language
+    if (voiceRecognition) {
+        voiceRecognition.lang = cfg.code;
+    }
+
+    if (langCode === "hi" || langCode === "mr" || langCode === "en") {
+        changeLanguage(langCode);
+    }
+
+    toast(`🌐 Comfort Language set to: ${cfg.name}`);
+}
 
 function initVoiceAssistant() {
     const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -2528,6 +2630,7 @@ function initVoiceAssistant() {
         voiceRecognition = new SpeechRec();
         voiceRecognition.continuous = false;
         voiceRecognition.interimResults = false;
+        voiceRecognition.lang = comfortLanguageConfigs[comfortLanguage] ? comfortLanguageConfigs[comfortLanguage].code : "hi-IN";
 
         voiceRecognition.onstart = () => {
             isVoiceListening = true;
@@ -2545,7 +2648,7 @@ function initVoiceAssistant() {
             isVoiceListening = false;
             updateVoiceUIState("ready");
             if (event.error === "not-allowed") {
-                appendVoiceMessage("assistant", "⚠️ Microphone permission denied. Please allow microphone access or click the prompt chips below!");
+                appendVoiceMessage("assistant", "⚠️ Microphone permission denied. Please allow microphone access or use the Chatbot typing box below!");
             }
         };
 
@@ -2576,13 +2679,13 @@ function updateVoiceUIState(state) {
         if (statusText) statusText.textContent = "Speaking...";
         if (wave) wave.classList.add("active");
         if (micBtn) micBtn.classList.remove("listening");
-        if (instruction) instruction.textContent = "Agro-Sphere Sahayak is answering...";
+        if (instruction) instruction.textContent = "Agro-Sphere Sahayika is answering...";
     } else {
         if (pill) pill.className = "voice-status-pill";
         if (statusText) statusText.textContent = "Ready to Listen";
         if (wave) wave.classList.remove("active");
         if (micBtn) micBtn.classList.remove("listening");
-        if (instruction) instruction.textContent = "Tap microphone and speak in Hindi, Marathi, or English";
+        if (instruction) instruction.textContent = "Tap microphone to speak OR type below in your comfort language";
     }
 }
 
@@ -2591,7 +2694,7 @@ function appendVoiceMessage(sender, text) {
     if (!box) return;
     const msg = document.createElement("div");
     msg.className = `voice-msg ${sender}`;
-    msg.innerHTML = sender === "user" ? `<b>You:</b> ${text}` : `<b>Agro-Sphere Sahayak:</b> ${text}`;
+    msg.innerHTML = sender === "user" ? `<b>You:</b> ${text}` : `<b>Agro-Sphere Sahayika:</b> ${text}`;
     box.appendChild(msg);
     box.scrollTop = box.scrollHeight;
 }
@@ -2607,8 +2710,9 @@ function speakVoiceResponse(text, callback) {
     
     // Choose voice
     const voices = window.speechSynthesis.getVoices();
-    const hindiVoice = voices.find(v => v.lang && (v.lang.includes("hi") || v.lang.includes("IN")));
-    if (hindiVoice) utterance.voice = hindiVoice;
+    const targetLangCode = comfortLanguageConfigs[comfortLanguage] ? comfortLanguageConfigs[comfortLanguage].code.slice(0, 2) : "hi";
+    const voiceMatch = voices.find(v => v.lang && (v.lang.includes(targetLangCode) || v.lang.includes("IN")));
+    if (voiceMatch) utterance.voice = voiceMatch;
     
     utterance.rate = 1.0;
     utterance.pitch = 1.0;
@@ -2639,44 +2743,44 @@ function handleVoiceAIQuery(rawQuery) {
     let targetSection = null;
     let cropFilterVal = null;
 
-    if (q.includes("onion") || q.includes("pyaz") || q.includes("kanda") || q.includes("कांदा") || q.includes("प्याज")) {
-        reply = "Lasalgaon mandi mein Grade A Onion ka modal bhav ₹3,420 prati quintal hai, jo is hafte 8.4% badha hai. Agle 3 se 5 din bechne ke liye best window hai.";
+    if (q.includes("onion") || q.includes("pyaz") || q.includes("kanda") || q.includes("कांदा") || q.includes("प्याज") || q.includes("ਰੇਟ") || q.includes("ડુંગળી") || q.includes("வெங்காயம்") || q.includes("ఉల్లిపాయ") || q.includes("ಈರುಳ್ಳಿ") || q.includes("পেঁয়াজ")) {
+        if (comfortLanguage === "mr") {
+            reply = "लासलगाव बाजार समितीत कांद्याचा सरासरी भाव ₹3,420 प्रति क्विंटल आहे. पुढील 3 ते 5 दिवस विक्रीसाठी उत्तम आहेत.";
+        } else if (comfortLanguage === "en") {
+            reply = "Lasalgaon modal price for Grade A Onion is ₹3,420 per quintal, up 8.4% this week. The next 3 to 5 days offer an optimal selling window.";
+        } else {
+            reply = "लासलगाव मंडी में ग्रेड A प्याज का मॉडल भाव ₹3,420 प्रति क्विंटल है, जो इस हफ्ते 8.4% बढ़ा है। अगले 3 से 5 दिन बेचने के लिए सर्वोत्तम हैं।";
+        }
         targetSection = "prices";
-    } else if (q.includes("tomato") || q.includes("tamatar") || q.includes("टोमॅटो") || q.includes("टमाटर")) {
-        reply = "Nashik aur Pimpalgaon mandi mein Tomato ka modal rate ₹2,850 prati quintal hai aur demand strong hai.";
+    } else if (q.includes("tomato") || q.includes("tamatar") || q.includes("टोमॅटो") || q.includes("टमाटर") || q.includes("ಟೊಮೆಟೊ") || q.includes("தக்காளி") || q.includes("టమోటా")) {
+        reply = "नासिक और पिंपलगांव मंडी में टमाटर का भाव ₹2,850 प्रति क्विंटल है और खरीदारों की मांग मजबूत है।";
         targetSection = "prices";
     } else if (q.includes("soybean") || q.includes("soya") || q.includes("सोयाबीन")) {
-        reply = "Nagpur aur Latur mandi mein Soybean ka modal price ₹4,820 prati quintal chal raha hai.";
+        reply = "नागपुर और लातूर मंडी में सोयाबीन का भाव ₹4,820 प्रति क्विंटल दर्ज किया गया है।";
         targetSection = "prices";
-    } else if (q.includes("mango") || q.includes("aam") || q.includes("हापूस") || q.includes("आम")) {
-        reply = "Agro-Sphere par Ratnagiri Alphonso aur Kesar Mango ke certified lots available hain. Main aapko Product Availability section par le chalta hoon.";
+    } else if (q.includes("mango") || q.includes("aam") || q.includes("हापूस") || q.includes("आम") || q.includes("ಮಾವು") || q.includes("மாம்பழம்") || q.includes("మామిడి")) {
+        reply = "एग्रो-स्फीयर पर रत्नागिरी हापुस और केसर आम के प्रमाणित लॉट उपलब्ध हैं। मैं आपको उत्पाद उपलब्धता स्क्रीन पर ले चलती हूँ।";
         targetSection = "products";
         cropFilterVal = "mango";
-    } else if (q.includes("lemon") || q.includes("nimbu") || q.includes("लिंबू") || q.includes("नींबू")) {
-        reply = "Lasalgaon Grade A Juicy Lemon ₹4,600 prati quintal par available hai. Product details screen par open kar di gayi hain.";
+    } else if (q.includes("lemon") || q.includes("nimbu") || q.includes("लिंबू") || q.includes("नींबू") || q.includes("ನಿಂಬೆ") || q.includes("எலுமிச்சை") || q.includes("నిమ్మ")) {
+        reply = "लासलगाव जूसी लेमन ₹4,600 प्रति क्विंटल पर उपलब्ध है। उत्पाद विवरण स्क्रीन पर खोल दिए गए हैं।";
         targetSection = "products";
         cropFilterVal = "lemon";
     } else if (q.includes("apple") || q.includes("seb") || q.includes("सफरचंद") || q.includes("सेब")) {
-        reply = "Royal Delicious Red Apple Grade A ₹8,500 prati quintal par available hai.";
+        reply = "रॉयल डेलिशियस रेड एप्पल ग्रेड A ₹8,500 प्रति क्विंटल पर उपलब्ध है।";
         targetSection = "products";
         cropFilterVal = "apple";
-    } else if (q.includes("truck") || q.includes("vehicle") || q.includes("track") || q.includes("driver") || q.includes("gadi") || q.includes("गाड़ी") || q.includes("गाडी")) {
-        reply = "Aapka assigned truck MH-15-AB-1234 schedule par chal raha hai. Driver Suresh Patel ka contact number +91 98234 56789 hai.";
+    } else if (q.includes("truck") || q.includes("vehicle") || q.includes("track") || q.includes("driver") || q.includes("gadi") || q.includes("गाड़ी") || q.includes("गाडी") || q.includes("లారీ") || q.includes("வண்டி") || q.includes("ವಾಹನ")) {
+        reply = "आपका निर्धारित ट्रक MH-15-AB-1234 समय पर चल रहा है (स्पीड: 42 km/h, ETA: 45 मिनट)। ड्राइवर रमेश शिंदे का संपर्क: +91 98765 43210.";
         targetSection = "schedule";
-    } else if (q.includes("help") || q.includes("care") || q.includes("helpline") || q.includes("support") || q.includes("number") || q.includes("मदत") || q.includes("सहायता") || q.includes("toll")) {
-        reply = "Hamari 24x7 Free Toll-Free Kisan Helpline 1800-889-2476 hai. Aap WhatsApp par +91 98200 45678 par bhi contact kar sakte hain.";
+    } else if (q.includes("help") || q.includes("care") || q.includes("helpline") || q.includes("support") || q.includes("number") || q.includes("मदत") || q.includes("सहायता") || q.includes("toll") || q.includes("contact")) {
+        reply = "हमारी 24x7 निःशुल्क टोल-फ्री किसान हेल्पलाइन 1800-889-2476 है। आप व्हाट्सएप नंबर +91 98200 45678 पर भी संपर्क कर सकते हैं।";
         targetSection = "support";
     } else if (q.includes("collective") || q.includes("fpo") || q.includes("group") || q.includes("समूह")) {
-        reply = "Farmer Collective mein 100 quintal ka bulk lot open hai, jisme 64 quintal pool ho chuka hai.";
+        reply = "किसान कलेक्टिव में 100 क्विंटल का बल्क लॉट सक्रिय है, जिसमें 64 क्विंटल पूल हो चुका है।";
         targetSection = "collective";
-    } else if (q.includes("hindi") || q.includes("हिंदी")) {
-        changeLanguage("hi");
-        reply = "जी किसान भाई, भाषा हिंदी में बदल दी गई है। अब आप हिंदी में जानकारी प्राप्त कर सकते हैं।";
-    } else if (q.includes("marathi") || q.includes("मराठी")) {
-        changeLanguage("mr");
-        reply = "होय शेतकरी मित्र, भाषा मराठीत बदलली आहे. आता आपण सर्व माहिती मराठीत पाहू शकता.";
     } else {
-        reply = "Maine aapka sawal note kar liya hai. Agro-Sphere par mandi prices, produce listings, vehicle tracking aur customer care uplabdh hain. Main aapko dashboard par navigation assist kar raha hoon.";
+        reply = "मैंने आपका प्रश्न नोट कर लिया है। एग्रो-स्फीयर पर मंडी भाव, उत्पाद सूची, वाहन ट्रैकिंग और हेल्पलाइन उपलब्ध हैं।";
         targetSection = "dashboard";
     }
 
@@ -2692,30 +2796,49 @@ function handleVoiceAIQuery(rawQuery) {
     });
 }
 
+function sendChatbotMessage() {
+    const input = $("#chatbotTextInput");
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = "";
+    appendVoiceMessage("user", text);
+    handleVoiceAIQuery(text);
+}
+
+function openChatbotModal() {
+    const modal = $("#voiceAssistantModal");
+    if (modal) modal.classList.add("show");
+    setTimeout(() => {
+        const input = $("#chatbotTextInput");
+        if (input) input.focus();
+    }, 200);
+}
+
 function simulateVoiceQuery(text) {
     appendVoiceMessage("user", text);
     handleVoiceAIQuery(text);
 }
 
 function startVoiceListening() {
+    const modal = $("#voiceAssistantModal");
+    if (modal) modal.classList.add("show");
+
     if (!voiceRecognition) {
         initVoiceAssistant();
     }
     if (voiceRecognition) {
         try {
-            if (currentLanguage === "hi") {
-                voiceRecognition.lang = "hi-IN";
-            } else if (currentLanguage === "mr") {
-                voiceRecognition.lang = "mr-IN";
-            } else {
-                voiceRecognition.lang = "en-IN";
+            const cfg = comfortLanguageConfigs[comfortLanguage];
+            if (cfg) {
+                voiceRecognition.lang = cfg.code;
             }
             voiceRecognition.start();
         } catch (e) {
             console.warn("Recognition already started or error:", e);
         }
     } else {
-        appendVoiceMessage("assistant", "Speech recognition is not supported in this browser. You can click any of the prompt chips below!");
+        appendVoiceMessage("assistant", "Speech recognition is not supported in this browser. You can type in the chatbot box below!");
     }
 }
 
@@ -2747,6 +2870,9 @@ window.simulateVoiceQuery = simulateVoiceQuery;
 window.saveVapiConfig = saveVapiConfig;
 window.startVoiceListening = startVoiceListening;
 window.openVoiceModalWithQuery = openVoiceModalWithQuery;
+window.setComfortLanguage = setComfortLanguage;
+window.sendChatbotMessage = sendChatbotMessage;
+window.openChatbotModal = openChatbotModal;
 
 /* =========================================================
    APPLICATION INITIALIZATION

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agro-Sphere — Farmer Market Intelligence</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
-    <link rel="stylesheet" href="style.css?v=5.0.0">
+    <link rel="stylesheet" href="style.css?v=6.0.0">
 </head>
 
 <body>
@@ -379,7 +379,72 @@
                     </div>
 
 
-                    <!-- OFFERS -->
+                    <!-- ================= AI KISAN VOICE & CHAT ASSISTANT (RIGHT BELOW SMART ALERTS) ================= -->
+                    <div class="card ai-kisan-assistant-card" id="aiKisanDashboardCard">
+
+                        <div class="ai-kisan-card-layout">
+
+                            <!-- Left: 3D AI Farmer Avatar with Click Action & Status -->
+                            <div class="ai-kisan-avatar-wrap" onclick="openVoiceModalWithQuery('Namaste! Help me with mandi rates and tracking.')" title="Click to chat with Kisan AI Sahayika">
+                                <img src="assets/ai_farmer_assistant.png" alt="AI Farmer Voice Assistant" class="ai-kisan-avatar-img">
+                                <div class="ai-kisan-online-badge">
+                                    <span style="width:6px; height:6px; background:#fff; border-radius:50%; display:inline-block;"></span>
+                                    <span>AI Online</span>
+                                </div>
+                            </div>
+
+                            <!-- Right: Greeting Speech Bubble, Comfort Languages & Actions -->
+                            <div class="ai-kisan-content-main">
+
+                                <div class="ai-kisan-bubble">
+                                    <span id="aiKisanGreetingText">
+                                        🙏 <b>नमस्ते किसान भाई!</b> मैं आपकी <b>AI किसान सहायिका</b> हूँ। अपनी आरामदायक भाषा में बोलकर या लिखकर मंडी भाव, फल-सब्जी या ट्रक ट्रैकिंग पूछें!
+                                    </span>
+                                </div>
+
+                                <!-- Comfort Language Selector (Language Barrier Solution) -->
+                                <div class="comfort-lang-bar">
+                                    <span class="comfort-lang-label">🌐 Comfort Language:</span>
+                                    <button type="button" class="comfort-lang-btn active" data-lang="hi" onclick="setComfortLanguage('hi')">🇮🇳 हिंदी</button>
+                                    <button type="button" class="comfort-lang-btn" data-lang="mr" onclick="setComfortLanguage('mr')">🚩 मराठी</button>
+                                    <button type="button" class="comfort-lang-btn" data-lang="en" onclick="setComfortLanguage('en')">🇬🇧 English</button>
+                                    <button type="button" class="comfort-lang-btn" data-lang="pa" onclick="setComfortLanguage('pa')">🌾 ਪੰਜਾਬੀ</button>
+                                    <button type="button" class="comfort-lang-btn" data-lang="gu" onclick="setComfortLanguage('gu')">🪔 ગુજરાતી</button>
+                                    <button type="button" class="comfort-lang-btn" data-lang="ta" onclick="setComfortLanguage('ta')">🌿 தமிழ்</button>
+                                    <button type="button" class="comfort-lang-btn" data-lang="te" onclick="setComfortLanguage('te')">🌾 తెలుగు</button>
+                                    <button type="button" class="comfort-lang-btn" data-lang="kn" onclick="setComfortLanguage('kn')">🌴 ಕನ್ನಡ</button>
+                                    <button type="button" class="comfort-lang-btn" data-lang="bn" onclick="setComfortLanguage('bn')">🌾 বাংলা</button>
+                                </div>
+
+                                <!-- Action Buttons & Prompt Chips -->
+                                <div class="ai-kisan-actions-row">
+                                    <button type="button" class="ai-kisan-mic-btn" data-modal="voiceAssistantModal" onclick="startVoiceListening()">
+                                        🎙️ <span id="micBtnText">बोलकर पूछें / Tap to Speak</span>
+                                    </button>
+                                    <button type="button" class="ai-kisan-chat-btn" data-modal="voiceAssistantModal" onclick="openChatbotModal()">
+                                        💬 <span id="chatBtnText">चैटबॉट खोलें / Open Chatbot</span>
+                                    </button>
+
+                                    <!-- Quick Voice Prompt Chips -->
+                                    <button type="button" class="voice-chip" style="background: rgba(255,255,255,0.14); color: #fff; border: 1px solid rgba(255,255,255,0.25);" onclick="openVoiceModalWithQuery('Onion ka mandi bhav kya hai?')">
+                                        🧅 "प्याज का भाव?"
+                                    </button>
+                                    <button type="button" class="voice-chip" style="background: rgba(255,255,255,0.14); color: #fff; border: 1px solid rgba(255,255,255,0.25);" onclick="openVoiceModalWithQuery('Mera truck kahan hai? Track vehicle')">
+                                        🚚 "मेरा ट्रक ट्रैक करें"
+                                    </button>
+                                    <button type="button" class="voice-chip" style="background: rgba(255,255,255,0.14); color: #fff; border: 1px solid rgba(255,255,255,0.25);" onclick="openVoiceModalWithQuery('Show Mango and Lemon availability')">
+                                        🥭 "आम और नींबू उपलब्धता"
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OFFERS & RECOMMENDATIONS -->
 
                     <div class="grid">
 
@@ -468,50 +533,6 @@
                                 Expected range: ₹3,500–₹3,650/q
                             </strong>
 
-                        </div>
-
-                    </div>
-
-                    <!-- DASHBOARD BOTTOM: VOICE ASSISTANT FEATURE -->
-                    <div class="card dashboard-voice-card" style="margin-top: 18px; background: linear-gradient(135deg, #173a25 0%, #2b7428 100%); color: #ffffff; border: 1px solid #7bc369; border-radius: 16px; padding: 22px; box-shadow: 0 6px 20px rgba(23, 58, 37, 0.2);">
-
-                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
-
-                            <div style="flex: 1; min-width: 260px;">
-                                <div class="eyebrow" style="color: #b7f4a2; font-weight: bold;">
-                                    🎙️ AI KISAN VOICE SAHAYAK · बोलकर जानकारी पाएं
-                                </div>
-                                <h2 style="color: #ffffff; margin: 4px 0 6px; font-size: 20px;">
-                                    Agro-Sphere Voice Assistant
-                                </h2>
-                                <p style="color: #e2f3dd; margin: 0; font-size: 12px; line-height: 1.4;">
-                                    Speak in <b>Hindi, Marathi, or English</b> to check live mandi rates, track assigned pickup trucks, inspect fruits & vegetables, or contact helpline.
-                                </p>
-                            </div>
-
-                            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                                <button class="btn" style="background: var(--lime); color: #173a25; font-weight: 800; font-size: 13px; padding: 12px 20px; border-radius: 30px; box-shadow: 0 4px 14px rgba(0,0,0,0.25); border: 0; cursor: pointer;" data-modal="voiceAssistantModal" onclick="startVoiceListening()">
-                                    🎙️ <span>Tap to Speak / आवाज़ से पूछें</span>
-                                </button>
-                            </div>
-
-                        </div>
-
-                        <!-- Voice Suggestion Chips directly on Dashboard -->
-                        <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                            <span style="font-size: 11px; color: #b7f4a2; font-weight: bold;">Try Asking:</span>
-                            <button class="voice-chip" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.25);" onclick="openVoiceModalWithQuery('Onion ka mandi bhav kya hai?')">
-                                🧅 "Onion ka mandi bhav?"
-                            </button>
-                            <button class="voice-chip" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.25);" onclick="openVoiceModalWithQuery('Mera truck kahan hai? Track vehicle')">
-                                🚚 "Mera truck track karo"
-                            </button>
-                            <button class="voice-chip" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.25);" onclick="openVoiceModalWithQuery('Show Mango and Lemon availability')">
-                                🥭 "Mango & Lemon availability"
-                            </button>
-                            <button class="voice-chip" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.25);" onclick="openVoiceModalWithQuery('Toll free kisan helpline se baat karni hai')">
-                                📞 "Kisan Customer Care"
-                            </button>
                         </div>
 
                     </div>
@@ -1708,9 +1729,10 @@
     </div>
 
     <!-- ================= FLOATING VOICE ASSISTANT BUTTON ================= -->
-    <button class="floating-voice-btn" id="voiceAssistantBtn" title="Agro-Sphere Kisan Voice Assistant" data-modal="voiceAssistantModal">
+    <button class="floating-voice-btn" id="voiceAssistantBtn" title="Agro-Sphere AI Kisan Sahayika" data-modal="voiceAssistantModal" onclick="startVoiceListening()">
+        <img src="assets/ai_farmer_assistant.png" alt="AI Farmer" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1.5px solid #b8e86a; background: #fff;">
         <div class="mic-icon-circle">🎙️</div>
-        <span>Voice Sahayak</span>
+        <span>Kisan Voice AI</span>
     </button>
 
     <!-- ================= VOICE ASSISTANT MODAL ================= -->
@@ -1721,16 +1743,35 @@
             <button class="close" data-close>×</button>
 
             <div class="voice-header">
-                <div>
-                    <div class="eyebrow" style="color:#2d6930; font-weight: bold;">
-                        🌾 AI KISAN SAHAYAK · किसान आवाज़ सहायक
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <img src="assets/ai_farmer_assistant.png" alt="AI Kisan Sahayika" style="width:48px; height:48px; border-radius:50%; border:2px solid #b8e86a; background:#fff;">
+                    <div>
+                        <div class="eyebrow" style="color:#2d6930; font-weight: bold;">
+                            🌾 AI KISAN SAHAYIKA · किसान आवाज़ व चैट सहायक
+                        </div>
+                        <h3 style="margin:2px 0 0; font-size:16px; color:var(--green);">
+                            Agro-Sphere Voice & Chat AI
+                        </h3>
                     </div>
-                    <h3>🎙️ Agro-Sphere Voice AI</h3>
                 </div>
 
                 <div class="voice-status-pill" id="voiceStatusPill">
                     <span class="status-dot">🟢</span> <span id="voiceStatusText">Ready to Listen</span>
                 </div>
+            </div>
+
+            <!-- Modal Comfort Language Switcher -->
+            <div style="display:flex; align-items:center; gap:5px; margin-bottom:12px; flex-wrap:wrap; padding:6px 10px; background:#edf6ea; border-radius:10px;">
+                <span style="font-size:11px; font-weight:bold; color:#173a25;">🌐 Language:</span>
+                <button type="button" class="comfort-lang-btn active" data-modal-lang="hi" onclick="setComfortLanguage('hi')" style="font-size:10px; padding:2px 8px;">🇮🇳 हिंदी</button>
+                <button type="button" class="comfort-lang-btn" data-modal-lang="mr" onclick="setComfortLanguage('mr')" style="font-size:10px; padding:2px 8px;">🚩 मराठी</button>
+                <button type="button" class="comfort-lang-btn" data-modal-lang="en" onclick="setComfortLanguage('en')" style="font-size:10px; padding:2px 8px;">🇬🇧 English</button>
+                <button type="button" class="comfort-lang-btn" data-modal-lang="pa" onclick="setComfortLanguage('pa')" style="font-size:10px; padding:2px 8px;">🌾 ਪੰਜਾਬੀ</button>
+                <button type="button" class="comfort-lang-btn" data-modal-lang="gu" onclick="setComfortLanguage('gu')" style="font-size:10px; padding:2px 8px;">🪔 ગુજરાતી</button>
+                <button type="button" class="comfort-lang-btn" data-modal-lang="ta" onclick="setComfortLanguage('ta')" style="font-size:10px; padding:2px 8px;">🌿 தமிழ்</button>
+                <button type="button" class="comfort-lang-btn" data-modal-lang="te" onclick="setComfortLanguage('te')" style="font-size:10px; padding:2px 8px;">🌾 తెలుగు</button>
+                <button type="button" class="comfort-lang-btn" data-modal-lang="kn" onclick="setComfortLanguage('kn')" style="font-size:10px; padding:2px 8px;">🌴 ಕನ್ನಡ</button>
+                <button type="button" class="comfort-lang-btn" data-modal-lang="bn" onclick="setComfortLanguage('bn')" style="font-size:10px; padding:2px 8px;">🌾 বাংলা</button>
             </div>
 
             <!-- Animated Sound Wave -->
@@ -1747,7 +1788,7 @@
             <!-- Dialogue History / Transcript -->
             <div class="voice-dialog-box" id="voiceDialogBox">
                 <div class="voice-msg assistant">
-                    <b>Agro-Sphere Sahayak:</b> Namaste Kisan Bhai! 🙏 Main aapka Voice Assistant hoon. Aap mujhse mandi ke bhav, fasal ki availability, truck tracking ya helpline ke bare mein bol kar pooch sakte hain!
+                    <b>Agro-Sphere Sahayika:</b> Namaste Kisan Bhai! 🙏 Main aapka Voice & Chatbot Assistant hoon. Aap bol kar ya type karke Mandi Bhav, Truck Tracking ya Helpline ke bare mein pooch sakte hain!
                 </div>
             </div>
 
@@ -1757,12 +1798,20 @@
                     🎙️
                 </button>
                 <small id="voiceInstructionText" style="color:var(--muted); font-size:11px; font-weight:600;">
-                    Tap microphone and speak in Hindi, Marathi, or English
+                    Tap microphone to speak OR type below in your comfort language
                 </small>
             </div>
 
+            <!-- Text Chatbot Input Row (Type Query Option) -->
+            <div class="chatbot-input-row">
+                <input type="text" id="chatbotTextInput" placeholder="Type query in Hindi, Marathi, English... (e.g. Onion bhav, Track truck)" onkeydown="if(event.key==='Enter') sendChatbotMessage();">
+                <button type="button" class="chatbot-send-btn" id="chatbotSendBtn" onclick="sendChatbotMessage()">
+                    💬 Send / भेजें
+                </button>
+            </div>
+
             <!-- Quick Voice Prompt Chips -->
-            <div class="voice-suggestions-label">💡 Try Saying (बोलकर देखें):</div>
+            <div class="voice-suggestions-label">💡 Try Asking (पूछ कर देखें):</div>
             <div class="voice-chips-row">
                 <button class="voice-chip" onclick="simulateVoiceQuery('Onion ka mandi bhav kya hai?')">
                     🧅 "Onion ka mandi bhav?"
@@ -1799,7 +1848,7 @@
 
     </div>
 
-    <script src="script.js?v=5.0.0"></script>
+    <script src="script.js?v=6.0.0"></script>
 
 </body>
 
