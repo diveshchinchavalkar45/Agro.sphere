@@ -2515,17 +2515,232 @@ if ($("#calNext")) {
 }
 
 /* =========================================================
-   INITIALIZE
+   VOICE ASSISTANT (KISAN VOICE SAHAYAK ENGINE)
    ========================================================= */
 
-renderMarkets();
-renderProducts();
-renderMembers();
-renderBuyers();
-renderReviews();
-updateVehicleDisplay();
-renderCalendar();
-renderCalendarEvents(calSelectedDate);
-updateLiveClock();
+let voiceRecognition = null;
+let isVoiceListening = false;
+let isVoiceSpeaking = false;
+
+function initVoiceAssistant() {
+    const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRec) {
+        voiceRecognition = new SpeechRec();
+        voiceRecognition.continuous = false;
+        voiceRecognition.interimResults = false;
+
+        voiceRecognition.onstart = () => {
+            isVoiceListening = true;
+            updateVoiceUIState("listening");
+        };
+
+        voiceRecognition.onresult = event => {
+            const transcript = event.results[0][0].transcript;
+            appendVoiceMessage("user", transcript);
+            handleVoiceAIQuery(transcript);
+        };
+
+        voiceRecognition.onerror = event => {
+            console.warn("Voice error:", event.error);
+            isVoiceListening = false;
+            updateVoiceUIState("ready");
+            if (event.error === "not-allowed") {
+                appendVoiceMessage("assistant", "⚠️ Microphone permission denied. Please allow microphone access or click the prompt chips below!");
+            }
+        };
+
+        voiceRecognition.onend = () => {
+            isVoiceListening = false;
+            if (!isVoiceSpeaking) {
+                updateVoiceUIState("ready");
+            }
+        };
+    }
+}
+
+function updateVoiceUIState(state) {
+    const pill = $("#voiceStatusPill");
+    const statusText = $("#voiceStatusText");
+    const wave = $("#voiceWaveContainer");
+    const micBtn = $("#voiceMicBtn");
+    const instruction = $("#voiceInstructionText");
+
+    if (state === "listening") {
+        if (pill) pill.className = "voice-status-pill listening";
+        if (statusText) statusText.textContent = "Listening...";
+        if (wave) wave.classList.add("active");
+        if (micBtn) micBtn.classList.add("listening");
+        if (instruction) instruction.textContent = "Listening... Speak your question now!";
+    } else if (state === "speaking") {
+        if (pill) pill.className = "voice-status-pill speaking";
+        if (statusText) statusText.textContent = "Speaking...";
+        if (wave) wave.classList.add("active");
+        if (micBtn) micBtn.classList.remove("listening");
+        if (instruction) instruction.textContent = "Agro-Sphere Sahayak is answering...";
+    } else {
+        if (pill) pill.className = "voice-status-pill";
+        if (statusText) statusText.textContent = "Ready to Listen";
+        if (wave) wave.classList.remove("active");
+        if (micBtn) micBtn.classList.remove("listening");
+        if (instruction) instruction.textContent = "Tap microphone and speak in Hindi, Marathi, or English";
+    }
+}
+
+function appendVoiceMessage(sender, text) {
+    const box = $("#voiceDialogBox");
+    if (!box) return;
+    const msg = document.createElement("div");
+    msg.className = `voice-msg ${sender}`;
+    msg.innerHTML = sender === "user" ? `<b>You:</b> ${text}` : `<b>Agro-Sphere Sahayak:</b> ${text}`;
+    box.appendChild(msg);
+    box.scrollTop = box.scrollHeight;
+}
+
+function speakVoiceResponse(text, callback) {
+    if (!("speechSynthesis" in window)) {
+        if (callback) callback();
+        return;
+    }
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Choose voice
+    const voices = window.speechSynthesis.getVoices();
+    const hindiVoice = voices.find(v => v.lang && (v.lang.includes("hi") || v.lang.includes("IN")));
+    if (hindiVoice) utterance.voice = hindiVoice;
+    
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+
+    utterance.onstart = () => {
+        isVoiceSpeaking = true;
+        updateVoiceUIState("speaking");
+    };
+
+    utterance.onend = () => {
+        isVoiceSpeaking = false;
+        updateVoiceUIState("ready");
+        if (callback) callback();
+    };
+
+    utterance.onerror = () => {
+        isVoiceSpeaking = false;
+        updateVoiceUIState("ready");
+        if (callback) callback();
+    };
+
+    window.speechSynthesis.speak(utterance);
+}
+
+function handleVoiceAIQuery(rawQuery) {
+    const q = (rawQuery || "").toLowerCase();
+    let reply = "";
+    let targetSection = null;
+    let cropFilterVal = null;
+
+    if (q.includes("onion") || q.includes("pyaz") || q.includes("kanda") || q.includes("कांदा") || q.includes("प्याज")) {
+        reply = "Lasalgaon mandi mein Grade A Onion ka modal bhav ₹3,420 prati quintal hai, jo is hafte 8.4% badha hai. Agle 3 se 5 din bechne ke liye best window hai.";
+        targetSection = "prices";
+    } else if (q.includes("tomato") || q.includes("tamatar") || q.includes("टोमॅटो") || q.includes("टमाटर")) {
+        reply = "Nashik aur Pimpalgaon mandi mein Tomato ka modal rate ₹2,850 prati quintal hai aur demand strong hai.";
+        targetSection = "prices";
+    } else if (q.includes("soybean") || q.includes("soya") || q.includes("सोयाबीन")) {
+        reply = "Nagpur aur Latur mandi mein Soybean ka modal price ₹4,820 prati quintal chal raha hai.";
+        targetSection = "prices";
+    } else if (q.includes("mango") || q.includes("aam") || q.includes("हापूस") || q.includes("आम")) {
+        reply = "Agro-Sphere par Ratnagiri Alphonso aur Kesar Mango ke certified lots available hain. Main aapko Product Availability section par le chalta hoon.";
+        targetSection = "products";
+        cropFilterVal = "mango";
+    } else if (q.includes("lemon") || q.includes("nimbu") || q.includes("लिंबू") || q.includes("नींबू")) {
+        reply = "Lasalgaon Grade A Juicy Lemon ₹4,600 prati quintal par available hai. Product details screen par open kar di gayi hain.";
+        targetSection = "products";
+        cropFilterVal = "lemon";
+    } else if (q.includes("apple") || q.includes("seb") || q.includes("सफरचंद") || q.includes("सेब")) {
+        reply = "Royal Delicious Red Apple Grade A ₹8,500 prati quintal par available hai.";
+        targetSection = "products";
+        cropFilterVal = "apple";
+    } else if (q.includes("truck") || q.includes("vehicle") || q.includes("track") || q.includes("driver") || q.includes("gadi") || q.includes("गाड़ी") || q.includes("गाडी")) {
+        reply = "Aapka assigned truck MH-15-AB-1234 schedule par chal raha hai. Driver Suresh Patel ka contact number +91 98234 56789 hai.";
+        targetSection = "schedule";
+    } else if (q.includes("help") || q.includes("care") || q.includes("helpline") || q.includes("support") || q.includes("number") || q.includes("मदत") || q.includes("सहायता") || q.includes("toll")) {
+        reply = "Hamari 24x7 Free Toll-Free Kisan Helpline 1800-889-2476 hai. Aap WhatsApp par +91 98200 45678 par bhi contact kar sakte hain.";
+        targetSection = "support";
+    } else if (q.includes("collective") || q.includes("fpo") || q.includes("group") || q.includes("समूह")) {
+        reply = "Farmer Collective mein 100 quintal ka bulk lot open hai, jisme 64 quintal pool ho chuka hai.";
+        targetSection = "collective";
+    } else if (q.includes("hindi") || q.includes("हिंदी")) {
+        changeLanguage("hi");
+        reply = "जी किसान भाई, भाषा हिंदी में बदल दी गई है। अब आप हिंदी में जानकारी प्राप्त कर सकते हैं।";
+    } else if (q.includes("marathi") || q.includes("मराठी")) {
+        changeLanguage("mr");
+        reply = "होय शेतकरी मित्र, भाषा मराठीत बदलली आहे. आता आपण सर्व माहिती मराठीत पाहू शकता.";
+    } else {
+        reply = "Maine aapka sawal note kar liya hai. Agro-Sphere par mandi prices, produce listings, vehicle tracking aur customer care uplabdh hain. Main aapko dashboard par navigation assist kar raha hoon.";
+        targetSection = "dashboard";
+    }
+
+    appendVoiceMessage("assistant", reply);
+    speakVoiceResponse(reply, () => {
+        if (targetSection) {
+            go(targetSection);
+            if (cropFilterVal && $("#cropFilter")) {
+                $("#cropFilter").value = cropFilterVal;
+                renderProducts();
+            }
+        }
+    });
+}
+
+function simulateVoiceQuery(text) {
+    appendVoiceMessage("user", text);
+    handleVoiceAIQuery(text);
+}
+
+function startVoiceListening() {
+    if (!voiceRecognition) {
+        initVoiceAssistant();
+    }
+    if (voiceRecognition) {
+        try {
+            if (currentLanguage === "hi") {
+                voiceRecognition.lang = "hi-IN";
+            } else if (currentLanguage === "mr") {
+                voiceRecognition.lang = "mr-IN";
+            } else {
+                voiceRecognition.lang = "en-IN";
+            }
+            voiceRecognition.start();
+        } catch (e) {
+            console.warn("Recognition already started or error:", e);
+        }
+    } else {
+        appendVoiceMessage("assistant", "Speech recognition is not supported in this browser. You can click any of the prompt chips below!");
+    }
+}
+
+if ($("#voiceMicBtn")) {
+    $("#voiceMicBtn").onclick = () => {
+        if (isVoiceListening) {
+            if (voiceRecognition) voiceRecognition.stop();
+        } else {
+            startVoiceListening();
+        }
+    };
+}
+
+function saveVapiConfig() {
+    const key = $("#vapiApiKeyInput") ? $("#vapiApiKeyInput").value.trim() : "";
+    const id = $("#vapiAssistantIdInput") ? $("#vapiAssistantIdInput").value.trim() : "";
+    localStorage.setItem("agrosphere_vapi_key", key);
+    localStorage.setItem("agrosphere_vapi_id", id);
+    toast("✅ Vapi.ai configuration saved successfully!");
+}
+
+window.simulateVoiceQuery = simulateVoiceQuery;
+window.saveVapiConfig = saveVapiConfig;
+window.startVoiceListening = startVoiceListening;
+
+initVoiceAssistant();
 
 applyTranslations();

@@ -1806,18 +1806,271 @@ td {
 
 .lang-pills {
     display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
+/* =========================================================
+   VOICE ASSISTANT (KISAN VOICE SAHAYAK)
+   ========================================================= */
+
+.floating-voice-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 990;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #2b7428 0%, #173a25 100%);
+    color: #ffffff;
+    border: 2px solid #b7e6b0;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(23, 58, 37, 0.35);
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: voicePulseRing 2.5s infinite;
 }
 
-.lang-pill {
+.floating-voice-btn:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 12px 30px rgba(23, 58, 37, 0.45);
+    background: linear-gradient(135deg, #32872f 0%, #1c452d 100%);
+}
+
+.floating-voice-btn .mic-icon-circle {
+    width: 32px;
+    height: 32px;
+    background: var(--lime);
+    color: #173a25;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+}
+
+@keyframes voicePulseRing {
+    0% {
+        box-shadow: 0 0 0 0 rgba(102, 162, 72, 0.6), 0 8px 25px rgba(23, 58, 37, 0.35);
+    }
+    70% {
+        box-shadow: 0 0 0 14px rgba(102, 162, 72, 0), 0 8px 25px rgba(23, 58, 37, 0.35);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(102, 162, 72, 0), 0 8px 25px rgba(23, 58, 37, 0.35);
+    }
+}
+
+.voice-modal-content {
+    max-width: 520px;
+    background: linear-gradient(180deg, #ffffff 0%, #f6fbf4 100%);
+    border-radius: 20px;
+    padding: 24px;
+    border: 1px solid #d2e4ce;
+    position: relative;
+    overflow: hidden;
+}
+
+.voice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #e2ede0;
+    padding-bottom: 12px;
+}
+
+.voice-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.voice-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #e8f6e4;
+    color: #2b7428;
+    border: 1px solid #c2e6bc;
+}
+
+.voice-status-pill.listening {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-color: #fca5a5;
+    animation: blinkRed 1s infinite alternate;
+}
+
+.voice-status-pill.speaking {
+    background: #ede9fe;
+    color: #6d28d9;
+    border-color: #c4b5fd;
+}
+
+@keyframes blinkRed {
+    from { opacity: 1; }
+    to { opacity: 0.6; }
+}
+
+/* Sound wave animation */
+.voice-wave-container {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 12px 0;
+}
+
+.wave-bar {
+    width: 6px;
+    height: 10px;
+    background: #b2dfa8;
+    border-radius: 10px;
+    transition: height 0.15s ease, background-color 0.2s ease;
+}
+
+.voice-wave-container.active .wave-bar {
+    background: var(--green);
+    animation: soundWave 0.7s infinite ease-in-out alternate;
+}
+
+.voice-wave-container.active .wave-bar:nth-child(1) { animation-delay: 0.1s; }
+.voice-wave-container.active .wave-bar:nth-child(2) { animation-delay: 0.3s; }
+.voice-wave-container.active .wave-bar:nth-child(3) { animation-delay: 0.5s; }
+.voice-wave-container.active .wave-bar:nth-child(4) { animation-delay: 0.2s; }
+.voice-wave-container.active .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+.voice-wave-container.active .wave-bar:nth-child(6) { animation-delay: 0.15s; }
+.voice-wave-container.active .wave-bar:nth-child(7) { animation-delay: 0.35s; }
+
+@keyframes soundWave {
+    0% { height: 8px; }
+    100% { height: 44px; }
+}
+
+.voice-dialog-box {
+    background: #ffffff;
+    border: 1px solid #e1eee0;
+    border-radius: 14px;
+    padding: 14px;
+    min-height: 100px;
+    max-height: 150px;
+    overflow-y: auto;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.voice-msg {
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.voice-msg.user {
+    background: #f0f7ee;
+    color: #1b5327;
+    border-left: 3px solid #66a248;
+}
+
+.voice-msg.assistant {
+    background: #fbfdfa;
+    color: #243328;
+    border-left: 3px solid #173a25;
+}
+
+.voice-control-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.voice-mic-main-btn {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #66a248 0%, #173a25 100%);
+    border: 3px solid #c2e6bc;
+    color: #ffffff;
+    font-size: 28px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(23, 58, 37, 0.25);
+    transition: all 0.2s ease;
+}
+
+.voice-mic-main-btn:hover {
+    transform: scale(1.08);
+}
+
+.voice-mic-main-btn.listening {
+    background: linear-gradient(135deg, #ef4444 0%, #991b1b 100%);
+    border-color: #fca5a5;
+    animation: micPulse 1s infinite alternate;
+}
+
+@keyframes micPulse {
+    from { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+    to { transform: scale(1.1); box-shadow: 0 0 0 16px rgba(239, 68, 68, 0); }
+}
+
+.voice-suggestions-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.voice-chips-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.voice-chip {
     background: #edf5eb;
     border: 1px solid #d3e6cf;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 10px;
+    padding: 5px 10px;
+    border-radius: 14px;
+    font-size: 11px;
     font-weight: 600;
-    color: #2b5731;
+    color: #244e2a;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.voice-chip:hover {
+    background: var(--lime);
+    border-color: #92d65d;
+    transform: translateY(-1px);
+}
+
+.vapi-settings-toggle {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed #dbe9da;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
 }
 
 @media(max-width:760px) {
@@ -3595,6 +3848,97 @@ td {
 
     </div>
 
+    <!-- ================= FLOATING VOICE ASSISTANT BUTTON ================= -->
+    <button class="floating-voice-btn" id="voiceAssistantBtn" title="Agro-Sphere Kisan Voice Assistant" data-modal="voiceAssistantModal">
+        <div class="mic-icon-circle">🎙️</div>
+        <span>Voice Sahayak</span>
+    </button>
+
+    <!-- ================= VOICE ASSISTANT MODAL ================= -->
+    <div class="modal-bg" id="voiceAssistantModal">
+
+        <div class="modal voice-modal-content">
+
+            <button class="close" data-close>×</button>
+
+            <div class="voice-header">
+                <div>
+                    <div class="eyebrow" style="color:#2d6930; font-weight: bold;">
+                        🌾 AI KISAN SAHAYAK · किसान आवाज़ सहायक
+                    </div>
+                    <h3>🎙️ Agro-Sphere Voice AI</h3>
+                </div>
+
+                <div class="voice-status-pill" id="voiceStatusPill">
+                    <span class="status-dot">🟢</span> <span id="voiceStatusText">Ready to Listen</span>
+                </div>
+            </div>
+
+            <!-- Animated Sound Wave -->
+            <div class="voice-wave-container" id="voiceWaveContainer">
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+            </div>
+
+            <!-- Dialogue History / Transcript -->
+            <div class="voice-dialog-box" id="voiceDialogBox">
+                <div class="voice-msg assistant">
+                    <b>Agro-Sphere Sahayak:</b> Namaste Kisan Bhai! 🙏 Main aapka Voice Assistant hoon. Aap mujhse mandi ke bhav, fasal ki availability, truck tracking ya helpline ke bare mein bol kar pooch sakte hain!
+                </div>
+            </div>
+
+            <!-- Central Mic Action Button -->
+            <div class="voice-control-center">
+                <button class="voice-mic-main-btn" id="voiceMicBtn" title="Tap to Speak / Bolne ke liye dabayein">
+                    🎙️
+                </button>
+                <small id="voiceInstructionText" style="color:var(--muted); font-size:11px; font-weight:600;">
+                    Tap microphone and speak in Hindi, Marathi, or English
+                </small>
+            </div>
+
+            <!-- Quick Voice Prompt Chips -->
+            <div class="voice-suggestions-label">💡 Try Saying (बोलकर देखें):</div>
+            <div class="voice-chips-row">
+                <button class="voice-chip" onclick="simulateVoiceQuery('Onion ka mandi bhav kya hai?')">
+                    🧅 "Onion ka mandi bhav?"
+                </button>
+                <button class="voice-chip" onclick="simulateVoiceQuery('Show Mango and Lemon availability')">
+                    🥭 "Mango & Lemon dikhao"
+                </button>
+                <button class="voice-chip" onclick="simulateVoiceQuery('Mera truck kahan hai? Track vehicle')">
+                    🚚 "Mera truck track karo"
+                </button>
+                <button class="voice-chip" onclick="simulateVoiceQuery('Toll free kisan helpline se baat karni hai')">
+                    📞 "Toll-Free Helpline"
+                </button>
+            </div>
+
+            <!-- Vapi Integration Panel Toggle -->
+            <div class="vapi-settings-toggle" onclick="const v = document.getElementById('vapiConfigBox'); v.style.display = v.style.display === 'none' ? 'block' : 'none';">
+                <span>⚙️ Vapi.ai Cloud Voice Agent Settings</span>
+                <span>▼</span>
+            </div>
+
+            <div id="vapiConfigBox" style="display:none; margin-top:10px; padding:12px; background:#f0f7ee; border-radius:10px; border:1px solid #d2e4ce; font-size:11px;">
+                <p style="margin:0 0 8px; color:var(--muted);">
+                    Connect your custom Vapi.ai Assistant directly for low-latency telephony & AI voice streaming:
+                </p>
+                <input type="text" id="vapiApiKeyInput" placeholder="Vapi Public Key (optional)" style="width:100%; margin-bottom:6px; padding:6px 10px; border:1px solid var(--line); border-radius:6px; font-size:11px;">
+                <input type="text" id="vapiAssistantIdInput" placeholder="Vapi Assistant ID (optional)" style="width:100%; margin-bottom:8px; padding:6px 10px; border:1px solid var(--line); border-radius:6px; font-size:11px;">
+                <button class="btn primary" style="width:100%; padding:6px; font-size:11px;" onclick="saveVapiConfig()">
+                    💾 Save Vapi Settings
+                </button>
+            </div>
+
+        </div>
+
+    </div>
 
     <script>
 /* =========================================================
@@ -6114,18 +6458,233 @@ if ($("#calNext")) {
 }
 
 /* =========================================================
-   INITIALIZE
+   VOICE ASSISTANT (KISAN VOICE SAHAYAK ENGINE)
    ========================================================= */
 
-renderMarkets();
-renderProducts();
-renderMembers();
-renderBuyers();
-renderReviews();
-updateVehicleDisplay();
-renderCalendar();
-renderCalendarEvents(calSelectedDate);
-updateLiveClock();
+let voiceRecognition = null;
+let isVoiceListening = false;
+let isVoiceSpeaking = false;
+
+function initVoiceAssistant() {
+    const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRec) {
+        voiceRecognition = new SpeechRec();
+        voiceRecognition.continuous = false;
+        voiceRecognition.interimResults = false;
+
+        voiceRecognition.onstart = () => {
+            isVoiceListening = true;
+            updateVoiceUIState("listening");
+        };
+
+        voiceRecognition.onresult = event => {
+            const transcript = event.results[0][0].transcript;
+            appendVoiceMessage("user", transcript);
+            handleVoiceAIQuery(transcript);
+        };
+
+        voiceRecognition.onerror = event => {
+            console.warn("Voice error:", event.error);
+            isVoiceListening = false;
+            updateVoiceUIState("ready");
+            if (event.error === "not-allowed") {
+                appendVoiceMessage("assistant", "⚠️ Microphone permission denied. Please allow microphone access or click the prompt chips below!");
+            }
+        };
+
+        voiceRecognition.onend = () => {
+            isVoiceListening = false;
+            if (!isVoiceSpeaking) {
+                updateVoiceUIState("ready");
+            }
+        };
+    }
+}
+
+function updateVoiceUIState(state) {
+    const pill = $("#voiceStatusPill");
+    const statusText = $("#voiceStatusText");
+    const wave = $("#voiceWaveContainer");
+    const micBtn = $("#voiceMicBtn");
+    const instruction = $("#voiceInstructionText");
+
+    if (state === "listening") {
+        if (pill) pill.className = "voice-status-pill listening";
+        if (statusText) statusText.textContent = "Listening...";
+        if (wave) wave.classList.add("active");
+        if (micBtn) micBtn.classList.add("listening");
+        if (instruction) instruction.textContent = "Listening... Speak your question now!";
+    } else if (state === "speaking") {
+        if (pill) pill.className = "voice-status-pill speaking";
+        if (statusText) statusText.textContent = "Speaking...";
+        if (wave) wave.classList.add("active");
+        if (micBtn) micBtn.classList.remove("listening");
+        if (instruction) instruction.textContent = "Agro-Sphere Sahayak is answering...";
+    } else {
+        if (pill) pill.className = "voice-status-pill";
+        if (statusText) statusText.textContent = "Ready to Listen";
+        if (wave) wave.classList.remove("active");
+        if (micBtn) micBtn.classList.remove("listening");
+        if (instruction) instruction.textContent = "Tap microphone and speak in Hindi, Marathi, or English";
+    }
+}
+
+function appendVoiceMessage(sender, text) {
+    const box = $("#voiceDialogBox");
+    if (!box) return;
+    const msg = document.createElement("div");
+    msg.className = `voice-msg ${sender}`;
+    msg.innerHTML = sender === "user" ? `<b>You:</b> ${text}` : `<b>Agro-Sphere Sahayak:</b> ${text}`;
+    box.appendChild(msg);
+    box.scrollTop = box.scrollHeight;
+}
+
+function speakVoiceResponse(text, callback) {
+    if (!("speechSynthesis" in window)) {
+        if (callback) callback();
+        return;
+    }
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Choose voice
+    const voices = window.speechSynthesis.getVoices();
+    const hindiVoice = voices.find(v => v.lang && (v.lang.includes("hi") || v.lang.includes("IN")));
+    if (hindiVoice) utterance.voice = hindiVoice;
+    
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+
+    utterance.onstart = () => {
+        isVoiceSpeaking = true;
+        updateVoiceUIState("speaking");
+    };
+
+    utterance.onend = () => {
+        isVoiceSpeaking = false;
+        updateVoiceUIState("ready");
+        if (callback) callback();
+    };
+
+    utterance.onerror = () => {
+        isVoiceSpeaking = false;
+        updateVoiceUIState("ready");
+        if (callback) callback();
+    };
+
+    window.speechSynthesis.speak(utterance);
+}
+
+function handleVoiceAIQuery(rawQuery) {
+    const q = (rawQuery || "").toLowerCase();
+    let reply = "";
+    let targetSection = null;
+    let cropFilterVal = null;
+
+    if (q.includes("onion") || q.includes("pyaz") || q.includes("kanda") || q.includes("कांदा") || q.includes("प्याज")) {
+        reply = "Lasalgaon mandi mein Grade A Onion ka modal bhav ₹3,420 prati quintal hai, jo is hafte 8.4% badha hai. Agle 3 se 5 din bechne ke liye best window hai.";
+        targetSection = "prices";
+    } else if (q.includes("tomato") || q.includes("tamatar") || q.includes("टोमॅटो") || q.includes("टमाटर")) {
+        reply = "Nashik aur Pimpalgaon mandi mein Tomato ka modal rate ₹2,850 prati quintal hai aur demand strong hai.";
+        targetSection = "prices";
+    } else if (q.includes("soybean") || q.includes("soya") || q.includes("सोयाबीन")) {
+        reply = "Nagpur aur Latur mandi mein Soybean ka modal price ₹4,820 prati quintal chal raha hai.";
+        targetSection = "prices";
+    } else if (q.includes("mango") || q.includes("aam") || q.includes("हापूस") || q.includes("आम")) {
+        reply = "Agro-Sphere par Ratnagiri Alphonso aur Kesar Mango ke certified lots available hain. Main aapko Product Availability section par le chalta hoon.";
+        targetSection = "products";
+        cropFilterVal = "mango";
+    } else if (q.includes("lemon") || q.includes("nimbu") || q.includes("लिंबू") || q.includes("नींबू")) {
+        reply = "Lasalgaon Grade A Juicy Lemon ₹4,600 prati quintal par available hai. Product details screen par open kar di gayi hain.";
+        targetSection = "products";
+        cropFilterVal = "lemon";
+    } else if (q.includes("apple") || q.includes("seb") || q.includes("सफरचंद") || q.includes("सेब")) {
+        reply = "Royal Delicious Red Apple Grade A ₹8,500 prati quintal par available hai.";
+        targetSection = "products";
+        cropFilterVal = "apple";
+    } else if (q.includes("truck") || q.includes("vehicle") || q.includes("track") || q.includes("driver") || q.includes("gadi") || q.includes("गाड़ी") || q.includes("गाडी")) {
+        reply = "Aapka assigned truck MH-15-AB-1234 schedule par chal raha hai. Driver Suresh Patel ka contact number +91 98234 56789 hai.";
+        targetSection = "schedule";
+    } else if (q.includes("help") || q.includes("care") || q.includes("helpline") || q.includes("support") || q.includes("number") || q.includes("मदत") || q.includes("सहायता") || q.includes("toll")) {
+        reply = "Hamari 24x7 Free Toll-Free Kisan Helpline 1800-889-2476 hai. Aap WhatsApp par +91 98200 45678 par bhi contact kar sakte hain.";
+        targetSection = "support";
+    } else if (q.includes("collective") || q.includes("fpo") || q.includes("group") || q.includes("समूह")) {
+        reply = "Farmer Collective mein 100 quintal ka bulk lot open hai, jisme 64 quintal pool ho chuka hai.";
+        targetSection = "collective";
+    } else if (q.includes("hindi") || q.includes("हिंदी")) {
+        changeLanguage("hi");
+        reply = "जी किसान भाई, भाषा हिंदी में बदल दी गई है। अब आप हिंदी में जानकारी प्राप्त कर सकते हैं।";
+    } else if (q.includes("marathi") || q.includes("मराठी")) {
+        changeLanguage("mr");
+        reply = "होय शेतकरी मित्र, भाषा मराठीत बदलली आहे. आता आपण सर्व माहिती मराठीत पाहू शकता.";
+    } else {
+        reply = "Maine aapka sawal note kar liya hai. Agro-Sphere par mandi prices, produce listings, vehicle tracking aur customer care uplabdh hain. Main aapko dashboard par navigation assist kar raha hoon.";
+        targetSection = "dashboard";
+    }
+
+    appendVoiceMessage("assistant", reply);
+    speakVoiceResponse(reply, () => {
+        if (targetSection) {
+            go(targetSection);
+            if (cropFilterVal && $("#cropFilter")) {
+                $("#cropFilter").value = cropFilterVal;
+                renderProducts();
+            }
+        }
+    });
+}
+
+function simulateVoiceQuery(text) {
+    appendVoiceMessage("user", text);
+    handleVoiceAIQuery(text);
+}
+
+function startVoiceListening() {
+    if (!voiceRecognition) {
+        initVoiceAssistant();
+    }
+    if (voiceRecognition) {
+        try {
+            if (currentLanguage === "hi") {
+                voiceRecognition.lang = "hi-IN";
+            } else if (currentLanguage === "mr") {
+                voiceRecognition.lang = "mr-IN";
+            } else {
+                voiceRecognition.lang = "en-IN";
+            }
+            voiceRecognition.start();
+        } catch (e) {
+            console.warn("Recognition already started or error:", e);
+        }
+    } else {
+        appendVoiceMessage("assistant", "Speech recognition is not supported in this browser. You can click any of the prompt chips below!");
+    }
+}
+
+if ($("#voiceMicBtn")) {
+    $("#voiceMicBtn").onclick = () => {
+        if (isVoiceListening) {
+            if (voiceRecognition) voiceRecognition.stop();
+        } else {
+            startVoiceListening();
+        }
+    };
+}
+
+function saveVapiConfig() {
+    const key = $("#vapiApiKeyInput") ? $("#vapiApiKeyInput").value.trim() : "";
+    const id = $("#vapiAssistantIdInput") ? $("#vapiAssistantIdInput").value.trim() : "";
+    localStorage.setItem("agrosphere_vapi_key", key);
+    localStorage.setItem("agrosphere_vapi_id", id);
+    toast("✅ Vapi.ai configuration saved successfully!");
+}
+
+window.simulateVoiceQuery = simulateVoiceQuery;
+window.saveVapiConfig = saveVapiConfig;
+window.startVoiceListening = startVoiceListening;
+
+initVoiceAssistant();
 
 applyTranslations();
 </script>

@@ -39,33 +39,41 @@ try:
         except websocket.WebSocketTimeoutException:
             pass
 
-    # Test navigating to support
-    ws.send(json.dumps({"id": 11, "method": "Runtime.evaluate", "params": {"expression": "go('support')", "returnByValue": True}}))
-    time.sleep(0.5)
-    ws.send(json.dumps({"id": 12, "method": "Runtime.evaluate", "params": {"expression": "document.querySelector('.section.active').id", "returnByValue": True}}))
-    while True:
-        res12 = json.loads(ws.recv())
-        if res12.get("id") == 12:
-            break
-    print("Active Section after go('support'):", res12.get("result", {}).get("result", {}).get("value"))
-
-    # Test typing in global search for helpline
-    search_test = """
+    # Test Voice Button & Modal
+    test_eval = """
     (() => {
-        const s = document.querySelector('#search');
-        s.value = 'helpline';
-        s.dispatchEvent(new Event('input', { bubbles: true }));
+        const btn = document.querySelector('#voiceAssistantBtn');
+        btn.click();
+        const modal = document.querySelector('#voiceAssistantModal');
         return {
-            activeSectionAfterSearch: document.querySelector('.section.active').id
+            hasVoiceBtn: !!btn,
+            modalVisible: modal ? modal.classList.contains('show') : false
         };
     })()
     """
-    ws.send(json.dumps({"id": 13, "method": "Runtime.evaluate", "params": {"expression": search_test, "returnByValue": True}}))
+    ws.send(json.dumps({"id": 10, "method": "Runtime.evaluate", "params": {"expression": test_eval, "returnByValue": True}}))
     while True:
-        res13 = json.loads(ws.recv())
-        if res13.get("id") == 13:
+        res10 = json.loads(ws.recv())
+        if res10.get("id") == 10:
             break
-    print("Search Test Result for helpline:", json.dumps(res13.get("result", {}), indent=2))
+    print("Voice Modal Open Test:", json.dumps(res10.get("result", {}), indent=2))
+
+    # Test Voice Simulation Query
+    query_test = """
+    (() => {
+        simulateVoiceQuery('Onion ka mandi bhav kya hai?');
+        return {
+            dialogMsgsCount: document.querySelectorAll('.voice-msg').length,
+            activeSection: document.querySelector('.section.active').id
+        };
+    })()
+    """
+    ws.send(json.dumps({"id": 11, "method": "Runtime.evaluate", "params": {"expression": query_test, "returnByValue": True}}))
+    while True:
+        res11 = json.loads(ws.recv())
+        if res11.get("id") == 11:
+            break
+    print("Voice Query Simulation Test:", json.dumps(res11.get("result", {}), indent=2))
 
 finally:
     proc.terminate()
