@@ -3,6 +3,8 @@
 :root {
     --green: #173a25;
     --green2: #2f713c;
+    --primary: #2b7428;
+    --primary-dark: #173a25;
     --lime: #b8e86a;
     --bg: #f5f7f3;
     --card: #fff;
@@ -1355,11 +1357,11 @@ td {
 }
 
 .cal-day.selected {
-    background: var(--primary) !important;
+    background: #173a25 !important;
     color: #ffffff !important;
-    border-color: var(--primary) !important;
-    font-weight: bold;
-    box-shadow: 0 3px 8px rgba(33, 73, 29, 0.25);
+    border-color: #173a25 !important;
+    font-weight: 800;
+    box-shadow: 0 4px 10px rgba(23, 58, 37, 0.35);
 }
 
 .cal-day.has-event::after {
@@ -1582,6 +1584,11 @@ td {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 /* =========================================================
    CUSTOMER CARE & KISAN SAHAYATA KENDRA
    ========================================================= */
@@ -1797,16 +1804,30 @@ td {
 
 .lang-pills {
     display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.lang-pill {
+    background: #edf5eb;
+    border: 1px solid #d3e6cf;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #2b5731;
+}
+
 /* =========================================================
    VOICE ASSISTANT (KISAN VOICE SAHAYAK)
    ========================================================= */
 
 .floating-voice-btn {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    z-index: 990;
-    display: flex;
+    position: fixed !important;
+    bottom: 28px !important;
+    right: 28px !important;
+    z-index: 99999 !important;
+    display: flex !important;
     align-items: center;
     gap: 10px;
     background: linear-gradient(135deg, #2b7428 0%, #173a25 100%);
@@ -1817,14 +1838,14 @@ td {
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 8px 25px rgba(23, 58, 37, 0.35);
+    box-shadow: 0 8px 25px rgba(23, 58, 37, 0.45);
     transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     animation: voicePulseRing 2.5s infinite;
 }
 
 .floating-voice-btn:hover {
     transform: translateY(-4px) scale(1.04);
-    box-shadow: 0 12px 30px rgba(23, 58, 37, 0.45);
+    box-shadow: 0 12px 30px rgba(23, 58, 37, 0.55);
     background: linear-gradient(135deg, #32872f 0%, #1c452d 100%);
 }
 
