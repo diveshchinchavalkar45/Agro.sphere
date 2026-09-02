@@ -449,7 +449,6 @@
 
                         </div>
 
-
                         <div class="card recommend">
 
                             <div class="eyebrow" data-i18n="recommendation">
@@ -469,6 +468,50 @@
                                 Expected range: ₹3,500–₹3,650/q
                             </strong>
 
+                        </div>
+
+                    </div>
+
+                    <!-- DASHBOARD BOTTOM: VOICE ASSISTANT FEATURE -->
+                    <div class="card dashboard-voice-card" style="margin-top: 18px; background: linear-gradient(135deg, #173a25 0%, #2b7428 100%); color: #ffffff; border: 1px solid #7bc369; border-radius: 16px; padding: 22px; box-shadow: 0 6px 20px rgba(23, 58, 37, 0.2);">
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+
+                            <div style="flex: 1; min-width: 260px;">
+                                <div class="eyebrow" style="color: #b7f4a2; font-weight: bold;">
+                                    🎙️ AI KISAN VOICE SAHAYAK · बोलकर जानकारी पाएं
+                                </div>
+                                <h2 style="color: #ffffff; margin: 4px 0 6px; font-size: 20px;">
+                                    Agro-Sphere Voice Assistant
+                                </h2>
+                                <p style="color: #e2f3dd; margin: 0; font-size: 12px; line-height: 1.4;">
+                                    Speak in <b>Hindi, Marathi, or English</b> to check live mandi rates, track assigned pickup trucks, inspect fruits & vegetables, or contact helpline.
+                                </p>
+                            </div>
+
+                            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                                <button class="btn" style="background: var(--lime); color: #173a25; font-weight: 800; font-size: 13px; padding: 12px 20px; border-radius: 30px; box-shadow: 0 4px 14px rgba(0,0,0,0.25); border: 0; cursor: pointer;" data-modal="voiceAssistantModal" onclick="startVoiceListening()">
+                                    🎙️ <span>Tap to Speak / आवाज़ से पूछें</span>
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <!-- Voice Suggestion Chips directly on Dashboard -->
+                        <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <span style="font-size: 11px; color: #b7f4a2; font-weight: bold;">Try Asking:</span>
+                            <button class="voice-chip" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.25);" onclick="openVoiceModalWithQuery('Onion ka mandi bhav kya hai?')">
+                                🧅 "Onion ka mandi bhav?"
+                            </button>
+                            <button class="voice-chip" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.25);" onclick="openVoiceModalWithQuery('Mera truck kahan hai? Track vehicle')">
+                                🚚 "Mera truck track karo"
+                            </button>
+                            <button class="voice-chip" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.25);" onclick="openVoiceModalWithQuery('Show Mango and Lemon availability')">
+                                🥭 "Mango & Lemon availability"
+                            </button>
+                            <button class="voice-chip" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.25);" onclick="openVoiceModalWithQuery('Toll free kisan helpline se baat karni hai')">
+                                📞 "Kisan Customer Care"
+                            </button>
                         </div>
 
                     </div>

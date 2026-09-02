@@ -2737,10 +2737,30 @@ function saveVapiConfig() {
     toast("✅ Vapi.ai configuration saved successfully!");
 }
 
+function openVoiceModalWithQuery(query) {
+    const modal = $("#voiceAssistantModal");
+    if (modal) modal.classList.add("show");
+    simulateVoiceQuery(query);
+}
+
 window.simulateVoiceQuery = simulateVoiceQuery;
 window.saveVapiConfig = saveVapiConfig;
 window.startVoiceListening = startVoiceListening;
+window.openVoiceModalWithQuery = openVoiceModalWithQuery;
+
+/* =========================================================
+   APPLICATION INITIALIZATION
+   ========================================================= */
+
+renderMarkets();
+renderProducts();
+renderMembers();
+renderBuyers();
+renderReviews();
+updateVehicleDisplay();
+renderCalendar();
+renderCalendarEvents(calSelectedDate);
+updateLiveClock();
 
 initVoiceAssistant();
-
 applyTranslations();

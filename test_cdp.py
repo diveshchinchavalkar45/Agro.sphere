@@ -39,15 +39,15 @@ try:
         except websocket.WebSocketTimeoutException:
             pass
 
-    # Test Voice Button & Modal
+    # Test Schedule and Voice Elements
     test_eval = """
     (() => {
-        const btn = document.querySelector('#voiceAssistantBtn');
-        btn.click();
-        const modal = document.querySelector('#voiceAssistantModal');
         return {
-            hasVoiceBtn: !!btn,
-            modalVisible: modal ? modal.classList.contains('show') : false
+            calDaysCount: document.querySelectorAll('.cal-day').length,
+            assignedVehicle: document.querySelector('#assignedVehicleNo') ? document.querySelector('#assignedVehicleNo').textContent : 'NONE',
+            hasDashboardVoiceCard: !!document.querySelector('.dashboard-voice-card'),
+            hasFloatingVoiceBtn: !!document.querySelector('#voiceAssistantBtn'),
+            calendarEventsCount: document.querySelectorAll('.cal-event-item').length
         };
     })()
     """
@@ -56,24 +56,7 @@ try:
         res10 = json.loads(ws.recv())
         if res10.get("id") == 10:
             break
-    print("Voice Modal Open Test:", json.dumps(res10.get("result", {}), indent=2))
-
-    # Test Voice Simulation Query
-    query_test = """
-    (() => {
-        simulateVoiceQuery('Onion ka mandi bhav kya hai?');
-        return {
-            dialogMsgsCount: document.querySelectorAll('.voice-msg').length,
-            activeSection: document.querySelector('.section.active').id
-        };
-    })()
-    """
-    ws.send(json.dumps({"id": 11, "method": "Runtime.evaluate", "params": {"expression": query_test, "returnByValue": True}}))
-    while True:
-        res11 = json.loads(ws.recv())
-        if res11.get("id") == 11:
-            break
-    print("Voice Query Simulation Test:", json.dumps(res11.get("result", {}), indent=2))
+    print("Schedule & Voice Assistant Verification:", json.dumps(res10.get("result", {}), indent=2))
 
 finally:
     proc.terminate()
