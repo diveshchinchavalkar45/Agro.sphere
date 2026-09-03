@@ -2137,7 +2137,6 @@ function performGlobalSearch(rawQuery) {
         value.includes("schedule") ||
         value.includes("calendar") ||
         value.includes("truck") ||
-        value.includes("track") ||
         value.includes("pickup") ||
         value.includes("vehicle") ||
         value.includes("transport") ||
@@ -2741,49 +2740,130 @@ function speakVoiceResponse(text, callback) {
 }
 
 function handleVoiceAIQuery(rawQuery) {
-    const q = (rawQuery || "").toLowerCase();
+    const q = (rawQuery || "").toLowerCase().trim();
     let reply = "";
     let targetSection = null;
     let cropFilterVal = null;
 
-    if (q.includes("onion") || q.includes("pyaz") || q.includes("kanda") || q.includes("कांदा") || q.includes("प्याज") || q.includes("ਰੇਟ") || q.includes("ડુંગળી") || q.includes("வெங்காயம்") || q.includes("ఉల్లిపాయ") || q.includes("ಈರುಳ್ಳಿ") || q.includes("পেঁয়াজ")) {
+    // 1. GREETINGS
+    if (q.startsWith("hi") || q.startsWith("hello") || q.includes("namaste") || q.includes("नमस्ते") || q.includes("नमस्कार") || q.includes("राम राम") || q.includes("kem cho") || q.includes("vanakkam") || q.includes("sat sri akal") || q.includes("how are you") || q.includes("kaise ho")) {
         if (comfortLanguage === "mr") {
-            reply = "लासलगाव बाजार समितीत कांद्याचा सरासरी भाव ₹3,420 प्रति क्विंटल आहे. पुढील 3 ते 5 दिवस विक्रीसाठी उत्तम आहेत.";
+            reply = "🙏 नमस्कार शेतकरी बांधवांनो! मी तुमची एग्रो-स्फीयर सहाय्यिका आहे. तुम्हाला आजचा बाजारभाव, भाजीपाला-फळे उपलब्धता, किंवा गाडी ट्रॅकिंगबद्दल काय माहिती हवी आहे?";
         } else if (comfortLanguage === "en") {
-            reply = "Lasalgaon modal price for Grade A Onion is ₹3,420 per quintal, up 8.4% this week. The next 3 to 5 days offer an optimal selling window.";
+            reply = "🙏 Hello Farmer Friend! I am your Agro-Sphere Assistant. How can I help you today with Mandi Prices, Quality Grading, or Live Logistics?";
         } else {
-            reply = "लासलगाव मंडी में ग्रेड A प्याज का मॉडल भाव ₹3,420 प्रति क्विंटल है, जो इस हफ्ते 8.4% बढ़ा है। अगले 3 से 5 दिन बेचने के लिए सर्वोत्तम हैं।";
+            reply = "🙏 नमस्ते किसान भाई! मैं आपकी एग्रो-स्फीयर सहायिका हूँ। आप मुझसे आज का मंडी भाव, फल-सब्जी उपलब्धता, फसल लिस्टिंग या ट्रक ट्रैकिंग पूछ सकते हैं।";
+        }
+    }
+
+    // 2. ONION / PYAZ / KANDA / BHAV
+    else if (q.includes("onion") || q.includes("pyaz") || q.includes("kanda") || q.includes("कांदा") || q.includes("प्याज") || q.includes("bhav") || q.includes("भाव") || q.includes("rate") || q.includes("रेट") || q.includes("किंमत") || q.includes("मंडी")) {
+        if (comfortLanguage === "mr") {
+            reply = "🧅 लासलगाव बाजार समितीत ग्रेड A कांद्याचा सरासरी भाव ₹3,420 प्रति क्विंटल आहे (+8.4% वाढ). पुढील 3 ते 5 दिवस विक्रीसाठी उत्तम खिडकी आहे.";
+        } else if (comfortLanguage === "en") {
+            reply = "🧅 Lasalgaon APMC modal price for Grade A Onion is ₹3,420/quintal (+8.4% this week). The recommended selling window is the next 3 to 5 days with expected range ₹3,500-₹3,650/q.";
+        } else {
+            reply = "🧅 लासलगाव मंडी में ग्रेड A प्याज का मॉडल भाव ₹3,420 प्रति क्विंटल है (+8.4% की तेजी)। अगले 3 से 5 दिन बेचने के लिए सर्वोत्तम समय है।";
         }
         targetSection = "prices";
-    } else if (q.includes("tomato") || q.includes("tamatar") || q.includes("टोमॅटो") || q.includes("टमाटर") || q.includes("ಟೊಮೆಟೊ") || q.includes("தக்காளி") || q.includes("టమోటా")) {
-        reply = "नासिक और पिंपलगांव मंडी में टमाटर का भाव ₹2,850 प्रति क्विंटल है और खरीदारों की मांग मजबूत है।";
+    }
+
+    // 3. TOMATO / TAMATAR
+    else if (q.includes("tomato") || q.includes("tamatar") || q.includes("टोमॅटो") || q.includes("टमाटर") || q.includes("టమోటా") || q.includes("தக்காளி")) {
+        if (comfortLanguage === "mr") {
+            reply = "🍅 नाशिक आणि पिंपळगाव बाजारात ग्रेड A टोमॅटोचा भाव ₹2,850 प्रति क्विंटल आहे. फ्रेशमार्ट आणि अग्रोमार्ट कडून खरेदी सुरू आहे.";
+        } else if (comfortLanguage === "en") {
+            reply = "🍅 Nashik and Pimpalgaon modal rate for Grade A Tomato is ₹2,850/quintal with strong buyer demand from FreshKart and AgroMart.";
+        } else {
+            reply = "🍅 नासिक और पिंपलगांव मंडी में ग्रेड A टमाटर का भाव ₹2,850 प्रति क्विंटल है। फ्रेशमार्ट और एग्रोमार्ट की मजबूत खरीद मांग है।";
+        }
         targetSection = "prices";
-    } else if (q.includes("soybean") || q.includes("soya") || q.includes("सोयाबीन")) {
-        reply = "नागपुर और लातूर मंडी में सोयाबीन का भाव ₹4,820 प्रति क्विंटल दर्ज किया गया है।";
+    }
+
+    // 4. SOYBEAN
+    else if (q.includes("soybean") || q.includes("soya") || q.includes("सोयाबीन")) {
+        reply = "🫘 नागपुर और लातूर मंडी में सोयाबीन का भाव ₹4,820 प्रति क्विंटल है (नमी 10%, तेल मात्रा 19%)। ग्रीनहार्वेस्ट खरीदार तुरंत भुगतान कर रहा है।";
         targetSection = "prices";
-    } else if (q.includes("mango") || q.includes("aam") || q.includes("हापूस") || q.includes("आम") || q.includes("ಮಾವು") || q.includes("மாம்பழம்") || q.includes("మామిడి")) {
-        reply = "एग्रो-स्फीयर पर रत्नागिरी हापुस और केसर आम के प्रमाणित लॉट उपलब्ध हैं। मैं आपको उत्पाद उपलब्धता स्क्रीन पर ले चलती हूँ।";
+    }
+
+    // 5. WHEAT / GEHUN / GAHU
+    else if (q.includes("wheat") || q.includes("gehun") || q.includes("gahu") || q.includes("गहू") || q.includes("गेहूं") || q.includes("कणक")) {
+        reply = "🌾 शरबती गोल्ड गेहूं का मॉडल भाव ₹2,640 प्रति क्विंटल दर्ज किया गया है। एग्रोमार्ट को 120 क्विंटल का लॉट आवश्यक है।";
+        targetSection = "prices";
+    }
+
+    // 6. GARLIC / LAHSUN & GINGER / ADRAK
+    else if (q.includes("garlic") || q.includes("lahsun") || q.includes("लसूण") || q.includes("लहसुन") || q.includes("ginger") || q.includes("adrak") || q.includes("आलें") || q.includes("अदरक")) {
+        reply = "🧄 नासिक मंडी में सूखा लहसुन ₹14,200 प्रति क्विंटल और ताजा अदरक ₹6,800 प्रति क्विंटल पर बिक रहा है।";
+        targetSection = "prices";
+    }
+
+    // 7. MANGO / AAM / HAPUS
+    else if (q.includes("mango") || q.includes("aam") || q.includes("हापूस") || q.includes("आम") || q.includes("मांगो") || q.includes("kesar")) {
+        reply = "🥭 रत्नागिरी हापुस और केसर आम के प्रमाणित ग्रेड A लॉट ₹12,500 प्रति क्विंटल पर उपलब्ध हैं। मैंने उत्पाद स्क्रीन खोल दी है।";
         targetSection = "products";
-        cropFilterVal = "mango";
-    } else if (q.includes("lemon") || q.includes("nimbu") || q.includes("लिंबू") || q.includes("नींबू") || q.includes("ನಿಂಬೆ") || q.includes("எலுமிச்சை") || q.includes("నిమ్మ")) {
-        reply = "लासलगाव जूसी लेमन ₹4,600 प्रति क्विंटल पर उपलब्ध है। उत्पाद विवरण स्क्रीन पर खोल दिए गए हैं।";
+        cropFilterVal = "fruits";
+    }
+
+    // 8. LEMON / NIMBU / LIMBU
+    else if (q.includes("lemon") || q.includes("nimbu") || q.includes("लिंबू") || q.includes("नींबू")) {
+        reply = "🍋 लासलगाव रसदार नींबू ग्रेड A ₹4,600 प्रति क्विंटल पर उपलब्ध है। 20 किलो क्रेट्स में पैक लॉट उपलब्ध है।";
         targetSection = "products";
-        cropFilterVal = "lemon";
-    } else if (q.includes("apple") || q.includes("seb") || q.includes("सफरचंद") || q.includes("सेब")) {
-        reply = "रॉयल डेलिशियस रेड एप्पल ग्रेड A ₹8,500 प्रति क्विंटल पर उपलब्ध है।";
+        cropFilterVal = "vegetables";
+    }
+
+    // 9. APPLE / SEB
+    else if (q.includes("apple") || q.includes("seb") || q.includes("सफरचंद") || q.includes("सेब")) {
+        reply = "🍎 शिमला रॉयल डेलिशियस सेब ग्रेड A (70mm+) ₹8,500 प्रति क्विंटल पर लिस्टेड है।";
         targetSection = "products";
-        cropFilterVal = "apple";
-    } else if (q.includes("truck") || q.includes("vehicle") || q.includes("track") || q.includes("driver") || q.includes("gadi") || q.includes("गाड़ी") || q.includes("गाडी") || q.includes("లారీ") || q.includes("வண்டி") || q.includes("ವಾಹನ")) {
-        reply = "आपका निर्धारित ट्रक MH-15-AB-1234 समय पर चल रहा है (स्पीड: 42 km/h, ETA: 45 मिनट)। ड्राइवर रमेश शिंदे का संपर्क: +91 98765 43210.";
-        targetSection = "schedule";
-    } else if (q.includes("help") || q.includes("care") || q.includes("helpline") || q.includes("support") || q.includes("number") || q.includes("मदत") || q.includes("सहायता") || q.includes("toll") || q.includes("contact")) {
-        reply = "हमारी 24x7 निःशुल्क टोल-फ्री किसान हेल्पलाइन 1800-889-2476 है। आप व्हाट्सएप नंबर +91 98200 45678 पर भी संपर्क कर सकते हैं।";
-        targetSection = "support";
-    } else if (q.includes("collective") || q.includes("fpo") || q.includes("group") || q.includes("समूह")) {
-        reply = "किसान कलेक्टिव में 100 क्विंटल का बल्क लॉट सक्रिय है, जिसमें 64 क्विंटल पूल हो चुका है।";
+        cropFilterVal = "fruits";
+    }
+
+    // 10. HOW TO LIST / SELL / KAISE BECHE
+    else if (q.includes("list") || q.includes("sell") || q.includes("bech") || q.includes("बेच") || q.includes("विकाय") || q.includes("विक्री") || q.includes("add crop")) {
+        reply = "📝 फसल बेचने के लिए डैशबोर्ड पर '+ List Produce' (फसल जोड़ें) बटन दबाएं, फसल का नाम, मात्रा, ग्रेड और फोटो डालें। खरीदार तुरंत बोली लगाएंगे।";
+        targetSection = "dashboard";
+    }
+
+    // 11. URGENT / SPOILAGE / ZERO-WASTE / KHARAB
+    else if (q.includes("urgent") || q.includes("clearance") || q.includes("kharab") || q.includes("spoil") || q.includes("सड़") || q.includes("खराब") || q.includes("जलद") || q.includes("surplus") || q.includes("zero waste") || q.includes("waste")) {
+        reply = "⚡ एग्रो-स्फीयर जीरो-वेस्ट फास्ट क्लीयरेंस: नाशवान फसलों के लिए 24 घंटे की तत्काल बिक्री एक्टिव करें ताकि फसल खराब होने से बचे और तुरंत खरीदार मिलें।";
+        targetSection = "products";
+    }
+
+    // 12. QUALITY GRADING / INSPECTION
+    else if (q.includes("grade") || q.includes("quality") || q.includes("inspect") || q.includes("ग्रेड") || q.includes("क्वालिटी") || q.includes("तपासणी") || q.includes("moisture")) {
+        reply = "🔍 गुणवत्ता जांच: प्रत्येक लॉट की नमी प्रतिशत (11-12%), आकार छंटाई (45-55mm) और कीटनाशक मुक्त जीरो-रेसिड्यू जांच की जाती है।";
+        targetSection = "products";
+    }
+
+    // 13. COLLECTIVE POOLING / FPO
+    else if (q.includes("collective") || q.includes("pool") || q.includes("group") || q.includes("fpo") || q.includes("समूह") || q.includes("एकत्र") || q.includes("कलेक्टिव")) {
+        reply = "👥 किसान कलेक्टिव: छोटे किसान अपने 10-20 क्विंटल लॉट को 100 क्विंटल के बल्क लॉट में जोड़कर बड़े खरीदारों से ₹18,600 तक अधिक मुनाफा कमा सकते हैं।";
         targetSection = "collective";
-    } else {
-        reply = "मैंने आपका प्रश्न नोट कर लिया है। एग्रो-स्फीयर पर मंडी भाव, उत्पाद सूची, वाहन ट्रैकिंग और हेल्पलाइन उपलब्ध हैं।";
+    }
+
+    // 14. TRUCK & LOGISTICS TRACKING
+    else if (q.includes("truck") || q.includes("vehicle") || q.includes("track") || q.includes("driver") || q.includes("gadi") || q.includes("गाड़ी") || q.includes("गाडी") || q.includes("ट्रक") || q.includes("ड्राइवर") || q.includes("पिकअप") || q.includes("location")) {
+        reply = "🚚 लाइव ट्रक ट्रैकिंग: वाहन MH-15-AB-1234 रास्ते में है (स्पीड 42 km/h, ETA: 45 मिनट)। ड्राइवर: रमेश शिंदे (+91 98765 43210), वजन कांटा पिन: 4829.";
+        targetSection = "schedule";
+    }
+
+    // 15. CUSTOMER CARE & HELPLINE
+    else if (q.includes("help") || q.includes("care") || q.includes("helpline") || q.includes("support") || q.includes("number") || q.includes("मदत") || q.includes("सहायता") || q.includes("toll") || q.includes("contact") || q.includes("कॉल") || q.includes("phone")) {
+        reply = "📞 24x7 निःशुल्क किसान हेल्पलाइन: 1800-889-2476. आप व्हाट्सएप नंबर +91 98200 45678 पर भी संपर्क कर सकते हैं या 15 मिनट में मुफ्त कॉल बैक पा सकते हैं।";
+        targetSection = "support";
+    }
+
+    // 16. GENERAL INTELLIGENT FALLBACK
+    else {
+        if (comfortLanguage === "mr") {
+            reply = `🌾 मी तुमची मदत करू शकते! आज लासलगाव कांदा भाव ₹3,420/q आणि टोमॅटो ₹2,850/q आहे. तुमचा ट्रक MH-15-AB-1234 45 मिनिटात पोहोचत आहे. अधिक माहितीसाठी 1800-889-2476 वर कॉल करा.`;
+        } else if (comfortLanguage === "en") {
+            reply = `🌾 I'm here to help! Today's Lasalgaon Onion rate is ₹3,420/q (+8.4%) and Tomato is ₹2,850/q. Your truck MH-15-AB-1234 is en route (ETA 45 mins). For live support, call Toll-Free 1800-889-2476.`;
+        } else {
+            reply = `🌾 मैं आपकी सहायता के लिए तैयार हूँ! आज लासलगाव प्याज भाव ₹3,420/q (+8.4%) और टमाटर ₹2,850/q है। आपका ट्रक MH-15-AB-1234 45 मिनट में पहुंच रहा है। सहायता के लिए टोल-फ्री 1800-889-2476 पर कॉल करें।`;
+        }
         targetSection = "dashboard";
     }
 
