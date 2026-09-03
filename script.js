@@ -1997,7 +1997,7 @@ $("#listingForm").onsubmit = event => {
     else if (cropKey.includes("tomato")) emoji = "🍅";
     else if (cropKey.includes("potato")) emoji = "🥔";
 
-    state.products.unshift({
+    const newProductObj = {
         id: Date.now(),
         crop,
         category,
@@ -2015,9 +2015,11 @@ $("#listingForm").onsubmit = event => {
         packagingSpec,
         pesticideSpec: "Lab Tested / GAP Verified",
         harvestSpec: "Harvested Today"
-    });
+    };
 
+    state.products.unshift(newProductObj);
     renderProducts();
+    syncProductToBackend(newProductObj);
 
     if ($("#lotCount")) {
         $("#lotCount").textContent = Number($("#lotCount").textContent) + 1;
@@ -2328,6 +2330,7 @@ if ($("#vehicleForm")) {
 
         localStorage.setItem("agrosphereVehicleInfo", JSON.stringify(vehicleState));
         updateVehicleDisplay();
+        syncVehicleToBackend(vehicleState);
 
         event.target.closest(".modal-bg").classList.remove("show");
         toast(`✅ Vehicle ${vehicleNo} (${driverName}) linked to pickup timeline!`);
@@ -2875,6 +2878,106 @@ window.sendChatbotMessage = sendChatbotMessage;
 window.openChatbotModal = openChatbotModal;
 
 /* =========================================================
+   LIVE BACKEND API CONNECTOR & SYNC
+   ========================================================= */
+
+const BACKEND_API_BASE = "http://127.0.0.1:5000/api";
+
+async function fetchLiveProducts() {
+    try {
+        const res = await fetch(`${BACKEND_API_BASE}/products`);
+        if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) {
+                state.products = data;
+                renderProducts();
+                toast("🟢 Connected to Live FastAPI Backend Database");
+            }
+        }
+    } catch (err) {
+        console.log("Backend offline, running in offline demo mode.");
+    }
+}
+
+async function syncProductToBackend(product) {
+    try {
+        const res = await fetch(`${BACKEND_API_BASE}/products`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                crop: product.crop,
+                category: product.category,
+                grade: product.grade,
+                location: product.location,
+                qty: product.qty,
+                price: product.price,
+                img: product.img,
+                emoji: product.e || "🌾",
+                buyer: product.buyer || "Open Market",
+                isUrgent: Boolean(product.isUrgent),
+                sizeSpec: product.sizeSpec || "Standard",
+                freshnessSpec: product.freshnessSpec || "Fresh",
+                packagingSpec: product.packagingSpec || "50kg Bags",
+                pesticideSpec: product.pesticideSpec || "Certified",
+                harvestSpec: product.harvestSpec || "Harvested Today"
+            })
+        });
+        const result = await res.json();
+        if (result.success) {
+            toast("✅ " + result.message);
+            fetchLiveProducts();
+            return;
+        }
+    } catch (err) {
+        console.log("Backend offline, saved to local session state.");
+    }
+}
+
+async function syncVehicleToBackend(vData) {
+    try {
+        await fetch(`${BACKEND_API_BASE}/logistics/assign`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                vehicle_no: vData.vehicleNo,
+                driver_name: vData.driverName,
+                driver_phone: vData.driverPhone,
+                agency: vData.agencyName
+            })
+        });
+    } catch (err) {
+        console.log("Vehicle saved locally.");
+    }
+}
+
+async function syncCallbackToBackend(name, phone, queryType, language) {
+    try {
+        const res = await fetch(`${BACKEND_API_BASE}/support/callback`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: name,
+                phone: phone,
+                query_type: queryType || "General Support",
+                language: language || "Hindi"
+            })
+        });
+        const result = await res.json();
+        if (result.success) {
+            toast(result.message);
+            return;
+        }
+    } catch (err) {
+        toast(`✅ Callback requested! Our Kisan officer will call you within 15 minutes.`);
+    }
+}
+
+window.syncProductToBackend = syncProductToBackend;
+window.syncVehicleToBackend = syncVehicleToBackend;
+window.syncCallbackToBackend = syncCallbackToBackend;
+window.fetchLiveProducts = fetchLiveProducts;
+
+/* =========================================================
    APPLICATION INITIALIZATION
    ========================================================= */
 
@@ -2890,3 +2993,6 @@ updateLiveClock();
 
 initVoiceAssistant();
 applyTranslations();
+
+// Connect to live backend on startup
+fetchLiveProducts();
