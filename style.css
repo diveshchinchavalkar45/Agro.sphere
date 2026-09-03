@@ -2434,26 +2434,28 @@ td {
    ========================================================= */
 
 .whatsapp-modal-content {
-    max-width: 480px;
-    width: 95%;
-    border-radius: 18px;
+    width: 600px;
+    max-width: 95vw;
+    border-radius: 14px;
     overflow: hidden;
     padding: 0 !important;
-    background: #efeae2 !important;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    background: #0b141a !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
-    max-height: 85vh;
+    max-height: 88vh;
+    border: 1px solid #2a3942;
 }
 
 .wa-header {
-    background: #075e54;
-    color: #ffffff;
-    padding: 14px 18px;
+    background: #202c33;
+    color: #e9edef;
+    padding: 12px 18px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    border-bottom: 1px solid #2a3942;
 }
 
 .wa-profile {
@@ -2463,8 +2465,8 @@ td {
 }
 
 .wa-avatar {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     object-fit: cover;
     background: #ffffff;
@@ -2475,7 +2477,7 @@ td {
     margin: 0;
     font-size: 15px;
     font-weight: 700;
-    color: #ffffff;
+    color: #e9edef;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -2483,17 +2485,47 @@ td {
 
 .wa-verified {
     background: #25d366;
-    color: #ffffff;
+    color: #0b141a;
     font-size: 10px;
-    padding: 2px 6px;
-    border-radius: 10px;
-    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 50%;
+    font-weight: 900;
 }
 
 .wa-status {
     font-size: 11px;
-    color: #b3dfd8;
+    color: #8696a0;
     margin-top: 2px;
+}
+
+.wa-header-icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.wa-icon-btn {
+    background: none;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    color: #aebac1;
+    padding: 4px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.wa-icon-btn:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+.wa-close-btn {
+    color: #aebac1 !important;
+    font-size: 24px !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    padding: 0 4px !important;
 }
 
 .wa-chat-body {
@@ -2503,55 +2535,87 @@ td {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    background-color: #efeae2;
-    background-image: radial-gradient(#d3c9b8 1px, transparent 1px);
-    background-size: 20px 20px;
-    min-height: 320px;
-    max-height: 420px;
+    background-color: #0b141a;
+    background-image: radial-gradient(#182229 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    min-height: 340px;
+    max-height: 460px;
+}
+
+.wa-date-divider {
+    text-align: center;
+    margin: 4px 0;
+}
+
+.wa-date-divider span {
+    background: #182229;
+    color: #8696a0;
+    font-size: 11px;
+    padding: 3px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: 1px solid #222e35;
+}
+
+.wa-encrypted-notice {
+    background: #182229;
+    border: 1px solid #222e35;
+    color: #ffd279;
+    font-size: 11px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 1.4;
+    margin: 0 20px 6px;
 }
 
 .wa-msg {
-    max-width: 82%;
+    max-width: 84%;
     padding: 10px 14px;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 13px;
     line-height: 1.45;
     position: relative;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.13);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
 .wa-msg.bot {
     align-self: flex-start;
-    background: #ffffff;
-    color: #111b21;
+    background: #202c33;
+    color: #e9edef;
     border-top-left-radius: 2px;
+    border: 1px solid #2a3942;
 }
 
 .wa-msg.user {
     align-self: flex-end;
-    background: #d9fdd3;
-    color: #111b21;
+    background: #005c4b;
+    color: #e9edef;
     border-top-right-radius: 2px;
 }
 
 .wa-time {
     font-size: 10px;
-    color: #667781;
+    color: #8696a0;
     text-align: right;
     margin-top: 4px;
+}
+
+.wa-msg.user .wa-time {
+    color: #53bdeb;
 }
 
 .wa-quick-options {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    margin-top: 8px;
+    margin-top: 10px;
 }
 
 .wa-option-btn {
-    background: #f0f2f5;
-    border: 1px solid #d1d7db;
-    color: #008069;
+    background: #111b21;
+    border: 1px solid #2a3942;
+    color: #25d366;
     padding: 8px 12px;
     border-radius: 8px;
     font-size: 12px;
@@ -2562,31 +2626,53 @@ td {
 }
 
 .wa-option-btn:hover {
-    background: #e9edef;
-    border-color: #008069;
+    background: #202c33;
+    border-color: #25d366;
+    transform: translateX(3px);
 }
 
 .wa-footer {
-    background: #f0f2f5;
+    background: #202c33;
     padding: 10px 14px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    border-top: 1px solid #e9edef;
+    gap: 8px;
+    border-top: 1px solid #2a3942;
+}
+
+.wa-footer-icon-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #8696a0;
+    padding: 4px 6px;
+    border-radius: 50%;
+    transition: color 0.2s;
+}
+
+.wa-footer-icon-btn:hover {
+    color: #e9edef;
 }
 
 .wa-input {
     flex: 1;
-    background: #ffffff;
-    border: 1px solid #d1d7db;
-    border-radius: 22px;
+    background: #2a3942;
+    border: 1px solid #3b4a54;
+    border-radius: 20px;
     padding: 9px 16px;
     font-size: 13px;
+    color: #e9edef;
     outline: none;
+}
+
+.wa-input::placeholder {
+    color: #8696a0;
 }
 
 .wa-input:focus {
     border-color: #00a884;
+    background: #222e35;
 }
 
 .wa-send-btn {
@@ -2606,5 +2692,26 @@ td {
 
 .wa-send-btn:hover {
     transform: scale(1.08);
-    background: #008069;
+    background: #029474;
+}
+
+.wa-bottom-bar {
+    background: #111b21;
+    padding: 7px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #8696a0;
+    border-top: 1px solid #222e35;
+}
+
+.wa-real-app-link {
+    color: #25d366;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.wa-real-app-link:hover {
+    text-decoration: underline;
 }

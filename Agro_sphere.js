@@ -2958,12 +2958,40 @@ window.sendChatbotMessage = sendChatbotMessage;
 window.openChatbotModal = openChatbotModal;
 
 /* =========================================================
-   WHATSAPP KISAN SEVA BOT SIMULATOR
+   WHATSAPP KISAN SEVA BOT SIMULATOR (AUTHENTIC DARK THEME)
    ========================================================= */
 
 function openWhatsAppBotModal() {
     const modal = $("#whatsappBotModal");
     if (modal) modal.classList.add("show");
+    setTimeout(() => {
+        const input = $("#waTextInput");
+        if (input) input.focus();
+        const body = $("#waChatBody");
+        if (body) body.scrollTop = body.scrollHeight;
+    }, 150);
+}
+
+function setWhatsAppTyping(isTyping) {
+    const status = $("#waStatusHeader");
+    const body = $("#waChatBody");
+    if (isTyping) {
+        if (status) status.innerHTML = "<span style='color:#25d366; font-weight:bold;'>typing...</span>";
+        if (body && !$("#waTypingIndicator")) {
+            const typingDiv = document.createElement("div");
+            typingDiv.id = "waTypingIndicator";
+            typingDiv.className = "wa-msg bot";
+            typingDiv.style.fontStyle = "italic";
+            typingDiv.style.color = "#8696a0";
+            typingDiv.innerHTML = "Agro-Sphere Kisan Bot is typing ⏳...";
+            body.appendChild(typingDiv);
+            body.scrollTop = body.scrollHeight;
+        }
+    } else {
+        if (status) status.innerHTML = "online · Agro-Sphere Kisan Help Center";
+        const typingEl = $("#waTypingIndicator");
+        if (typingEl) typingEl.remove();
+    }
 }
 
 function appendWhatsAppMessage(sender, htmlContent) {
@@ -2974,7 +3002,7 @@ function appendWhatsAppMessage(sender, htmlContent) {
     
     const msgDiv = document.createElement("div");
     msgDiv.className = `wa-msg ${sender}`;
-    msgDiv.innerHTML = `${htmlContent}<div class="wa-time">${timeStr} ${sender === 'user' ? '✔✔' : ''}</div>`;
+    msgDiv.innerHTML = `${htmlContent}<div class="wa-time">${timeStr} ${sender === 'user' ? '<span style="color:#53bdeb;">✔✔</span>' : ''}</div>`;
     
     body.appendChild(msgDiv);
     body.scrollTop = body.scrollHeight;
@@ -2982,48 +3010,60 @@ function appendWhatsAppMessage(sender, htmlContent) {
 
 function sendWhatsAppBotOption(optionText) {
     appendWhatsAppMessage("user", optionText);
+    setWhatsAppTyping(true);
     
-    // Simulate WhatsApp typing indicator
     setTimeout(() => {
-        if (optionText.includes("Photo Grading") || optionText.includes("फोटो")) {
+        setWhatsAppTyping(false);
+        const lower = optionText.toLowerCase();
+
+        if (lower.includes("photo") || lower.includes("grading") || lower.includes("ग्रेडिंग") || lower.includes("फोटो")) {
             appendWhatsAppMessage("bot", `
-                📸 <b>AI Crop Photo Analysis Result:</b><br>
-                🌾 <b>Produce:</b> Nashik Red Onion (कांदा)<br>
-                🔍 <b>Calculated Grade:</b> <span style="color:#27ae60; font-weight:bold;">Grade A (Export Quality)</span><br>
-                📏 <b>Size:</b> 48.5mm Uniform Diameter<br>
-                💧 <b>Moisture Content:</b> 11.2% (Well Cured)<br>
-                🛡️ <b>Pesticide Residue:</b> Pass (Safe)<br>
-                💰 <b>Recommended Price:</b> <b>₹3,420 - ₹3,600/q</b><br>
-                🛒 <b>Active Demand:</b> FreshKart & AgroMart are ready to buy!
+                📸 <b>AI Computer Vision Quality Inspection:</b><br><br>
+                <div style="background:#111b21; border-radius:8px; padding:10px; border:1px solid #2a3942; margin-bottom:8px;">
+                    🧅 <b>Sample Batch:</b> Nashik Export-Grade Red Onion<br>
+                    🔍 <b>Calculated Grade:</b> <span style="color:#25d366; font-weight:bold;">Grade A (Export Quality)</span><br>
+                    📏 <b>Diameter Size:</b> 48.5mm Uniform Sorting<br>
+                    💧 <b>Moisture Content:</b> 11.2% (Passed Curing Standards)<br>
+                    🛡️ <b>Chemical Residue:</b> Zero-Residue Certified (Safe)<br>
+                    💰 <b>Recommended Price:</b> <b>₹3,420 – ₹3,650/q</b><br>
+                    🛒 <b>Live Buyer Demand:</b> FreshKart (80q) & AgroMart (120q) ready to buy!
+                </div>
+                💡 <i>Tip: You can attach your own crop photo using the 📎 clip button below!</i>
             `);
-        } else if (optionText.includes("Mandi") || optionText.includes("भाव") || optionText.includes("Rates")) {
+        } else if (lower.includes("mandi") || lower.includes("भाव") || lower.includes("rate") || lower.includes("bhav")) {
             appendWhatsAppMessage("bot", `
-                📈 <b>Today's Live APMC Mandi Rates:</b><br>
-                🧅 <b>Onion (कांदा):</b> ₹3,420/q (Lasalgaon) ▲ 8.4%<br>
-                🍅 <b>Tomato (टमाटर):</b> ₹2,850/q (Nashik) ▲ 4.2%<br>
+                📈 <b>Agro-Sphere Live APMC Mandi Rates (आज का मंडी भाव):</b><br><br>
+                🧅 <b>Onion (कांदा):</b> ₹3,420/q (Lasalgaon APMC) ▲ +8.4%<br>
+                🍅 <b>Tomato (टमाटर):</b> ₹2,850/q (Nashik Mandi) ▲ +4.2%<br>
+                🫘 <b>Soybean (सोयाबीन):</b> ₹4,820/q (Nagpur Hub)<br>
                 🍋 <b>Lemon (नींबू):</b> ₹4,600/q (Lasalgaon)<br>
                 🥭 <b>Mango (हापूस):</b> ₹12,500/q (Ratnagiri)<br><br>
-                💡 <b>Advisory:</b> Onion demand is surging. Best selling window is next 3–5 days.
+                💡 <b>Smart Advisory:</b> Onion price is rising due to export demand. Recommended selling window is next <b>3–5 days</b>.
             `);
-        } else if (optionText.includes("Track") || optionText.includes("Truck") || optionText.includes("ट्रक")) {
+        } else if (lower.includes("track") || lower.includes("truck") || lower.includes("गाड़ी") || lower.includes("ट्रक")) {
             appendWhatsAppMessage("bot", `
-                🚚 <b>Live Logistics Tracking:</b><br>
-                🚛 <b>Vehicle No:</b> MH-15-AB-1234<br>
-                👨‍✈️ <b>Driver:</b> Ramesh Shinde (+91 98765 43210)<br>
-                ⚡ <b>Status:</b> En Route (42 km/h)<br>
-                ⏱️ <b>ETA at Mandi:</b> 45 Minutes<br>
-                🔑 <b>Weighbridge Security PIN:</b> 4829
+                🚚 <b>Live Transport GPS Telemetry:</b><br><br>
+                🚛 <b>Assigned Vehicle:</b> <code>MH-15-AB-1234</code><br>
+                👨‍✈️ <b>Driver:</b> Ramesh Shinde (<a href="tel:9876543210" style="color:#25d366; font-weight:bold;">+91 98765 43210</a>)<br>
+                ⚡ <b>Live Speed:</b> 42 km/h (Moving on NH-3)<br>
+                ⏱️ <b>ETA to Lasalgaon APMC:</b> <b>45 Minutes</b><br>
+                🔑 <b>Weighbridge Passcode PIN:</b> <code style="background:#111b21; padding:2px 6px; border-radius:4px; color:#ffd279; font-weight:bold;">4829</code>
             `);
-        } else if (optionText.includes("Officer") || optionText.includes("अधिकारी")) {
+        } else if (lower.includes("officer") || lower.includes("अधिकारी")) {
             appendWhatsAppMessage("bot", `
-                👨‍🌾 <b>Lasalgaon APMC Field Officer Connect:</b><br>
+                👨‍🌾 <b>Lasalgaon APMC Hub Officer Connect:</b><br><br>
                 👤 <b>Officer Name:</b> Suresh Deshmukh<br>
-                📞 <b>Direct Phone:</b> +91 98220 12345<br>
-                🏢 <b>Hub:</b> Lasalgaon Gate #2 Weighbridge Desk<br><br>
-                ✅ <i>We have notified Officer Suresh to prioritize your lot upon gate entry!</i>
+                📞 <b>Helpline Phone:</b> <a href="tel:18008892476" style="color:#25d366; font-weight:bold;">1800-889-2476 (Toll-Free)</a><br>
+                🏢 <b>On-Ground Desk:</b> Lasalgaon Gate #2 Weighbridge Assistance<br><br>
+                ✅ <i>Priority Gate Pass issued! Officer Suresh will assist you directly upon vehicle arrival.</i>
+            `);
+        } else {
+            appendWhatsAppMessage("bot", `
+                🌾 <b>Agro-Sphere Kisan Seva:</b><br>
+                Thank you for reaching out! We provide live Mandi Bhav, AI Photo Grading, Truck Tracking, and APMC Fair Price Discovery. How can we assist you next?
             `);
         }
-    }, 600);
+    }, 450);
 }
 
 function sendWhatsAppBotUserMessage() {
@@ -3033,24 +3073,146 @@ function sendWhatsAppBotUserMessage() {
     input.value = "";
     
     appendWhatsAppMessage("user", text);
+    setWhatsAppTyping(true);
     
     setTimeout(() => {
+        setWhatsAppTyping(false);
         const lower = text.toLowerCase();
-        if (lower.includes("price") || lower.includes("rate") || lower.includes("bhav") || lower.includes("भाव") || lower.includes("dam") || lower.includes("मंडी")) {
-            appendWhatsAppMessage("bot", "📈 <b>Live Rates:</b> Onion ₹3,420/q (Lasalgaon), Tomato ₹2,850/q, Soybean ₹4,820/q. Prices are rising this week!");
-        } else if (lower.includes("truck") || lower.includes("driver") || lower.includes("track") || lower.includes("गाड़ी") || lower.includes("ट्रक")) {
-            appendWhatsAppMessage("bot", "🚚 <b>Truck Status:</b> Vehicle MH-15-AB-1234 is 45 mins away from delivery hub. Driver: Ramesh Shinde (+91 98765 43210).");
-        } else if (lower.includes("photo") || lower.includes("grade") || lower.includes("quality") || lower.includes("फोटो") || lower.includes("क्वालिटी")) {
-            appendWhatsAppMessage("bot", "📸 Please click the option <b>'📸 Test Crop Photo Grading'</b> above or WhatsApp your crop photo to <b>+91 98200 45678</b> for instant AI analysis!");
-        } else {
-            appendWhatsAppMessage("bot", `🙏 Thank you for your message! Our Agro-Sphere Kisan Support Team (+91 98200 45678) has logged your query: <i>"${text}"</i>. An APMC advisor will assist you shortly.`);
+        
+        // 1. GREETINGS & SAMPLE TEMPLATES
+        if (lower.includes("hello") || lower.includes("hi") || lower.includes("namaste") || lower.includes("help center") || lower.includes("kisan bot") || lower.includes("नमस्ते") || lower.includes("नमस्कार")) {
+            appendWhatsAppMessage("bot", `
+                🙏 <b>नमस्ते किसान भाई! Hello Farmer Friend!</b><br><br>
+                Welcome to <b>Agro-Sphere 24x7 WhatsApp Kisan Help Center</b>.<br><br>
+                📈 <b>Today's Onion Bhav:</b> ₹3,420/q (Lasalgaon ▲ +8.4%)<br>
+                🍅 <b>Today's Tomato Bhav:</b> ₹2,850/q (Nashik ▲ +4.2%)<br>
+                🚚 <b>Truck Tracking:</b> Vehicle <code>MH-15-AB-1234</code> is 45 mins away.<br><br>
+                Type any crop name or tap an option below:
+                <div class="wa-quick-options">
+                    <button class="wa-option-btn" onclick="sendWhatsAppBotOption('📈 Mandi Bhav (कांदा व टोमॅटो आजचा भाव)')">📈 Mandi Bhav (मंडी भाव)</button>
+                    <button class="wa-option-btn" onclick="sendWhatsAppBotOption('📸 Test AI Crop Photo Grading')">📸 Test AI Photo Grading (फोटो ग्रेडिंग)</button>
+                    <button class="wa-option-btn" onclick="sendWhatsAppBotOption('🚚 Track My Transport Truck (MH-15-AB-1234)')">🚚 Track My Truck (गाड़ी ट्रैकिंग)</button>
+                </div>
+            `);
         }
-    }, 500);
+        // 2. MANDI BHAV / RATES / PRICES
+        else if (lower.includes("price") || lower.includes("rate") || lower.includes("bhav") || lower.includes("भाव") || lower.includes("कांदा") || lower.includes("प्याज") || lower.includes("onion") || lower.includes("tomato") || lower.includes("टमाटर") || lower.includes("टोमॅटो") || lower.includes("मंडी")) {
+            appendWhatsAppMessage("bot", `
+                📈 <b>Agro-Sphere Real-Time APMC Mandi Rates:</b><br><br>
+                🧅 <b>Nashik Red Onion (कांदा):</b> ₹3,420/q (Lasalgaon APMC) ▲ +8.4%<br>
+                🍅 <b>Grade A Tomato (टमाटर):</b> ₹2,850/q (Nashik APMC) ▲ +4.2%<br>
+                🫘 <b>Soybean (सोयाबीन):</b> ₹4,820/q (Nagpur)<br>
+                🌾 <b>Wheat (गेहूं):</b> ₹2,640/q (Pune Mandi)<br><br>
+                💡 <b>Smart Selling Forecast:</b> Onion and tomato modal prices are in high demand across Mumbai & Pune wholesale hubs. Expected high range: ₹3,500–₹3,650/q.
+            `);
+        }
+        // 3. TRUCK & LOGISTICS TRACKING
+        else if (lower.includes("truck") || lower.includes("driver") || lower.includes("track") || lower.includes("location") || lower.includes("gadi") || lower.includes("गाड़ी") || lower.includes("गाडी") || lower.includes("ट्रक")) {
+            appendWhatsAppMessage("bot", `
+                🚚 <b>Live Logistics Tracking for Vehicle MH-15-AB-1234:</b><br><br>
+                👨‍✈️ <b>Driver:</b> Ramesh Shinde (+91 98765 43210)<br>
+                📍 <b>Current Location:</b> Passing Ozar Toll Plaza (NH-3)<br>
+                ⚡ <b>Speed:</b> 42 km/h · <b>ETA:</b> 45 Minutes<br>
+                🔑 <b>Digital Weighbridge PIN:</b> <code>4829</code>
+            `);
+        }
+        // 4. PHOTO GRADING / QUALITY INSPECTION
+        else if (lower.includes("photo") || lower.includes("grade") || lower.includes("grading") || lower.includes("quality") || lower.includes("फोटो") || lower.includes("क्वालिटी") || lower.includes("test")) {
+            appendWhatsAppMessage("bot", `
+                📸 <b>AI Crop Photo Analysis Engine:</b><br><br>
+                🌾 <b>Produce:</b> Nashik Red Onion (कांदा)<br>
+                🔍 <b>Calculated Grade:</b> <span style="color:#25d366; font-weight:bold;">Grade A (Export Quality)</span><br>
+                📏 <b>Size:</b> 48.5mm Uniform Diameter<br>
+                💧 <b>Moisture Content:</b> 11.2% (Well Cured)<br>
+                🛡️ <b>Pesticide Residue:</b> Zero-Residue Certified (Safe)<br>
+                💰 <b>Recommended Price:</b> <b>₹3,420 – ₹3,600/q</b><br>
+                🛒 <b>Buyers Interested:</b> FreshKart & AgroMart ready to purchase.
+            `);
+        }
+        // 5. HELPLINE & CUSTOMER SUPPORT
+        else if (lower.includes("help") || lower.includes("care") || lower.includes("number") || lower.includes("call") || lower.includes("मदत") || lower.includes("सहायता") || lower.includes("toll")) {
+            appendWhatsAppMessage("bot", `
+                📞 <b>Agro-Sphere 24x7 Kisan Support:</b><br><br>
+                ☎️ <b>Toll-Free Helpline:</b> 1800-889-2476 (100% Free)<br>
+                💬 <b>WhatsApp Desk:</b> +91 98200 45678<br>
+                👨‍🌾 <b>Lasalgaon APMC Officer:</b> Suresh Deshmukh (+91 98220 12345)<br><br>
+                <i>You can also request a 15-minute free callback from the website support tab!</i>
+            `);
+        }
+        // 6. GENERAL SMART ADVISORY FALLBACK
+        else {
+            appendWhatsAppMessage("bot", `
+                🌾 <b>Agro-Sphere Kisan Bot Reply:</b><br><br>
+                Thank you for your inquiry: <i>"${text}"</i>.<br><br>
+                📊 <b>Live Market Update:</b> Today's Lasalgaon Onion rate is ₹3,420/q and Tomato is ₹2,850/q.<br>
+                🚚 <b>Transport:</b> Vehicle <code>MH-15-AB-1234</code> is on schedule (ETA: 45 mins).<br>
+                📞 Need urgent assistance? Call our Toll-Free Helpline at <b>1800-889-2476</b>.
+            `);
+        }
+    }, 450);
+}
+
+function handleWhatsAppPhotoUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = e => {
+        const imgUrl = e.target.result;
+        appendWhatsAppMessage("user", `
+            <div style="margin-bottom:6px;">
+                <img src="${imgUrl}" alt="Crop Photo" style="width:100%; max-width:220px; border-radius:8px; display:block;">
+            </div>
+            <span>📷 Attached Crop Photo for AI Quality Grading</span>
+        `);
+        
+        setWhatsAppTyping(true);
+        setTimeout(() => {
+            setWhatsAppTyping(false);
+            appendWhatsAppMessage("bot", `
+                🔍 <b>AI Crop Quality Analysis Complete!</b><br><br>
+                <div style="background:#111b21; border-radius:8px; padding:10px; border:1px solid #2a3942;">
+                    🌾 <b>Detected Crop:</b> Fresh Produce Batch<br>
+                    ⭐ <b>Quality Rating:</b> <span style="color:#25d366; font-weight:bold;">Grade A (Export / Supermarket Grade)</span><br>
+                    📏 <b>Uniformity Score:</b> 94% Uniform Shape & Color<br>
+                    💧 <b>Estimated Moisture:</b> 11.4% (Optimal Curing)<br>
+                    🛡️ <b>Surface Defects:</b> Under 2% (Clean Skin)<br>
+                    💰 <b>Estimated Fair Mandi Rate:</b> <b>₹3,450 – ₹3,620/q</b><br>
+                    🛒 <b>Direct Buyer Matches:</b> 2 Verified Wholesale Buyers Available
+                </div>
+            `);
+        }, 800);
+    };
+    reader.readAsDataURL(file);
+}
+
+function triggerWhatsAppVoiceInput() {
+    toast("🎙️ Recording WhatsApp Voice Note... Speak your query!");
+    setWhatsAppTyping(true);
+    setTimeout(() => {
+        setWhatsAppTyping(false);
+        appendWhatsAppMessage("user", `
+            <div style="display:flex; align-items:center; gap:8px; padding:4px 0;">
+                <span style="font-size:20px;">▶️</span>
+                <div style="flex:1; height:4px; background:#25d366; border-radius:2px;"></div>
+                <span style="font-size:11px; color:#aebac1;">0:04</span>
+            </div>
+            <small style="font-size:11px; color:#8696a0;">🎤 Voice Note: "कांदा भाव आणि गाडी कधी येणार?"</small>
+        `);
+        setTimeout(() => {
+            appendWhatsAppMessage("bot", `
+                🎙️ <b>Voice Note Response (ऑडिओ उत्तर):</b><br>
+                लासलगाव बाजार समितीत कांद्याचा भाव ₹3,420/q आहे. तुमची गाडी MH-15-AB-1234 45 मिनिटात पोहोचत आहे. वजन कांटा पिन 4829 आहे.
+            `);
+        }, 500);
+    }, 1500);
 }
 
 window.openWhatsAppBotModal = openWhatsAppBotModal;
 window.sendWhatsAppBotOption = sendWhatsAppBotOption;
 window.sendWhatsAppBotUserMessage = sendWhatsAppBotUserMessage;
+window.handleWhatsAppPhotoUpload = handleWhatsAppPhotoUpload;
+window.triggerWhatsAppVoiceInput = triggerWhatsAppVoiceInput;
 
 /* =========================================================
    LIVE BACKEND API CONNECTOR & SYNC

@@ -1241,9 +1241,9 @@
                                     Send crop photos & voice notes for instant quality grade evaluation and buyer interest in 10 minutes.
                                 </p>
                             </div>
-                            <a href="https://wa.me/919820045678?text=Hello%20Agro-Sphere%20Kisan%20Bot!%20Please%20help%20me%20with%20today%27s%20Mandi%20Bhav%20and%20Crop%20Photo%20Grading." target="_blank" class="care-action-btn wa-btn" onclick="toast('💬 Launching Real WhatsApp Kisan Seva (+91 98200 45678)...')">
-                                💬 <span data-i18n="chatOnWhatsApp">Open Real WhatsApp Chat</span>
-                            </a>
+                            <button type="button" class="care-action-btn wa-btn" onclick="openWhatsAppBotModal()">
+                                💬 <span data-i18n="chatOnWhatsApp">Chat with WhatsApp Kisan Bot</span>
+                            </button>
                         </div>
 
                         <!-- Channel 3: Local Mandi Hub Officer -->
@@ -1741,48 +1741,66 @@
         <span>Kisan Voice AI</span>
     </button>
 
-    <!-- ================= WHATSAPP KISAN BOT MODAL ================= -->
+    <!-- ================= WHATSAPP KISAN BOT MODAL (DARK THEME) ================= -->
     <div class="modal-bg" id="whatsappBotModal">
-        <div class="modal whatsapp-modal-content">
+        <div class="modal whatsapp-modal-content dark-theme">
+            <!-- WhatsApp Web Header -->
             <div class="wa-header">
                 <div class="wa-profile">
                     <img src="assets/ai_farmer_assistant.png" alt="Agro-Sphere Kisan Seva" class="wa-avatar">
                     <div class="wa-title-area">
-                        <h4>Agro-Sphere Kisan Seva <span class="wa-verified">✔ Official Bot</span></h4>
-                        <div class="wa-status">🟢 Online · Instant Reply & Photo Grading</div>
+                        <h4>+91 98200 45678 <span class="wa-verified">✔</span></h4>
+                        <div class="wa-status" id="waStatusHeader">online · Agro-Sphere Kisan Help Center</div>
                     </div>
                 </div>
-                <button class="close" data-close style="color:#ffffff; font-size:24px; background:none; border:none; cursor:pointer;">×</button>
+                <div class="wa-header-icons">
+                    <button class="wa-icon-btn" onclick="toast('📹 Calling Agro-Sphere Agricultural Officer (Video)...')">📹</button>
+                    <button class="wa-icon-btn" onclick="toast('📞 Calling Toll-Free Helpline: 1800-889-2476...')">📞</button>
+                    <button class="wa-icon-btn" onclick="toast('🔍 Search chat...')">🔍</button>
+                    <button class="close wa-close-btn" data-close>×</button>
+                </div>
             </div>
 
+            <!-- WhatsApp Chat Body -->
             <div class="wa-chat-body" id="waChatBody">
+                <div class="wa-date-divider"><span>Today</span></div>
+                
+                <div class="wa-encrypted-notice">
+                    🔒 Messages and calls are end-to-end encrypted. Only people in this chat can read, listen to, or share them.
+                </div>
+
                 <div class="wa-msg bot">
-                    🙏 <b>नमस्ते किसान भाई!</b><br>
-                    Welcome to <b>Agro-Sphere 24x7 WhatsApp Kisan Seva</b>.<br><br>
-                    I can instantly help you with:<br>
-                    📸 <b>Photo Grading:</b> Send your crop photo for instant AI grade test.<br>
-                    📈 <b>Mandi Rates:</b> Get real-time modal prices.<br>
-                    🚚 <b>Truck Tracking:</b> Live vehicle location & ETA.<br>
-                    👨‍🌾 <b>Field Officer:</b> Connect directly with Lasalgaon APMC officer.<br>
-                    <div class="wa-time">11:45 AM</div>
+                    🙏 <b>नमस्ते किसान भाई! Welcome to Agro-Sphere Kisan Help Center!</b><br><br>
+                    I am your <b>Automated WhatsApp Assistant</b>. Ask me anything or choose a quick option below:<br><br>
+                    🧅 <b>Mandi Rates:</b> Get real-time APMC bhav & 3-day selling forecast.<br>
+                    📸 <b>AI Photo Grading:</b> Send crop photo to check Grade A/B, moisture & price.<br>
+                    🚚 <b>Truck Tracking:</b> Real-time GPS location of vehicle <code>MH-15-AB-1234</code>.<br>
+                    👨‍🌾 <b>APMC Field Officer:</b> Connect with Lasalgaon Weighbridge desk.<br>
+                    <div class="wa-time">12:30 PM</div>
 
                     <div class="wa-quick-options">
-                        <button class="wa-option-btn" onclick="sendWhatsAppBotOption('📸 Test Crop Photo Grading')">📸 Test Crop Photo Grading (फसल फोटो ग्रेडिंग)</button>
-                        <button class="wa-option-btn" onclick="sendWhatsAppBotOption('📈 Today\'s Onion & Tomato Mandi Rates')">📈 Today's Onion & Tomato Mandi Bhav (मंडी भाव)</button>
-                        <button class="wa-option-btn" onclick="sendWhatsAppBotOption('🚚 Track My Transport Truck (MH-15-AB-1234)')">🚚 Track My Transport Truck (ट्रक ट्रैकिंग)</button>
-                        <button class="wa-option-btn" onclick="sendWhatsAppBotOption('👨‍🌾 Connect with APMC Field Officer')">👨‍🌾 Connect with APMC Field Officer (अधिकारी से बात करें)</button>
+                        <button class="wa-option-btn" onclick="sendWhatsAppBotOption('📈 Mandi Bhav (कांदा व टोमॅटो आजचा भाव)')">📈 Mandi Bhav (कांदा व टोमॅटो भाव)</button>
+                        <button class="wa-option-btn" onclick="sendWhatsAppBotOption('📸 Test AI Crop Photo Grading')">📸 Test AI Crop Photo Grading (फोटो ग्रेडिंग)</button>
+                        <button class="wa-option-btn" onclick="sendWhatsAppBotOption('🚚 Track My Transport Truck (MH-15-AB-1234)')">🚚 Track My Truck (गाड़ी कहां है?)</button>
+                        <button class="wa-option-btn" onclick="sendWhatsAppBotOption('👨‍🌾 Connect with APMC Field Officer')">👨‍🌾 Connect with APMC Officer (अधिकारी संपर्क)</button>
                     </div>
                 </div>
             </div>
 
+            <!-- WhatsApp Input Footer -->
             <div class="wa-footer">
-                <input type="text" id="waTextInput" class="wa-input" placeholder="Type message in Hindi, English, Marathi..." onkeypress="if(event.key==='Enter') sendWhatsAppBotUserMessage()">
-                <button class="wa-send-btn" onclick="sendWhatsAppBotUserMessage()" title="Send Message">➤</button>
+                <input type="file" id="waCropPhotoUpload" accept="image/*" style="display:none;" onchange="handleWhatsAppPhotoUpload(event)">
+                <button type="button" class="wa-footer-icon-btn" onclick="toast('😄 Emojis: 🧅 🍅 🌾 🥭 🍋 🥔')">😄</button>
+                <button type="button" class="wa-footer-icon-btn" onclick="document.getElementById('waCropPhotoUpload').click()" title="Attach Crop Photo for AI Grading">📎</button>
+                <input type="text" id="waTextInput" class="wa-input" placeholder="Type a message (e.g. Onion bhav, Track truck)..." onkeypress="if(event.key==='Enter') sendWhatsAppBotUserMessage()">
+                <button type="button" class="wa-footer-icon-btn" onclick="triggerWhatsAppVoiceInput()" title="Voice Message / Voice Note">🎙️</button>
+                <button type="button" class="wa-send-btn" onclick="sendWhatsAppBotUserMessage()" title="Send Message">➤</button>
             </div>
             
-            <div style="background:#f0f2f5; padding:8px 16px; text-align:center; font-size:11px; border-top:1px solid #e0e0e0;">
-                <a href="https://wa.me/919820045678?text=Hello%20AgroSphere%20Kisan%20Help%20Center" target="_blank" style="color:#075e54; font-weight:700; text-decoration:none;">
-                    💬 Open in Real WhatsApp App (+91 98200 45678) ↗
+            <div class="wa-bottom-bar">
+                <span>🟢 <b>Active Automated Kisan Bot</b> · Instant Replies 24x7</span>
+                <a href="https://wa.me/919820045678?text=Hello%20AgroSphere%20Kisan%20Help%20Center" target="_blank" class="wa-real-app-link">
+                    Open in External App ↗
                 </a>
             </div>
         </div>
